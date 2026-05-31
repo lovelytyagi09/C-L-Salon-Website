@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>C L Salon — Birmingham's Hijabi-Friendly Sanctuary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #faf7f2;
+    --warm-white: #fff9f5;
+    --blush: #e8c9b8;
+    --rose: #c4896b;
+    --deep-rose: #9a5e44;
+    --charcoal: #2a2320;
+    --mid: #6b5b53;
+    --light-mid: #a89890;
+    --gold: #c9a96e;
+    --gold-light: #e8d5b0;
+    --section-gap: 100px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    padding: 0 5%; height: 72px;
+    display: flex; align-items: center; justify-content: space-between;
+    background: rgba(250,247,242,0.92); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(196,137,107,0.15); transition: box-shadow 0.3s;
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.02em; }
+  .nav-logo span { color: var(--rose); font-style: italic; }
+  .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+  .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.25s; }
+  .nav-links a:hover { color: var(--rose); }
+  .nav-book { background: var(--charcoal); color: var(--cream) !important; padding: 10px 22px; border-radius: 2px; letter-spacing: 0.1em; transition: background 0.25s !important; }
+  .nav-book:hover { background: var(--rose) !important; color: #fff !important; }
+
+  /* HERO */
+  #home { position: relative; height: 100vh; min-height: 680px; display: flex; align-items: center; overflow: hidden; }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: url('https://i1-c.pinimg.com/736x/9c/94/ab/9c94ab5b22a20cf3a9631407498840b9.jpg') center/cover no-repeat;
+    filter: brightness(0.38); transform: scale(1.04); transition: transform 8s ease;
+  }
+  #home:hover .hero-bg { transform: scale(1.0); }
+  .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(42,35,32,0.55) 0%, rgba(154,94,68,0.18) 100%); }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 0 7%; padding-top: 72px; }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--gold-light); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+  }
+  .hero-tag::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--gold); }
+
+  .hero-headline {
+    font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 300; line-height: 1.12; color: #fff; margin-bottom: 18px;
+    opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
+  }
+  .hero-headline em { font-style: italic; color: var(--blush); }
+
+  .hero-sub {
+    font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.82);
+    line-height: 1.7; max-width: 540px; margin-bottom: 14px;
+    opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
+  }
+
+  .hero-quote {
+    font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem;
+    color: var(--gold-light); margin-bottom: 32px;
+    opacity: 0; animation: fadeUp 0.9s 0.85s forwards;
+  }
+
+  /* CTAs side by side */
+  .hero-ctas {
+    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
+    opacity: 0; animation: fadeUp 0.9s 1s forwards;
+  }
+
+  .btn-primary {
+    background: var(--rose); color: #fff; padding: 14px 34px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px; border: 2px solid var(--rose); transition: all 0.28s;
+  }
+  .btn-primary:hover { background: transparent; color: var(--rose); }
+
+  .btn-outline {
+    background: transparent; color: #fff; padding: 14px 34px;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+    text-decoration: none; border-radius: 2px; border: 2px solid rgba(255,255,255,0.45); transition: all 0.28s;
+  }
+  .btn-outline:hover { border-color: #fff; }
+
+  /* RATING BLOCK */
+  .hero-rating {
+    display: flex; align-items: center; gap: 18px;
+    margin-top: 28px;
+    opacity: 0; animation: fadeUp 0.9s 1.15s forwards;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.12);
+  }
+  .hero-rating-score {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3.4rem; font-weight: 300; line-height: 1;
+    color: #fff;
+    letter-spacing: -0.02em;
+  }
+  .hero-rating-right {}
+  .hero-stars { display: flex; gap: 4px; margin-bottom: 5px; }
+  .hero-stars svg { width: 18px; height: 18px; }
+  .hero-rating-label {
+    font-size: 0.78rem; font-weight: 400; letter-spacing: 0.06em;
+    color: rgba(255,255,255,0.65);
+  }
+  .hero-rating-label strong { color: #fff; font-weight: 600; }
+  .hero-rating-platform {
+    display: flex; align-items: center; gap: 6px; margin-top: 4px;
+  }
+  .fresha-dot {
+    width: 14px; height: 14px; border-radius: 50%;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    flex-shrink: 0;
+  }
+  .hero-rating-platform span {
+    font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.75);
+    letter-spacing: 0.04em;
+  }
+
+  .hero-scroll {
+    position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 6px;
+    opacity: 0; animation: fadeUp 1s 1.4s forwards;
+  }
+  .hero-scroll span { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); animation: scrollPulse 2s infinite; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.15); } }
+
+  /* PRIVATE BANNER */
+  .private-banner {
+    background: var(--charcoal); color: var(--cream); text-align: center;
+    padding: 16px 5%; font-size: 0.82rem; letter-spacing: 0.1em;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .private-banner a { color: var(--gold); text-decoration: none; font-weight: 600; letter-spacing: 0.06em; }
+  .private-banner a:hover { text-decoration: underline; }
+
+  /* SECTIONS */
+  section { padding: var(--section-gap) 7%; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--rose); margin-bottom: 14px; display: flex; align-items: center; gap: 10px;
+  }
+  .section-label::before { content: ''; display: inline-block; width: 24px; height: 1px; background: var(--rose); }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 4vw, 3.4rem); font-weight: 300; line-height: 1.18; color: var(--charcoal); }
+  .section-title em { font-style: italic; color: var(--rose); }
+
+  /* ABOUT */
+  #about { background: var(--warm-white); }
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .about-text { order: 1; }
+  .about-img { order: 2; }
+  .about-text .section-label { justify-content: flex-start; }
+  .about-body { margin-top: 24px; font-size: 1.02rem; line-height: 1.82; color: var(--mid); font-weight: 300; }
+  .about-body p + p { margin-top: 18px; }
+  .about-body strong { color: var(--charcoal); font-weight: 600; }
+  .about-stats { display: flex; gap: 40px; margin-top: 40px; padding-top: 32px; border-top: 1px solid var(--gold-light); }
+  .stat-num { font-family: 'Cormorant Garamond', serif; font-size: 2.6rem; font-weight: 300; color: var(--charcoal); line-height: 1; }
+  .stat-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--rose); margin-top: 4px; }
+  .about-img-wrap { position: relative; }
+  .about-img-main { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 3px; display: block; }
+  .about-badge {
+    position: absolute; top: -24px; right: -20px;
+    background: var(--charcoal); color: var(--cream);
+    padding: 16px 20px; border-radius: 2px; text-align: center;
+    font-size: 0.75rem; letter-spacing: 0.08em; box-shadow: 0 8px 32px rgba(42,35,32,0.2);
+  }
+  .about-badge strong { display: block; font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--gold); line-height: 1; }
+
+  /* SERVICES */
+  #services { background: var(--cream); }
+  .services-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .services-scroll-wrap { position: relative; max-width: 1200px; margin: 0 auto; overflow: hidden; }
+  .services-track { display: flex; gap: 24px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+  .service-card { flex: 0 0 calc((100% - 48px) / 3); background: var(--warm-white); border-radius: 3px; overflow: hidden; border: 1px solid rgba(196,137,107,0.12); transition: transform 0.3s, box-shadow 0.3s; }
+  .service-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(42,35,32,0.1); }
+  .service-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; transition: transform 0.5s; }
+  .service-card:hover .service-img { transform: scale(1.04); }
+  .service-body { padding: 24px 26px 28px; }
+  .service-tag { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--rose); margin-bottom: 8px; }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 400; color: var(--charcoal); margin-bottom: 10px; line-height: 1.3; }
+  .service-desc { font-size: 0.88rem; line-height: 1.7; color: var(--mid); font-weight: 300; margin-bottom: 18px; }
+  .service-link { font-size: 0.78rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--rose); text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: gap 0.2s; }
+  .service-link:hover { gap: 10px; }
+  .service-link::after { content: '→'; }
+  .services-nav { display: flex; gap: 10px; margin-bottom: 8px; }
+  .nav-arrow { width: 44px; height: 44px; border: 1px solid var(--blush); border-radius: 50%; background: transparent; cursor: pointer; font-size: 1.1rem; color: var(--charcoal); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
+  .nav-arrow:hover { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
+  .services-footer { text-align: center; margin-top: 44px; }
+  .see-all-link { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal); text-decoration: none; border-bottom: 1px solid var(--charcoal); padding-bottom: 2px; transition: color 0.25s, border-color 0.25s; }
+  .see-all-link:hover { color: var(--rose); border-color: var(--rose); }
+
+  /* WHY CHOOSE US */
+  #why { background: var(--warm-white); }
+  .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; max-width: 1200px; margin: 0 auto; }
+  .why-text .section-title { margin-bottom: 36px; }
+  .why-list { list-style: none; display: flex; flex-direction: column; gap: 0; }
+  .why-item { display: flex; gap: 20px; padding: 24px 0; border-bottom: 1px solid var(--gold-light); }
+  .why-item:first-child { border-top: 1px solid var(--gold-light); }
+  .why-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .why-item-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 600; color: var(--charcoal); margin-bottom: 5px; }
+  .why-item-desc { font-size: 0.87rem; line-height: 1.7; color: var(--mid); font-weight: 300; }
+  .why-image-mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .mosaic-img { width: 100%; object-fit: cover; border-radius: 3px; display: block; }
+  .mosaic-img:first-child { grid-column: 1 / -1; aspect-ratio: 16/9; }
+  .mosaic-img:not(:first-child) { aspect-ratio: 4/3; }
+
+  /* SPECIAL TREATMENTS */
+  #special { background: var(--charcoal); padding: var(--section-gap) 7%; }
+  #special .section-label { color: var(--gold); }
+  #special .section-label::before { background: var(--gold); }
+  #special .section-title { color: var(--cream); margin-bottom: 14px; }
+  #special .section-intro { font-size: 1rem; color: rgba(250,247,242,0.65); font-weight: 300; max-width: 520px; line-height: 1.7; margin-bottom: 56px; }
+  .specials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
+  .special-card { position: relative; border-radius: 3px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+  .special-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: transform 0.6s, filter 0.4s; display: block; }
+  .special-card:hover img { transform: scale(1.06); filter: brightness(0.35); }
+  .special-content { position: absolute; inset: 0; padding: 30px 26px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .special-tag { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .special-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: #fff; line-height: 1.25; margin-bottom: 10px; }
+  .special-desc { font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.65; font-weight: 300; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
+  .special-card:hover .special-desc { max-height: 120px; }
+
+  /* TRANSFORMATIONS */
+  #gallery-preview { background: var(--cream); }
+  .transforms-header { display: flex; align-items: flex-end; justify-content: space-between; max-width: 1200px; margin: 0 auto 48px; }
+  .transforms-nav { display: flex; gap: 10px; }
+  .transforms-scroll-wrap { max-width: 1200px; margin: 0 auto; overflow: hidden; }
+  .transforms-track { display: flex; gap: 20px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+  .transform-card { flex: 0 0 calc((100% - 40px) / 3); border-radius: 3px; overflow: hidden; position: relative; cursor: pointer; aspect-ratio: 3/4; }
+  .transform-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
+  .transform-card:hover img { transform: scale(1.05); }
+  .transform-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,35,32,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 24px; }
+  .transform-card:hover .transform-overlay { opacity: 1; }
+  .transform-label { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #fff; font-style: italic; }
+  .gallery-cta { text-align: center; margin-top: 44px; }
+
+  /* FAQs */
+  #faqs { background: var(--warm-white); }
+  .faqs-wrap { max-width: 760px; margin: 52px auto 0; }
+  .faq-item { border-bottom: 1px solid var(--gold-light); }
+  .faq-item:first-child { border-top: 1px solid var(--gold-light); }
+  .faq-q { width: 100%; background: transparent; border: none; padding: 24px 0; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; text-align: left; font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 400; color: var(--charcoal); transition: color 0.2s; }
+  .faq-q:hover, .faq-q.open { color: var(--rose); }
+  .faq-icon { width: 28px; height: 28px; border: 1px solid currentColor; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; transition: transform 0.3s; }
+  .faq-q.open .faq-icon { transform: rotate(45deg); }
+  .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 0.93rem; line-height: 1.78; color: var(--mid); font-weight: 300; padding: 0; }
+  .faq-a.open { max-height: 300px; padding-bottom: 24px; }
+  .faqs-more { text-align: center; margin-top: 44px; }
+
+  /* FOOTER */
+  footer { background: var(--charcoal); color: var(--cream); padding: 70px 7% 36px; }
+  .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,0.08); max-width: 1200px; margin: 0 auto; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: #fff; text-decoration: none; margin-bottom: 16px; display: block; }
+  .footer-logo span { color: var(--rose); font-style: italic; }
+  .footer-tagline { font-size: 0.85rem; line-height: 1.7; color: rgba(250,247,242,0.55); font-weight: 300; margin-bottom: 28px; max-width: 260px; }
+  .footer-socials { display: flex; gap: 12px; }
+  .footer-social { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 0.25s; }
+  .footer-social:hover { border-color: var(--gold); color: var(--gold); }
+  .footer-col-title { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 22px; font-weight: 500; }
+  .footer-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-links a { font-size: 0.87rem; color: rgba(250,247,242,0.55); text-decoration: none; font-weight: 300; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--cream); }
+  .footer-contact { display: flex; flex-direction: column; gap: 12px; }
+  .footer-contact-item { display: flex; gap: 10px; align-items: flex-start; }
+  .footer-contact-icon { font-size: 0.9rem; opacity: 0.6; flex-shrink: 0; margin-top: 1px; }
+  .footer-contact-text { font-size: 0.85rem; color: rgba(250,247,242,0.6); line-height: 1.55; font-weight: 300; }
+  .footer-contact-text a { color: rgba(250,247,242,0.6); text-decoration: none; transition: color 0.2s; }
+  .footer-contact-text a:hover { color: var(--cream); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; padding-top: 32px; display: flex; justify-content: space-between; align-items: center; font-size: 0.78rem; color: rgba(250,247,242,0.3); gap: 20px; flex-wrap: wrap; }
+
+  /* SCROLL REVEAL */
+  .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    :root { --section-gap: 70px; }
+    .about-grid, .why-grid { grid-template-columns: 1fr; gap: 48px; }
+    .about-img { order: -1; }
+    .specials-grid { grid-template-columns: 1fr; }
+    .service-card { flex: 0 0 calc(100% - 10px); }
+    .transform-card { flex: 0 0 80%; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .services-header, .transforms-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    nav { padding: 0 5%; }
+    .nav-links { display: none; }
+    .hero-rating { flex-direction: column; align-items: flex-start; gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#home" class="nav-logo">C<span>L</span> Salon</a>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#faqs">Contact</a></li>
+    <li><a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="nav-book">Book a Visit</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="hero-tag">Birmingham's Sanctuary for Every Woman</p>
+    <h1 class="hero-headline">
+      Birmingham's first<br><em>hijabi-friendly salon</em><br>with exclusive private rooms
+    </h1>
+    <p class="hero-sub">Designed for comfort and privacy — where every woman is welcome, seen, and celebrated.</p>
+    <p class="hero-quote">"…where every woman is inclusive…" — Sharon</p>
+
+    <!-- CTAs side by side -->
+    <div class="hero-ctas">
+      <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="btn-primary">Book a Visit</a>
+      <a href="#services" class="btn-outline">Our Services</a>
+    </div>
+
+    <!-- Rating block -->
+    <div class="hero-rating">
+      <div class="hero-rating-score">5.0</div>
+      <div class="hero-rating-right">
+        <div class="hero-stars">
+          <!-- 5 gold stars -->
+          <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <!-- <div class="hero-rating-label">from <strong>87 reviews</strong> on</div> -->
+        <div class="hero-rating-platform">
+          <span class="fresha-dot"></span>
+          <span>fresha</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- PRIVATE ROOM BANNER -->
+<div class="private-banner">
+  🕌 <strong>Private Room Available</strong> — Exclusively for our Muslim female guests. Full privacy, no compromise. &nbsp;
+  <a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20the%20private%20room.">Request Private Room →</a>
+</div>
+
+<!-- ABOUT SHARON -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p class="section-label">Our Story</p>
+      <h2 class="section-title">About <em>Sharon</em></h2>
+      <div class="about-body">
+        <p>Sharon is the <strong>heart of C L Salon</strong> — a stylist with <strong>over a decade of experience</strong> building Birmingham's most <strong>inclusive hair sanctuary</strong>.</p>
+        <p>She pioneered our <strong>exclusive private room</strong> — so every Muslim woman can receive <strong>world-class hair treatments</strong> in complete privacy.</p>
+        <p>Trained in <strong>Japanese straightening</strong>, precision colour, and advanced styling — for Sharon, hair is about <strong>confidence, identity, and belonging</strong>.</p>
+      </div>
+      <div class="about-stats">
+        <div class="stat-item">
+          <div class="stat-num">30+</div>
+          <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">500+</div>
+          <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">7</div>
+          <div class="stat-label">Days a Week</div>
+        </div>
+      </div>
+    </div>
+    <div class="about-img reveal reveal-delay-2">
+      <div class="about-img-wrap">
+        <img class="about-img-main" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=700&q=80&fit=crop" alt="Sharon - Salon Owner">
+        <!-- <div class="about-badge">
+          <strong>5★</strong>
+          Rated Salon<br>Birmingham
+        </div> -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="services-header reveal">
+    <div>
+      <p class="section-label">What We Offer</p>
+      <h2 class="section-title">Our <em>Services</em></h2>
+    </div>
+    <div class="services-nav">
+      <button class="nav-arrow" onclick="scrollTrack('services-track','prev')">←</button>
+      <button class="nav-arrow" onclick="scrollTrack('services-track','next')">→</button>
+    </div>
+  </div>
+  <div class="services-scroll-wrap">
+    <div class="services-track" id="services-track">
+      <div class="service-card">
+        <img class="service-img" src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Hair Straightening">
+        <div class="service-body">
+          <p class="service-tag">★ Signature</p>
+          <h3 class="service-name">Japanese Hair Straightening</h3>
+          <p class="service-desc">Permanent silky smoothness using authentic Japanese techniques. Long-lasting results that grow out beautifully.</p>
+          <a href="services.html" class="service-link">Book Now</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&fit=crop" alt="Colour & Balayage">
+        <div class="service-body">
+          <p class="service-tag">★ Popular</p>
+          <h3 class="service-name">Colour & Balayage</h3>
+          <p class="service-desc">Full colour, highlights, balayage and ombré. Consultation required to achieve your perfect shade.</p>
+          <a href="services.html" class="service-link">Book Now</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop" alt="Haircut & Trim">
+        <div class="service-body">
+          <p class="service-tag">All Lengths</p>
+          <h3 class="service-name">Haircut & Trim</h3>
+          <p class="service-desc">Precision cuts shaped to your face structure and hair type. Leave with a style that truly fits you.</p>
+          <a href="services.html" class="service-link">Book Now</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Treatment">
+        <div class="service-body">
+          <p class="service-tag">Deep Repair</p>
+          <h3 class="service-name">Hair Treatment</h3>
+          <p class="service-desc">Nourish, repair and strengthen damaged or dry hair with professional-grade treatment protocols.</p>
+          <a href="services.html" class="service-link">Book Now</a>
+        </div>
+      </div>
+      <div class="service-card">
+        <img class="service-img" src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&q=80&fit=crop" alt="Private Room">
+        <div class="service-body">
+          <p class="service-tag">🕌 Exclusive</p>
+          <h3 class="service-name">Private Room Service</h3>
+          <p class="service-desc">All services available in our fully private room — exclusively for Muslim female guests. Full privacy, no compromise.</p>
+          <a href="services.html" class="service-link">Book Now</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="services-footer reveal">
+    <a href="services.html" class="see-all-link">See All Services</a>
+  </div>
+</section>
+
+<!-- WHY CHOOSE US -->
+<section id="why">
+  <div class="why-grid">
+    <div class="why-text reveal">
+      <p class="section-label">The Difference</p>
+      <h2 class="section-title">Why <em>Choose Us</em></h2>
+      <ul class="why-list">
+        <li class="why-item">
+          <span class="why-icon">🕌</span>
+          <div>
+            <p class="why-item-title">Hijabi-Friendly & Inclusive</p>
+            <p class="why-item-desc">Birmingham's first salon to offer a dedicated private room for Muslim women. No compromise on privacy, ever.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-icon">✨</span>
+          <div>
+            <p class="why-item-title">Expert-Level Skill</p>
+            <p class="why-item-desc">Sharon brings over a decade of precision, artistry and care to every appointment. Your hair is in the best hands.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-icon">🌸</span>
+          <div>
+            <p class="why-item-title">Relaxed, Luxurious Atmosphere</p>
+            <p class="why-item-desc">A calm boutique environment where you can truly unwind and enjoy a personal experience from start to finish.</p>
+          </div>
+        </li>
+        <li class="why-item">
+          <span class="why-icon">⭐</span>
+          <div>
+            <p class="why-item-title">5-Star Reputation</p>
+            <p class="why-item-desc">Consistently top-rated by clients. Real results, real transformations, and a team that genuinely cares.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="why-image-mosaic reveal reveal-delay-2">
+      <img class="mosaic-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80&fit=crop" alt="Salon">
+      <img class="mosaic-img" src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Hair colour">
+      <img class="mosaic-img" src="https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg" alt="Salon interior">
+    </div>
+  </div>
+</section>
+
+<!-- SPECIAL TREATMENTS -->
+<section id="special">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">Exclusive Offerings</p>
+    <h2 class="section-title">Specialist <em style="color:var(--gold);">Treatments</em></h2>
+    <p class="section-intro">From our signature Japanese straightening to our Muslim female-only private room service — experiences crafted for every woman.</p>
+    <div class="specials-grid">
+      <div class="special-card reveal reveal-delay-1">
+        <img src="https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B" alt="Private Room for Muslim Women">
+        <div class="special-content">
+          <p class="special-tag">🕌 Exclusive</p>
+          <h3 class="special-title">Muslim Female Private Room</h3>
+          <p class="special-desc">A fully enclosed, private space exclusively for our Muslim female guests. All services available with complete comfort and dignity.</p>
+        </div>
+      </div>
+      <div class="special-card reveal">
+        <img src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Straightening">
+        <div class="special-content">
+          <p class="special-tag">Signature</p>
+          <h3 class="special-title">Japanese Hair Straightening</h3>
+          <p class="special-desc">Permanent glossy smoothness using authentic Japanese techniques and premium products. A consultation is required prior to booking.</p>
+        </div>
+      </div>
+      <div class="special-card reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&fit=crop" alt="Brazilian Blow Dry">
+        <div class="special-content">
+          <p class="special-tag">★ Popular</p>
+          <h3 class="special-title">Brazilian Blow Dry Keratin Treatment</h3>
+          <p class="special-desc">Hand-painted sun-kissed gradients and full colour services that are bespoke to your hair and complexion.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRANSFORMATIONS -->
+<section id="gallery-preview">
+  <div class="transforms-header reveal">
+    <div>
+      <p class="section-label">Our Work</p>
+      <h2 class="section-title">Client <em>Transformations</em></h2>
+    </div>
+    <div class="transforms-nav">
+      <button class="nav-arrow" onclick="manualTransform('prev')">←</button>
+      <button class="nav-arrow" onclick="manualTransform('next')">→</button>
+    </div>
+  </div>
+  <div class="transforms-scroll-wrap" id="transforms-wrap">
+    <div class="transforms-track" id="transforms-track">
+      <div class="transform-card">
+        <img src="https://i.pinimg.com/736x/9a/a5/e5/9aa5e582f2beaa0e0bb442f3652c1a3a.jpg" alt="Transformation 1">
+        <div class="transform-overlay"><span class="transform-label">Japanese Straightening</span></div>
+      </div>
+      <div class="transform-card">
+        <img src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Transformation 2">
+        <div class="transform-overlay"><span class="transform-label">Balayage</span></div>
+      </div>
+      <div class="transform-card">
+        <img src="https://i1-c.pinimg.com/1200x/95/41/c3/9541c3b4df0e122466bf9c862c5c43d2.jpg" alt="Transformation 3">
+        <div class="transform-overlay"><span class="transform-label">Colour & Highlights</span></div>
+      </div>
+      <div class="transform-card">
+        <img src="https://i.pinimg.com/736x/f9/8c/a7/f98ca7d4ef3047fe09af7e4403a875d0.jpg" alt="Transformation 4">
+        <div class="transform-overlay"><span class="transform-label">Haircut & Style</span></div>
+      </div>
+      <div class="transform-card">
+        <img src="https://i.pinimg.com/736x/b0/24/ee/b024ee4f65c661c31a12be370d382232.jpg" alt="Transformation 5">
+        <div class="transform-overlay"><span class="transform-label">Hair Treatment</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="gallery-cta reveal">
+    <a href="gallery.html" class="see-all-link">Visit Gallery</a>
+  </div>
+</section>
+
+<!-- FAQs -->
+<section id="faqs">
+  <div style="max-width:1200px; margin:0 auto;">
+    <p class="section-label">Got Questions?</p>
+    <h2 class="section-title reveal">Frequently Asked <em>Questions</em></h2>
+  </div>
+  <div class="faqs-wrap">
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do you have a private room for Muslim women?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes — we have a fully enclosed private room exclusively for our Muslim female guests. All salon services are available in the private room. Simply request it at the time of booking via WhatsApp or the Fresha booking form.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-1">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do I need a consultation before Japanese hair straightening?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes, a consultation is required before booking Japanese hair straightening. This allows Sharon to assess your hair's condition, health, and texture to ensure the treatment is suitable and to recommend the right approach for your specific hair type.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        How do I book an appointment?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">You can book online via our Fresha page, message Sharon directly on WhatsApp at 07833 463 669, or call the salon on 0121-622 5877. Appointments are highly recommended — walk-ins are subject to availability.</div>
+    </div>
+    <div class="faq-item reveal">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        What are your opening hours?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">We are open 7 days a week, Monday to Sunday, from 10:00 AM to 6:00 PM. We are happy to accommodate you every day so you can visit at your convenience.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-1">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Where are you located?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">We are located at Unit 2, China Court Building, 3 Bath Passage, Birmingham B5 4ST — in the heart of Birmingham's China Town area. Easily accessible by public transport and with nearby parking available.</div>
+    </div>
+    <div class="faq-item reveal reveal-delay-2">
+      <button class="faq-q" onclick="toggleFaq(this)">
+        Do you offer hair extensions?
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-a">Yes, we offer professionally fitted hair extensions to add instant length and volume. Please contact us before booking to discuss which extension method is best suited to your hair.</div>
+    </div>
+  </div>
+  <div class="faqs-more reveal">
+    <a href="faqs.html" class="see-all-link">View All FAQs</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#home" class="footer-logo">C<span>L</span> Salon</a>
+      <p class="footer-tagline">Birmingham's first hijabi-friendly hair sanctuary. Where every woman is welcome, seen, and celebrated.</p>
+      <div class="footer-socials">
+        <a href="#" class="footer-social" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+  <circle cx="12" cy="12" r="4"/>
+  <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+</svg></a>
+        <a href="https://wa.me/447833463669" class="footer-social" title="WhatsApp"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+</svg></a>
+        <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="footer-social" title="Fresha"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+</svg></a>
+      </div>
+    </div>
+    <div>
+      <p class="footer-col-title">Navigation</p>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="faqs.html">FAQs</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Services</p>
+      <ul class="footer-links">
+        <li><a href="services.html">Japanese Straightening</a></li>
+        <li><a href="services.html">Colour & Balayage</a></li>
+        <li><a href="services.html">Haircut & Trim</a></li>
+        <li><a href="services.html">Hair Extensions</a></li>
+        <li><a href="services.html">Private Room</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title">Contact</p>
+      <div class="footer-contact">
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📍</span>
+          <span class="footer-contact-text">Unit 2, China Court Building, 3 Bath Passage, Birmingham B5 4ST</span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">📞</span>
+          <span class="footer-contact-text"><a href="tel:+441216225877">0121-622 5877</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">💬</span>
+          <span class="footer-contact-text"><a href="https://wa.me/447833463669">WhatsApp Sharon</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <span class="footer-contact-icon">🔖</span>
+          <span class="footer-contact-text"><a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book on Fresha →</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 C L Salon 名髮廊 · All rights reserved.</span>
+    <span>Unit 2, China Court Building, Birmingham B5 4ST</span>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // FAQ toggle
+  function toggleFaq(btn) {
+    const answer = btn.nextElementSibling;
+    const isOpen = btn.classList.contains('open');
+    document.querySelectorAll('.faq-q.open').forEach(b => {
+      b.classList.remove('open');
+      b.nextElementSibling.classList.remove('open');
+    });
+    if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
+  }
+
+  // ── CAROUSEL ENGINE ──
+  const trackState = {};
+  function scrollTrack(trackId, dir) {
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    if (trackState[trackId] === undefined) trackState[trackId] = 0;
+    const cardWidth = track.children[0].offsetWidth + 24;
+    const maxSlide = Math.max(0, track.children.length - 3);
+    if (dir === 'next') trackState[trackId] = trackState[trackId] >= maxSlide ? 0 : trackState[trackId] + 1;
+    else trackState[trackId] = trackState[trackId] <= 0 ? maxSlide : trackState[trackId] - 1;
+    track.style.transform = `translateX(-${trackState[trackId] * cardWidth}px)`;
+  }
+
+  // ── SERVICES AUTO-SCROLL (left → right, loops) ──
+  (function() {
+    const trackId = 'services-track';
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    trackState[trackId] = 0;
+    let paused = false;
+    track.closest('.services-scroll-wrap').addEventListener('mouseenter', () => paused = true);
+    track.closest('.services-scroll-wrap').addEventListener('mouseleave', () => paused = false);
+    setInterval(() => {
+      if (paused) return;
+      const cardWidth = track.children[0].offsetWidth + 24;
+      const maxSlide = Math.max(0, track.children.length - 3);
+      trackState[trackId] = trackState[trackId] >= maxSlide ? 0 : trackState[trackId] + 1;
+      track.style.transform = `translateX(-${trackState[trackId] * cardWidth}px)`;
+    }, 2800);
+  })();
+
+  // ── TRANSFORMATIONS AUTO-SCROLL ──
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var track = document.getElementById('transforms-track');
+      var wrap = document.getElementById('transforms-wrap');
+      if (!track || !wrap) return;
+      var idx = 0;
+      var paused = false;
+      var TOTAL = track.children.length;
+      var VISIBLE = 3;
+      var MAX = TOTAL - VISIBLE;
+
+      function getW() { return track.children[0].getBoundingClientRect().width + 20; }
+      function moveTo(n) { idx = n; track.style.transform = 'translateX(-' + (idx * getW()) + 'px)'; }
+
+      wrap.addEventListener('mouseenter', function() { paused = true; });
+      wrap.addEventListener('mouseleave', function() { paused = false; });
+
+      setInterval(function() {
+        if (paused) return;
+        moveTo(idx >= MAX ? 0 : idx + 1);
+      }, 3000);
+
+      window._transformMove = function(dir) {
+        moveTo(dir === 'next' ? (idx >= MAX ? 0 : idx + 1) : (idx <= 0 ? MAX : idx - 1));
+      };
+    }, 400);
+  });
+
+  function manualTransform(dir) { if (window._transformMove) window._transformMove(dir); }
+</script>
+</body>
+</html>
