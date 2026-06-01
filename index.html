@@ -1,9 +1,10 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>C L Salon — Birmingham's Hijabi-Friendly Sanctuary</title>
+<title>C L Salon 名髮廊 — Birmingham's Hijabi-Friendly Sanctuary</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -35,6 +36,23 @@
   nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
   .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.02em; }
   .nav-logo span { color: var(--rose); font-style: italic; }
+  .nav-logo .nav-logo-chinese { font-size: 1rem; font-weight: 300; color: var(--mid); letter-spacing: 0.04em; margin-left: 4px; font-style: normal; }
+
+  /* HAMBURGER */
+  .hamburger {
+    display: none; flex-direction: column; justify-content: center;
+    align-items: center; gap: 5px; width: 40px; height: 40px;
+    background: transparent; border: none; cursor: pointer; padding: 6px; z-index: 1001;
+  }
+  .hamburger span {
+    display: block; width: 24px; height: 2px; background: var(--charcoal);
+    border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center;
+  }
+  .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+  .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  /* NAV LINKS */
   .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
   .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.25s; }
   .nav-links a:hover { color: var(--rose); }
@@ -50,74 +68,51 @@
   }
   #home:hover .hero-bg { transform: scale(1.0); }
   .hero-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(42,35,32,0.55) 0%, rgba(154,94,68,0.18) 100%); }
-  .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 0 7%; padding-top: 72px; }
-
-  .hero-tag {
+  .hero-content { position: relative; z-index: 2; max-width: 780px; padding: 0 7%; padding-top: 120px; }
+  .hero-tag-1 {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold-light); margin-bottom: 24px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
+    color: var(--gold-light); margin-bottom: 40px; opacity: 0; animation: fadeUp 0.8s 0.3s forwards;
   }
-  .hero-tag::before { content: ''; display: inline-block; width: 30px; height: 1px; background: var(--gold); }
-
   .hero-headline {
     font-family: 'Cormorant Garamond', serif; font-size: clamp(2.8rem, 6vw, 5.2rem);
     font-weight: 300; line-height: 1.12; color: #fff; margin-bottom: 18px;
     opacity: 0; animation: fadeUp 0.9s 0.5s forwards;
   }
   .hero-headline em { font-style: italic; color: var(--blush); }
-
   .hero-sub {
     font-size: 1.05rem; font-weight: 300; color: rgba(255,255,255,0.82);
     line-height: 1.7; max-width: 540px; margin-bottom: 14px;
     opacity: 0; animation: fadeUp 0.9s 0.7s forwards;
   }
-
   .hero-quote {
     font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 0.95rem;
-    color: var(--gold-light); margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 0.9s 0.85s forwards;
+    color: var(--gold-light); margin-bottom: 32px; opacity: 0; animation: fadeUp 0.9s 0.85s forwards;
   }
-
-  .hero-ctas {
-    display: flex; gap: 14px; flex-wrap: wrap; align-items: center;
-    opacity: 0; animation: fadeUp 0.9s 1s forwards;
-  }
-
+  .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; align-items: center; opacity: 0; animation: fadeUp 0.9s 1s forwards; }
   .btn-primary {
     background: var(--rose); color: #fff; padding: 14px 34px;
     font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
     text-decoration: none; border-radius: 2px; border: 2px solid var(--rose); transition: all 0.28s;
   }
   .btn-primary:hover { background: transparent; color: var(--rose); }
-
   .btn-outline {
     background: transparent; color: #fff; padding: 14px 34px;
     font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
     text-decoration: none; border-radius: 2px; border: 2px solid rgba(255,255,255,0.45); transition: all 0.28s;
   }
   .btn-outline:hover { border-color: #fff; }
-
-  /* RATING BLOCK */
   .hero-rating {
-    display: flex; align-items: center; gap: 18px;
-    margin-top: 28px;
+    display: flex; align-items: center; gap: 18px; margin-top: 28px;
     opacity: 0; animation: fadeUp 0.9s 1.15s forwards;
-    padding-top: 24px;
-    border-top: 1px solid rgba(255,255,255,0.12);
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12);
   }
-  .hero-rating-score {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 3.4rem; font-weight: 300; line-height: 1;
-    color: #fff; letter-spacing: -0.02em;
-  }
+  .hero-rating-score { font-family: 'Cormorant Garamond', serif; font-size: 3.4rem; font-weight: 300; line-height: 1; color: #fff; letter-spacing: -0.02em; }
   .hero-stars { display: flex; gap: 4px; margin-bottom: 5px; }
   .hero-stars svg { width: 18px; height: 18px; }
-  .hero-rating-label { font-size: 0.78rem; font-weight: 400; letter-spacing: 0.06em; color: rgba(255,255,255,0.65); }
-  .hero-rating-label strong { color: #fff; font-weight: 600; }
   .hero-rating-platform { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
   .fresha-dot { width: 14px; height: 14px; border-radius: 50%; background: linear-gradient(135deg, #6c5ce7, #a29bfe); flex-shrink: 0; }
   .hero-rating-platform span { font-size: 0.82rem; font-weight: 600; color: rgba(255,255,255,0.75); letter-spacing: 0.04em; }
-
   .hero-scroll {
     position: absolute; bottom: 36px; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -125,7 +120,6 @@
   }
   .hero-scroll span { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.45); }
   .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, rgba(255,255,255,0.4), transparent); animation: scrollPulse 2s infinite; }
-
   @keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
   @keyframes scrollPulse { 0%, 100% { opacity: 0.4; transform: scaleY(1); } 50% { opacity: 1; transform: scaleY(1.15); } }
 
@@ -163,70 +157,24 @@
   .about-img-wrap { position: relative; }
   .about-img-main { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 3px; display: block; }
 
-  /* SERVICES — full bg card style */
+  /* SERVICES */
   #services { background: var(--cream); }
   .services-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; max-width: 1200px; margin-left: auto; margin-right: auto; }
   .services-scroll-wrap { position: relative; max-width: 1200px; margin: 0 auto; overflow: hidden; }
   .services-track { display: flex; gap: 20px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
-
-  .service-card {
-    flex: 0 0 calc((100% - 40px) / 3);
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    aspect-ratio: 3/4;
-    cursor: pointer;
-  }
-  .service-card img {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-    filter: brightness(0.52);
-  }
+  .service-card { flex: 0 0 calc((100% - 40px) / 3); position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+  .service-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.52); }
   .service-card:hover img { transform: scale(1.05); filter: brightness(0.38); }
-
-  .service-body {
-    position: absolute; inset: 0;
-    padding: 28px 26px;
-    display: flex; flex-direction: column;
-    justify-content: space-between;
-  }
-  .service-top {}
-  .service-tag {
-    display: block;
-    font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: rgba(255,255,255,0.65); margin-bottom: 10px; font-weight: 500;
-  }
-  .service-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.5rem, 2vw, 2rem);
-    font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 12px;
-  }
-  .service-desc {
-    font-size: 0.85rem; line-height: 1.65;
-    color: rgba(255,255,255,0.72); font-weight: 300;
-  }
-  .service-actions {
-    display: flex; align-items: center; gap: 20px; margin-top: 24px;
-  }
-  .svc-book {
-    background: #fff; color: var(--charcoal);
-    padding: 11px 26px; border-radius: 50px;
-    font-size: 0.82rem; font-weight: 600;
-    text-decoration: none; white-space: nowrap;
-    transition: background 0.25s, color 0.25s;
-  }
+  .service-body { position: absolute; inset: 0; padding: 28px 26px; display: flex; flex-direction: column; justify-content: space-between; }
+  .service-tag { display: block; font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.65); margin-bottom: 10px; font-weight: 500; }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 2vw, 2rem); font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+  .service-desc { font-size: 0.85rem; line-height: 1.65; color: rgba(255,255,255,0.72); font-weight: 300; }
+  .service-actions { display: flex; align-items: center; gap: 20px; margin-top: 24px; }
+  .svc-book { background: #fff; color: var(--charcoal); padding: 11px 26px; border-radius: 50px; font-size: 0.82rem; font-weight: 600; text-decoration: none; white-space: nowrap; transition: background 0.25s, color 0.25s; }
   .svc-book:hover { background: var(--rose); color: #fff; }
-  .svc-learn {
-    color: rgba(255,255,255,0.8); font-size: 0.84rem; font-weight: 500;
-    text-decoration: none; white-space: nowrap;
-    display: inline-flex; align-items: center; gap: 5px;
-    transition: color 0.2s, gap 0.2s;
-  }
+  .svc-learn { color: rgba(255,255,255,0.8); font-size: 0.84rem; font-weight: 500; text-decoration: none; white-space: nowrap; display: inline-flex; align-items: center; gap: 5px; transition: color 0.2s, gap 0.2s; }
   .svc-learn:hover { color: #fff; gap: 9px; }
   .svc-learn::after { content: '→'; }
-
   .services-nav { display: flex; gap: 10px; margin-bottom: 8px; }
   .nav-arrow { width: 44px; height: 44px; border: 1px solid var(--blush); border-radius: 50%; background: transparent; cursor: pointer; font-size: 1.1rem; color: var(--charcoal); display: flex; align-items: center; justify-content: center; transition: all 0.25s; }
   .nav-arrow:hover { background: var(--charcoal); color: var(--cream); border-color: var(--charcoal); }
@@ -234,7 +182,7 @@
   .see-all-link { font-size: 0.82rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--charcoal); text-decoration: none; border-bottom: 1px solid var(--charcoal); padding-bottom: 2px; transition: color 0.25s, border-color 0.25s; }
   .see-all-link:hover { color: var(--rose); border-color: var(--rose); }
 
-  /* WHY CHOOSE US */
+  /* WHY */
   #why { background: var(--warm-white); }
   .why-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 70px; align-items: center; max-width: 1200px; margin: 0 auto; }
   .why-text .section-title { margin-bottom: 36px; }
@@ -249,7 +197,7 @@
   .mosaic-img:first-child { grid-column: 1 / -1; aspect-ratio: 16/9; }
   .mosaic-img:not(:first-child) { aspect-ratio: 4/3; }
 
-  /* SPECIAL TREATMENTS */
+  /* SPECIAL */
   #special { background: var(--charcoal); padding: var(--section-gap) 7%; }
   #special .section-label { color: var(--gold); }
   #special .section-label::before { background: var(--gold); }
@@ -265,7 +213,7 @@
   .special-desc { font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.65; font-weight: 300; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
   .special-card:hover .special-desc { max-height: 120px; }
 
-  /* TRANSFORMATIONS */
+  /* GALLERY */
   #gallery-preview { background: var(--cream); }
   .transforms-header { display: flex; align-items: flex-end; justify-content: space-between; max-width: 1200px; margin: 0 auto 48px; }
   .transforms-nav { display: flex; gap: 10px; }
@@ -279,7 +227,50 @@
   .transform-label { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; color: #fff; font-style: italic; }
   .gallery-cta { text-align: center; margin-top: 44px; }
 
-  /* FAQs */
+  /* APPOINTMENT */
+  #appointment { background: #faf7f2; }
+  .appt-wrap { max-width: 900px; margin: 0 auto; }
+  .appt-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 60px; align-items: start; margin-top: 52px; }
+  .appt-info { display: flex; flex-direction: column; gap: 28px; }
+  .appt-info-item { display: flex; gap: 14px; align-items: flex-start; }
+  .appt-info-icon { width: 40px; height: 40px; border-radius: 50%; background: var(--charcoal); color: var(--cream); display: flex; align-items: center; justify-content: center; font-size: 1rem; flex-shrink: 0; }
+  .appt-info-label { font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--rose); margin-bottom: 3px; font-weight: 500; }
+  .appt-info-value { font-size: 0.9rem; color: var(--mid); line-height: 1.6; font-weight: 300; }
+  .appt-info-value a { color: var(--mid); text-decoration: none; }
+  .appt-info-value a:hover { color: var(--rose); }
+  .appt-hours { background: var(--charcoal); border-radius: 3px; padding: 20px 22px; margin-top: 8px; }
+  .appt-hours-title { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
+  .appt-hours-row { display: flex; justify-content: space-between; font-size: 0.84rem; color: rgba(250,247,242,0.7); padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-weight: 300; }
+  .appt-hours-row:last-child { border-bottom: none; }
+  .appt-hours-row span:last-child { color: var(--cream); font-weight: 400; }
+  .appt-hours-private { margin-top: 10px; border-top: 1px solid rgba(255,255,255,0.1) !important; padding-top: 10px; }
+  .appt-hours-private span { color: var(--gold) !important; }
+  .appt-form { background: var(--warm-white); border: 1px solid var(--gold-light); border-radius: 4px; padding: 36px 32px; }
+  .appt-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .appt-field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+  .appt-field label { font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); font-weight: 500; }
+  .appt-field input, .appt-field select, .appt-field textarea {
+    background: var(--cream); border: 1px solid var(--gold-light); border-radius: 2px;
+    padding: 11px 14px; font-size: 0.9rem; color: var(--charcoal);
+    font-family: 'Jost', sans-serif; font-weight: 300; transition: border-color 0.2s; outline: none; width: 100%;
+  }
+  .appt-field input:focus, .appt-field select:focus, .appt-field textarea:focus { border-color: var(--rose); }
+  .appt-field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a89890' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
+  .appt-field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+  .appt-private { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; cursor: pointer; }
+  .appt-private input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--rose); cursor: pointer; flex-shrink: 0; }
+  .appt-private-label { font-size: 0.84rem; color: var(--mid); font-weight: 300; line-height: 1.4; }
+  .appt-private-label strong { color: var(--charcoal); font-weight: 500; }
+  .appt-submit { width: 100%; background: var(--charcoal); color: var(--cream); border: 2px solid var(--charcoal); border-radius: 2px; padding: 14px; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; cursor: pointer; font-family: 'Jost', sans-serif; transition: background 0.25s, color 0.25s; }
+  .appt-submit:hover { background: var(--rose); border-color: var(--rose); }
+  .appt-note { font-size: 0.78rem; color: var(--light-mid); text-align: center; margin-top: 12px; font-weight: 300; line-height: 1.5; }
+  .appt-note a { color: var(--rose); text-decoration: none; }
+  .appt-success { display: none; background: #f0faf5; border: 1px solid #9FE1CB; border-radius: 3px; padding: 20px 24px; text-align: center; margin-top: 16px; }
+  .appt-success p { color: #0F6E56; font-size: 0.9rem; line-height: 1.6; font-weight: 400; }
+  .appt-success strong { font-weight: 600; }
+  .appt-success a { color: #0F6E56; }
+
+  /* FAQS */
   #faqs { background: var(--warm-white); }
   .faqs-wrap { max-width: 760px; margin: 52px auto 0; }
   .faq-item { border-bottom: 1px solid var(--gold-light); }
@@ -297,6 +288,7 @@
   .footer-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 52px; border-bottom: 1px solid rgba(255,255,255,0.08); max-width: 1200px; margin: 0 auto; }
   .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 600; color: #fff; text-decoration: none; margin-bottom: 16px; display: block; }
   .footer-logo span { color: var(--rose); font-style: italic; }
+  .footer-logo .footer-logo-chinese { font-size: 1rem; font-weight: 300; color: rgba(250,247,242,0.55); letter-spacing: 0.04em; font-style: normal; margin-left: 4px; }
   .footer-tagline { font-size: 0.85rem; line-height: 1.7; color: rgba(250,247,242,0.55); font-weight: 300; margin-bottom: 28px; max-width: 260px; }
   .footer-socials { display: flex; gap: 12px; }
   .footer-social { width: 36px; height: 36px; border: 1px solid rgba(255,255,255,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: rgba(255,255,255,0.55); text-decoration: none; transition: all 0.25s; }
@@ -320,6 +312,22 @@
   .reveal-delay-2 { transition-delay: 0.2s; }
   .reveal-delay-3 { transition-delay: 0.3s; }
 
+  /* WHATSAPP FLOAT */
+  .whatsapp-float {
+    position: fixed; bottom: 28px; right: 28px; z-index: 9999;
+    width: 58px; height: 58px; background: #25D366; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.4); text-decoration: none;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    animation: waPulse 2.5s ease-in-out infinite;
+  }
+  .whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.55); animation: none; }
+  .whatsapp-float svg { width: 30px; height: 30px; fill: #fff; }
+  @keyframes waPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.4); }
+    50% { box-shadow: 0 4px 30px rgba(37,211,102,0.7), 0 0 0 8px rgba(37,211,102,0.1); }
+  }
+
   /* RESPONSIVE */
   @media (max-width: 900px) {
     :root { --section-gap: 70px; }
@@ -330,9 +338,23 @@
     .transform-card { flex: 0 0 80%; }
     .footer-top { grid-template-columns: 1fr 1fr; }
     .services-header, .transforms-header { flex-direction: column; align-items: flex-start; gap: 20px; }
-    nav { padding: 0 5%; }
-    .nav-links { display: none; }
     .hero-rating { flex-direction: column; align-items: flex-start; gap: 10px; }
+    .appt-grid { grid-template-columns: 1fr; gap: 40px; }
+    .appt-form-row { grid-template-columns: 1fr; }
+    .appt-form { padding: 28px 20px; }
+    .hamburger { display: flex; }
+    .nav-links {
+      position: fixed; top: 72px; left: 0; right: 0;
+      flex-direction: column; align-items: flex-start; gap: 0;
+      background: rgba(250,247,242,0.97); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(196,137,107,0.2);
+      padding: 0; max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s ease; z-index: 999;
+    }
+    .nav-links.open { max-height: 500px; padding: 16px 0 24px; }
+    .nav-links li { width: 100%; }
+    .nav-links a { display: block; padding: 14px 5%; font-size: 0.9rem; width: 100%; }
+    .nav-book { margin: 8px 5% 0; display: inline-block; width: auto; border-radius: 2px; padding: 12px 24px; }
   }
 </style>
 </head>
@@ -340,12 +362,16 @@
 
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#home" class="nav-logo">C<span>L</span> Salon</a>
-  <ul class="nav-links">
+  <a href="#home" class="nav-logo">C<span>L</span> Salon<span class="nav-logo-chinese">名髮廊</span></a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
     <li><a href="#home">Home</a></li>
     <li><a href="#about">About Us</a></li>
     <li><a href="#services">Services</a></li>
-    <li><a href="#faqs">Contact</a></li>
+    <li><a href="#appointment">Book</a></li>
+    <li><a href="#faqs">FAQs</a></li>
     <li><a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="nav-book">Book a Visit</a></li>
   </ul>
 </nav>
@@ -355,7 +381,7 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <p class="hero-tag">Birmingham's Sanctuary for Every Woman</p>
+    <p class="hero-tag-1">Birmingham's Sanctuary for Every Woman</p>
     <h1 class="hero-headline">
       Birmingham's first<br><em>hijabi-friendly salon</em><br>with exclusive private rooms
     </h1>
@@ -401,13 +427,13 @@
       <p class="section-label">Our Story</p>
       <h2 class="section-title">About <em>Sharon</em></h2>
       <div class="about-body">
-        <p>Sharon is the heart of C L Salon— a stylist with <strong>over a decade of experience</strong> building Birmingham's most inclusive hair sanctuary.</p>
-        <p>She pioneered our <strong>exclusive private room — so every Muslim woman </strong> can receive world-class hair treatments in complete privacy.</p>
-        <p>Trained in Japanese straightening, precision colour, and advanced styling — for Sharon, hair is about confidence, identity, and belonging.</p>
+        <p>Sharon is the heart of C L Salon 名髮廊 — a stylist with <strong>over 40 years of experience</strong> bringing Hong Kong and Malaysian hair artistry to Birmingham.</p>
+        <p>She pioneered our <strong>exclusive private room — so every Muslim woman</strong> can receive world-class hair treatments in complete privacy.</p>
+        <p>Trained in Japanese straightening, Korean perms, precision colour, and advanced styling — for Sharon, hair is about confidence, identity, and belonging.</p>
       </div>
       <div class="about-stats">
         <div class="stat-item">
-          <div class="stat-num">30+</div>
+          <div class="stat-num">40+</div>
           <div class="stat-label">Years Experience</div>
         </div>
         <div class="stat-item">
@@ -442,7 +468,6 @@
   </div>
   <div class="services-scroll-wrap">
     <div class="services-track" id="services-track">
-
       <div class="service-card">
         <img src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Hair Straightening">
         <div class="service-body">
@@ -452,12 +477,11 @@
             <p class="service-desc">Permanent silky smoothness using authentic Japanese techniques. Long-lasting results that grow out beautifully.</p>
           </div>
           <div class="service-actions">
-            <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="svc-book">Book Now</a>
+          <a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20*Japanese%20Hair%20Straightening*%20at%20C%20L%20Salon.%20Could%20you%20let%20me%20know%20your%20availability%3F" target="_blank" class="svc-book">Book Now</a>
             <a href="services.html" class="svc-learn">Learn More</a>
           </div>
         </div>
       </div>
-
       <div class="service-card">
         <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&fit=crop" alt="Colour & Balayage">
         <div class="service-body">
@@ -467,14 +491,13 @@
             <p class="service-desc">Full colour, highlights, balayage and ombré. Consultation required to achieve your perfect shade.</p>
           </div>
           <div class="service-actions">
-            <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="svc-book">Book Now</a>
+            <a href="https://wa.me/919259270578?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20*Colour%20%26%20Balayage*%20at%20C%20L%20Salon.%20Could%20you%20let%20me%20know%20your%20availability%3F" target="_blank" class="svc-book">Book Now</a>
             <a href="services.html" class="svc-learn">Learn More</a>
           </div>
         </div>
       </div>
-
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop" alt="Haircut & Trim">
+       <a href="https://wa.me/919259270578?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Hair%20Treatment*%20at%20C%20L%20Salon.%20Could%20you%20let%20me%20know%20your%20availability%3F" target="_blank" class="svc-book">Book Now</a>
         <div class="service-body">
           <div class="service-top">
             <span class="service-tag">All Lengths</span>
@@ -482,14 +505,13 @@
             <p class="service-desc">Precision cuts shaped to your face structure and hair type. Leave with a style that truly fits you.</p>
           </div>
           <div class="service-actions">
-            <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="svc-book">Book Now</a>
+           <a href="https://wa.me/919259270578?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Hair%20Treatment*%20at%20C%20L%20Salon.%20Could%20you%20let%20me%20know%20your%20availability%3F" target="_blank" class="svc-book">Book Now</a>
             <a href="services.html" class="svc-learn">Learn More</a>
           </div>
         </div>
       </div>
-
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Treatment">
+       <a href="https://wa.me/919259270578?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Hair%20Treatment*%20at%20C%20L%20Salon.%20Could%20you%20let%20me%20know%20your%20availability%3F" target="_blank" class="svc-book">Book Now</a>
         <div class="service-body">
           <div class="service-top">
             <span class="service-tag">Deep Repair</span>
@@ -497,14 +519,13 @@
             <p class="service-desc">Nourish, repair and strengthen damaged or dry hair with professional-grade treatment protocols.</p>
           </div>
           <div class="service-actions">
-            <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="svc-book">Book Now</a>
+            <a href="https://wa.me/919259270578?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Hair%20Treatment*%20at%20C%20L%20Salon.%20Could%20you%20let%20me%20know%20your%20availability%3F" target="_blank" class="svc-book">Book Now</a>
             <a href="services.html" class="svc-learn">Learn More</a>
           </div>
         </div>
       </div>
-
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&q=80&fit=crop" alt="Private Room">
+        <a href="https://wa.me/919259270578?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20the%20*Private%20Room%20Service*%20at%20C%20L%20Salon.%20Could%20you%20confirm%20availability%3F" target="_blank" class="svc-book">Book Now</a>
         <div class="service-body">
           <div class="service-top">
             <span class="service-tag">🕌 Exclusive</span>
@@ -517,7 +538,6 @@
           </div>
         </div>
       </div>
-
     </div>
   </div>
   <div class="services-footer reveal">
@@ -543,7 +563,7 @@
           <span class="why-icon">✨</span>
           <div>
             <p class="why-item-title">Expert-Level Skill</p>
-            <p class="why-item-desc">Sharon brings over a decade of precision, artistry and care to every appointment. Your hair is in the best hands.</p>
+            <p class="why-item-desc">Sharon brings 40+ years of precision, artistry and care to every appointment. Your hair is in the best hands.</p>
           </div>
         </li>
         <li class="why-item">
@@ -646,6 +666,134 @@
   </div>
 </section>
 
+<!-- APPOINTMENT -->
+<section id="appointment">
+  <div class="appt-wrap">
+    <p class="section-label">Get In Touch</p>
+    <h2 class="section-title reveal">Book an <em>Appointment</em></h2>
+    <div class="appt-grid">
+      <div class="appt-info reveal">
+        <div class="appt-info-item">
+          <div class="appt-info-icon">📍</div>
+          <div>
+            <p class="appt-info-label">Location</p>
+            <p class="appt-info-value">Unit 2, China Court Building<br>3 Bath Passage, Birmingham B5 4ST<br><em>In the heart of Chinatown</em></p>
+          </div>
+        </div>
+        <div class="appt-info-item">
+          <div class="appt-info-icon">📞</div>
+          <div>
+            <p class="appt-info-label">Call or WhatsApp</p>
+            <p class="appt-info-value">
+              <a href="tel:+441216225877">0121 622 5877</a><br>
+              <a href="https://wa.me/447833463669">WhatsApp Sharon → 07833 463 669</a>
+            </p>
+          </div>
+        </div>
+        <div class="appt-info-item">
+          <div class="appt-info-icon">💬</div>
+          <div>
+            <p class="appt-info-label">Experience</p>
+            <p class="appt-info-value">40+ years · Hong Kong & Malaysian styles · Japanese straightening · Korean perms · Balayage & colour</p>
+          </div>
+        </div>
+        <div class="appt-hours">
+          <p class="appt-hours-title">Opening Hours</p>
+          <div class="appt-hours-row"><span>Monday – Friday</span><span>10:00 – 18:00</span></div>
+          <div class="appt-hours-row"><span>Saturday</span><span>10:00 – 18:00</span></div>
+          <div class="appt-hours-row"><span>Sunday</span><span>10:00 – 18:00</span></div>
+          <div class="appt-hours-row appt-hours-private">
+            <span>🕌 Private Room</span><span>Available daily</span>
+          </div>
+        </div>
+      </div>
+      <div class="appt-form reveal reveal-delay-2">
+        <form id="apptForm" onsubmit="submitAppt(event)">
+          <div class="appt-form-row">
+            <div class="appt-field">
+              <label for="appt-name">Full Name *</label>
+              <input type="text" id="appt-name" placeholder="Your name" required>
+            </div>
+            <div class="appt-field">
+              <label for="appt-phone">Phone / WhatsApp *</label>
+              <input type="tel" id="appt-phone" placeholder="07700 000000" required>
+            </div>
+          </div>
+          <div class="appt-field">
+            <label for="appt-email">Email Address</label>
+            <input type="email" id="appt-email" placeholder="your@email.com">
+          </div>
+          <div class="appt-form-row">
+            <div class="appt-field">
+              <label for="appt-date">Preferred Date *</label>
+              <input type="date" id="appt-date" required>
+            </div>
+            <div class="appt-field">
+              <label for="appt-time">Preferred Time *</label>
+              <select id="appt-time" required>
+                <option value="" disabled selected>Select time</option>
+                <option>10:00 AM</option><option>10:30 AM</option>
+                <option>11:00 AM</option><option>11:30 AM</option>
+                <option>12:00 PM</option><option>12:30 PM</option>
+                <option>1:00 PM</option><option>1:30 PM</option>
+                <option>2:00 PM</option><option>2:30 PM</option>
+                <option>3:00 PM</option><option>3:30 PM</option>
+                <option>4:00 PM</option><option>4:30 PM</option>
+                <option>5:00 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="appt-field">
+            <label for="appt-service">Service *</label>
+            <select id="appt-service" required>
+              <option value="" disabled selected>Select a service</option>
+              <optgroup label="Hair Treatments">
+                <option>Japanese Hair Straightening</option>
+                <option>Korean Cool Permanent / Curly</option>
+                <option>Digital Permanent / Hot Perm</option>
+                <option>Collagen Treatment</option>
+                <option>Hair Treatment / Repair</option>
+              </optgroup>
+              <optgroup label="Colour">
+                <option>Full Colour</option>
+                <option>Balayage</option>
+                <option>Highlights / Ombré</option>
+              </optgroup>
+              <optgroup label="Cut & Style">
+                <option>Haircut & Trim</option>
+                <option>Wash, Blow Dry & Style</option>
+                <option>Hair Extensions</option>
+              </optgroup>
+              <optgroup label="Private Room">
+                <option>Private Room — Any Service (Muslim guests)</option>
+              </optgroup>
+              <option>Consultation (Free)</option>
+              <option>Other / Not Sure Yet</option>
+            </select>
+          </div>
+          <div class="appt-field">
+            <label for="appt-notes">Additional Notes</label>
+            <textarea id="appt-notes" placeholder="Hair type, length, anything Sharon should know..."></textarea>
+          </div>
+          <label class="appt-private">
+            <input type="checkbox" id="appt-private">
+            <span class="appt-private-label">I'd like to request the <strong>private room</strong> (exclusively for Muslim female guests)</span>
+          </label>
+          <button type="submit" class="appt-submit">Request Appointment</button>
+          <p class="appt-note">
+            This sends a WhatsApp message directly to Sharon.<br>
+            Or <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" target="_blank">book instantly on Fresha →</a>
+          </p>
+        </form>
+        <div class="appt-success" id="apptSuccess">
+          <p>✅ <strong>Request sent via WhatsApp!</strong><br>Sharon will confirm your appointment shortly.<br>
+          You can also call <a href="tel:+441216225877">0121 622 5877</a> for immediate availability.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- FAQs -->
 <section id="faqs">
   <div style="max-width:1200px; margin:0 auto;">
@@ -654,45 +802,27 @@
   </div>
   <div class="faqs-wrap">
     <div class="faq-item reveal">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Do you have a private room for Muslim women?
-        <span class="faq-icon">+</span>
-      </button>
+      <button class="faq-q" onclick="toggleFaq(this)">Do you have a private room for Muslim women?<span class="faq-icon">+</span></button>
       <div class="faq-a">Yes — we have a fully enclosed private room exclusively for our Muslim female guests. All salon services are available in the private room. Simply request it at the time of booking via WhatsApp or the Fresha booking form.</div>
     </div>
     <div class="faq-item reveal reveal-delay-1">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Do I need a consultation before Japanese hair straightening?
-        <span class="faq-icon">+</span>
-      </button>
+      <button class="faq-q" onclick="toggleFaq(this)">Do I need a consultation before Japanese hair straightening?<span class="faq-icon">+</span></button>
       <div class="faq-a">Yes, a consultation is required before booking Japanese hair straightening. This allows Sharon to assess your hair's condition, health, and texture to ensure the treatment is suitable and to recommend the right approach for your specific hair type.</div>
     </div>
     <div class="faq-item reveal reveal-delay-2">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        How do I book an appointment?
-        <span class="faq-icon">+</span>
-      </button>
+      <button class="faq-q" onclick="toggleFaq(this)">How do I book an appointment?<span class="faq-icon">+</span></button>
       <div class="faq-a">You can book online via our Fresha page, message Sharon directly on WhatsApp at 07833 463 669, or call the salon on 0121-622 5877. Appointments are highly recommended — walk-ins are subject to availability.</div>
     </div>
     <div class="faq-item reveal">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        What are your opening hours?
-        <span class="faq-icon">+</span>
-      </button>
+      <button class="faq-q" onclick="toggleFaq(this)">What are your opening hours?<span class="faq-icon">+</span></button>
       <div class="faq-a">We are open 7 days a week, Monday to Sunday, from 10:00 AM to 6:00 PM. We are happy to accommodate you every day so you can visit at your convenience.</div>
     </div>
     <div class="faq-item reveal reveal-delay-1">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Where are you located?
-        <span class="faq-icon">+</span>
-      </button>
+      <button class="faq-q" onclick="toggleFaq(this)">Where are you located?<span class="faq-icon">+</span></button>
       <div class="faq-a">We are located at Unit 2, China Court Building, 3 Bath Passage, Birmingham B5 4ST — in the heart of Birmingham's China Town area. Easily accessible by public transport and with nearby parking available.</div>
     </div>
     <div class="faq-item reveal reveal-delay-2">
-      <button class="faq-q" onclick="toggleFaq(this)">
-        Do you offer hair extensions?
-        <span class="faq-icon">+</span>
-      </button>
+      <button class="faq-q" onclick="toggleFaq(this)">Do you offer hair extensions?<span class="faq-icon">+</span></button>
       <div class="faq-a">Yes, we offer professionally fitted hair extensions to add instant length and volume. Please contact us before booking to discuss which extension method is best suited to your hair.</div>
     </div>
   </div>
@@ -705,7 +835,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#home" class="footer-logo">C<span>L</span> Salon</a>
+      <a href="#home" class="footer-logo">C<span>L</span> Salon<span class="footer-logo-chinese">名髮廊</span></a>
       <p class="footer-tagline">Birmingham's first hijabi-friendly hair sanctuary. Where every woman is welcome, seen, and celebrated.</p>
       <div class="footer-socials">
         <a href="#" class="footer-social" title="Instagram">
@@ -714,7 +844,7 @@
         <a href="https://wa.me/447833463669" class="footer-social" title="WhatsApp">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         </a>
-        <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="footer-social" title="Facebook">
+        <a href="https://www.facebook.com/61558732898427" class="footer-social" title="Facebook">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
         </a>
       </div>
@@ -725,8 +855,8 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About Us</a></li>
         <li><a href="#services">Services</a></li>
-        <li><a href="gallery.html">Gallery</a></li>
-        <li><a href="faqs.html">FAQs</a></li>
+        <li><a href="#appointment">Book</a></li>
+        <li><a href="#faqs">FAQs</a></li>
       </ul>
     </div>
     <div>
@@ -767,18 +897,48 @@
   </div>
 </footer>
 
+<!-- WHATSAPP FLOATING BUTTON -->
+<a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20an%20appointment." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+  </svg>
+</a>
+
 <script>
-  // Nav scroll
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
 
-  // Scroll reveal
+  document.getElementById('hamburger').addEventListener('click', function() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    const isOpen = nav.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.12 });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  // FAQ toggle
   function toggleFaq(btn) {
     const answer = btn.nextElementSibling;
     const isOpen = btn.classList.contains('open');
@@ -789,7 +949,6 @@
     if (!isOpen) { btn.classList.add('open'); answer.classList.add('open'); }
   }
 
-  // CAROUSEL ENGINE
   const trackState = {};
   function scrollTrack(trackId, dir) {
     const track = document.getElementById(trackId);
@@ -802,7 +961,6 @@
     track.style.transform = `translateX(-${trackState[trackId] * cardWidth}px)`;
   }
 
-  // SERVICES AUTO-SCROLL
   (function () {
     const trackId = 'services-track';
     const track = document.getElementById(trackId);
@@ -820,27 +978,17 @@
     }, 2800);
   })();
 
-  // TRANSFORMATIONS AUTO-SCROLL
   window.addEventListener('load', function () {
     setTimeout(function () {
       var track = document.getElementById('transforms-track');
       var wrap = document.getElementById('transforms-wrap');
       if (!track || !wrap) return;
-      var idx = 0;
-      var paused = false;
-      var MAX = track.children.length - 3;
-
+      var idx = 0; var paused = false; var MAX = track.children.length - 3;
       function getW() { return track.children[0].getBoundingClientRect().width + 20; }
       function moveTo(n) { idx = n; track.style.transform = 'translateX(-' + (idx * getW()) + 'px)'; }
-
       wrap.addEventListener('mouseenter', function () { paused = true; });
       wrap.addEventListener('mouseleave', function () { paused = false; });
-
-      setInterval(function () {
-        if (paused) return;
-        moveTo(idx >= MAX ? 0 : idx + 1);
-      }, 3000);
-
+      setInterval(function () { if (paused) return; moveTo(idx >= MAX ? 0 : idx + 1); }, 3000);
       window._transformMove = function (dir) {
         moveTo(dir === 'next' ? (idx >= MAX ? 0 : idx + 1) : (idx <= 0 ? MAX : idx - 1));
       };
@@ -848,6 +996,38 @@
   });
 
   function manualTransform(dir) { if (window._transformMove) window._transformMove(dir); }
+
+  function submitAppt(e) {
+    e.preventDefault();
+    var name    = document.getElementById('appt-name').value.trim();
+    var phone   = document.getElementById('appt-phone').value.trim();
+    var email   = document.getElementById('appt-email').value.trim();
+    var date    = document.getElementById('appt-date').value;
+    var time    = document.getElementById('appt-time').value;
+    var service = document.getElementById('appt-service').value;
+    var notes   = document.getElementById('appt-notes').value.trim();
+    var priv    = document.getElementById('appt-private').checked;
+    var msg = 'Hi Sharon, I%27d like to book an appointment at C L Salon.%0A%0A';
+    msg += '*Name:* ' + encodeURIComponent(name) + '%0A';
+    msg += '*Phone:* ' + encodeURIComponent(phone) + '%0A';
+    if (email) msg += '*Email:* ' + encodeURIComponent(email) + '%0A';
+    msg += '*Date:* ' + encodeURIComponent(date) + '%0A';
+    msg += '*Time:* ' + encodeURIComponent(time) + '%0A';
+    msg += '*Service:* ' + encodeURIComponent(service) + '%0A';
+    if (priv) msg += '*Private Room:* Yes, please%0A';
+    if (notes) msg += '*Notes:* ' + encodeURIComponent(notes) + '%0A';
+    window.open('https://wa.me/919259270578?text=' + msg, '_blank');
+    document.getElementById('apptForm').style.display = 'none';
+    document.getElementById('apptSuccess').style.display = 'block';
+  }
+
+  (function () {
+    var d = new Date();
+    var pad = function (n) { return n < 10 ? '0' + n : n; };
+    var min = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
+    var dateInput = document.getElementById('appt-date');
+    if (dateInput) dateInput.min = min;
+  })();
 </script>
 </body>
 </html>
