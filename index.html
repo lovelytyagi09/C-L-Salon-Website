@@ -107,7 +107,7 @@
     opacity: 0; animation: fadeUp 0.9s 1.15s forwards;
     padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12);
   }
-  .hero-rating-score { font-family: 'Cormorant Garamond', serif; font-size: 3.4rem; font-weight: 300; line-height: 1; color: #fff; letter-spacing: -0.02em; }
+  .hero-rating-score { font-family: 'Cormorant Garamond', serif; font-size: 3.4rem; font-weight: 300; line-height: 1; color: #fff; letter-spacing: -0.02em; margin-top : -57px}
   .hero-stars { display: flex; gap: 4px; margin-bottom: 5px; }
   .hero-stars svg { width: 18px; height: 18px; }
   .hero-rating-platform { display: flex; align-items: center; gap: 6px; margin-top: 4px; }
@@ -355,6 +355,27 @@
     .nav-links li { width: 100%; }
     .nav-links a { display: block; padding: 14px 5%; font-size: 0.9rem; width: 100%; }
     .nav-book { margin: 8px 5% 0; display: inline-block; width: auto; border-radius: 2px; padding: 12px 24px; }
+  }
+  /* REVIEWS (Cloned exactly from Services) */
+  #reviews { background: var(--warm-white); }
+  .reviews-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .reviews-scroll-wrap { position: relative; max-width: 1200px; margin: 0 auto; overflow: hidden; }
+  .reviews-track { display: flex; gap: 20px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
+  
+  .review-card { flex: 0 0 calc((100% - 40px) / 3); position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+  .review-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.45); }
+  .review-card:hover img { transform: scale(1.05); filter: brightness(0.3); }
+  .review-body { position: absolute; inset: 0; padding: 28px 26px; display: flex; flex-direction: column; justify-content: flex-end; }
+  
+  .review-tag { display: block; font-size: 1rem; color: var(--gold); margin-bottom: 10px; letter-spacing: 2px; }
+  .review-name { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.5rem, 2vw, 2rem); font-weight: 400; color: #fff; line-height: 1.2; margin-bottom: 12px; }
+  .review-desc { font-size: 0.95rem; line-height: 1.65; color: rgba(255,255,255,0.9); font-weight: 300; font-style: italic; }
+  
+  .reviews-nav { display: flex; gap: 10px; margin-bottom: 8px; }
+
+  @media (max-width: 900px) {
+    .reviews-header { flex-direction: column; align-items: flex-start; gap: 20px; }
+    .review-card { flex: 0 0 85%; }
   }
 </style>
 </head>
@@ -630,7 +651,78 @@
     </div>
   </div>
 </section>
+<section id="reviews">
+  <div class="reviews-header reveal">
+    <div>
+      <p class="section-label">Client Love</p>
+      <h2 class="section-title">Loved by Clients <em>Across Birmingham</em></h2>
+    </div>
+    <div class="reviews-nav">
+      <button class="nav-arrow" onclick="scrollTrack('reviews-track','prev')">←</button>
+      <button class="nav-arrow" onclick="scrollTrack('reviews-track','next')">→</button>
+    </div>
+  </div>
+  <div class="reviews-scroll-wrap reveal reveal-delay-1">
+    <div class="reviews-track" id="reviews-track">
 
+      <div class="review-card">
+        <img src="https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B" alt="Private Room">
+        <div class="review-body">
+          <div class="review-top">
+            <span class="review-tag">★★★★★</span>
+            <h3 class="review-name">Aisha K.</h3>
+            <p class="review-desc">"Sharon is absolutely amazing! I booked the private room for my styling, and I felt so comfortable and respected. The results were flawless."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <img src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Straightening">
+        <div class="review-body">
+          <div class="review-top">
+            <span class="review-tag">★★★★★</span>
+            <h3 class="review-name">Maria S.</h3>
+            <p class="review-desc">"The best Japanese Straightening in Birmingham! My hair has never felt so silky and healthy. Sharon has over 40 years of experience and it shows."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <img src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Balayage">
+        <div class="review-body">
+          <div class="review-top">
+            <span class="review-tag">★★★★★</span>
+            <h3 class="review-name">Fatima R.</h3>
+            <p class="review-desc">"Such a calm, welcoming environment. She took the time to understand exactly what I wanted. I wouldn't trust anyone else with my hair now."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Treatment">
+        <div class="review-body">
+          <div class="review-top">
+            <span class="review-tag">★★★★★</span>
+            <h3 class="review-name">Zainab A.</h3>
+            <p class="review-desc">"Finding a salon that caters properly to hijabis is so hard, but C L Salon exceeded all my expectations. The privacy is absolute."</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="review-card">
+        <img src="https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg" alt="Salon Interior">
+        <div class="review-body">
+          <div class="review-top">
+            <span class="review-tag">★★★★★</span>
+            <h3 class="review-name">Sarah M.</h3>
+            <p class="review-desc">"Incredible service from start to finish. The boutique is beautiful, clean, and Sharon's attention to detail is truly unmatched."</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
 <!-- TRANSFORMATIONS -->
 <section id="gallery-preview">
   <div class="transforms-header reveal">
@@ -844,9 +936,13 @@
       <a href="#home" class="footer-logo">C<span>L</span> Salon<span class="footer-logo-chinese">名髮廊</span></a>
       <p class="footer-tagline">Birmingham's first hijabi-friendly hair sanctuary. Where every woman is welcome, seen, and celebrated.</p>
       <div class="footer-socials">
-        <a href="#" class="footer-social" title="Instagram">
+        <a href="https://www.instagram.com/sharonlay2011/" class="footer-social" title="Instagram">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
         </a>
+     
+<a href="https://weixin.qq.com/" class="footer-social" title="WeChat">
+  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M8.348 10.354a.824.824 0 1 1-.823-.824.824.824 0 0 1 .823.824zm3.925 0a.824.824 0 1 1-.824-.824.824.824 0 0 1 .824.824zm1.884 5.253a.625.625 0 1 1-.624-.625.625.625 0 0 1 .624.625zm2.946 0a.625.625 0 1 1-.624-.625.625.625 0 0 1 .624.625zm7-5.184c0-2.883-2.92-5.213-6.528-5.213S8.047 7.54 8.047 10.423c0 2.882 2.92 5.212 6.528 5.212a7.35 7.35 0 0 0 1.93-.263l1.83 1.077c.184.108.318.051.3-.161l-.271-1.636c1.944-1 3.184-2.587 3.184-4.476zm-9.5 3.328c-.439 0-.865-.035-1.277-.091a6.6 6.6 0 0 1-2.025.289c-.19 0-.374-.012-.553-.035a5.526 5.526 0 0 1-1.42.846 1.488 1.488 0 0 1-.362.1.2.2 0 0 1-.223-.207l.013-.193.189-1.127C1.4 12.3 0 10.519 0 8.49A5.88 5.88 0 0 1 5.642 2.6c3.118 0 5.643 2.637 5.643 5.89a5.717 5.717 0 0 1-.58 2.508 7.36 7.36 0 0 1 .974-.065c3.608 0 6.529 2.33 6.529 5.213a5.05 5.05 0 0 1-1.295 3.325 5.485 5.485 0 0 1-2.209 1.488.455.455 0 0 1-.16.035.253.253 0 0 1-.264-.228l-.133-1.008a8.341 8.341 0 0 1-2.464.331z"/></svg>
+</a>
         <a href="https://wa.me/447833463669" class="footer-social" title="WhatsApp">
           <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
         </a>
@@ -1033,6 +1129,30 @@
     var min = d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate());
     var dateInput = document.getElementById('appt-date');
     if (dateInput) dateInput.min = min;
+  })();
+  // --- REVIEWS AUTO-SCROLL (Cloned exactly from Services) ---
+  (function () {
+    const trackId = 'reviews-track';
+    const track = document.getElementById(trackId);
+    if (!track) return;
+    
+    trackState[trackId] = 0;
+    let paused = false;
+    
+    track.closest('.reviews-scroll-wrap').addEventListener('mouseenter', () => paused = true);
+    track.closest('.reviews-scroll-wrap').addEventListener('mouseleave', () => paused = false);
+    
+    setInterval(() => {
+      if (paused) return;
+      const cardWidth = track.children[0].offsetWidth + 20;
+      
+      // Fixed the math so it slides properly on phones AND desktops
+      const visibleCards = window.innerWidth <= 900 ? 1 : 3;
+      const maxSlide = Math.max(0, track.children.length - visibleCards);
+      
+      trackState[trackId] = trackState[trackId] >= maxSlide ? 0 : trackState[trackId] + 1;
+      track.style.transform = `translateX(-${trackState[trackId] * cardWidth}px)`;
+    }, 2800);
   })();
 </script>
 </body>
