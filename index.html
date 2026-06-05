@@ -162,7 +162,7 @@
   .services-header { display: flex; align-items: flex-end; justify-content: space-between; margin-bottom: 52px; max-width: 1200px; margin-left: auto; margin-right: auto; }
   .services-scroll-wrap { position: relative; max-width: 1200px; margin: 0 auto; overflow: hidden; }
   .services-track { display: flex; gap: 20px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
-  .service-card { flex: 0 0 calc((100% - 40px) / 3); position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
+  .service-card { flex: 0 0 calc((100% - 40px) / 3); position: relative; border-radius: 8px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
   .service-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.52); }
   .service-card:hover img { transform: scale(1.05); filter: brightness(0.38); }
   .service-body { position: absolute; inset: 0; padding: 28px 26px; display: flex; flex-direction: column; justify-content: space-between; }
@@ -205,9 +205,9 @@
   #special .section-intro { font-size: 1rem; color: rgba(250,247,242,0.65); font-weight: 300; max-width: 520px; line-height: 1.7; margin-bottom: 56px; }
   .specials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 1200px; margin: 0 auto; }
   .special-card { position: relative; border-radius: 3px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
-  .special-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: transform 0.6s, filter 0.4s; display: block; }
+  .special-card img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.5); transition: transform 0.6s, filter 0.4s; display: block; border-radius: 8px;}
   .special-card:hover img { transform: scale(1.06); filter: brightness(0.35); }
-  .special-content { position: absolute; inset: 0; padding: 30px 26px; display: flex; flex-direction: column; justify-content: flex-end; }
+  .special-content { position: absolute; inset: 0; padding: 30px 26px; display: flex; flex-direction: column; justify-content: flex-end; border-radius: 10px; }
   .special-tag { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
   .special-title { font-family: 'Cormorant Garamond', serif; font-size: 1.6rem; font-weight: 400; color: #fff; line-height: 1.25; margin-bottom: 10px; }
   .special-desc { font-size: 0.84rem; color: rgba(255,255,255,0.7); line-height: 1.65; font-weight: 300; max-height: 0; overflow: hidden; transition: max-height 0.4s ease; }
@@ -219,7 +219,7 @@
   .transforms-nav { display: flex; gap: 10px; }
   .transforms-scroll-wrap { max-width: 1200px; margin: 0 auto; overflow: hidden; }
   .transforms-track { display: flex; gap: 20px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
-  .transform-card { flex: 0 0 calc((100% - 40px) / 3); border-radius: 3px; overflow: hidden; position: relative; cursor: pointer; aspect-ratio: 3/4; }
+  .transform-card { flex: 0 0 calc((100% - 40px) / 3); border-radius: 3px; overflow: hidden; position: relative; cursor: pointer; aspect-ratio: 3/4; border-radius: 8px; }
   .transform-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s; }
   .transform-card:hover img { transform: scale(1.05); }
   .transform-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(42,35,32,0.7) 0%, transparent 50%); opacity: 0; transition: opacity 0.3s; display: flex; align-items: flex-end; padding: 24px; }
@@ -393,7 +393,7 @@
     <li><a href="/service.html">Services</a></li>
     <li><a href="/privateroom.html">Private Room</a></li>
     <li><a href="/bookappointment.html">Book</a></li>
-    <li><a href="/faqs">FAQs</a></li>
+    <li><a href="/faqs.html">FAQs</a></li>
     <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
   </ul>
 </nav>
@@ -934,7 +934,7 @@
 <footer>
   <div class="footer-top">
     <div class="footer-brand">
-      <a href="#home" class="footer-logo">C<span>L</span> Salon<span class="footer-logo-chinese">名髮廊</span></a>
+      <a href="/index.html" class="footer-logo">C<span>L</span> Salon<span class="footer-logo-chinese">名髮廊</span></a>
       <p class="footer-tagline">Birmingham's first hijabi-friendly hair sanctuary. Where every woman is welcome, seen, and celebrated.</p>
       <div class="footer-socials">
         <a href="https://www.instagram.com/sharonlay2011/" class="footer-social" title="Instagram">
@@ -959,7 +959,7 @@
         <li><a href="/aboutus.html">About Us</a></li>
         <li><a href="/service.html">Services</a></li>
         <li><a href="/bookappointment.html">Book</a></li>
-        <li><a href="/faqs">FAQs</a></li>
+        <li><a href="/faqs.html">FAQs</a></li>
       </ul>
     </div>
     <div>

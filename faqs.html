@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs — C L Salon 名髮廊</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --cream: #faf7f2;
+      --warm-white: #fff9f5;
+      --blush: #e8c9b8;
+      --rose: #c4896b;
+      --deep-rose: #9a5e44;
+      --charcoal: #2a2320;
+      --mid: #6b5b53;
+      --light-mid: #a89890;
+      --gold: #c9a96e;
+      --gold-light: #e8d5b0;
+      --section-gap: 100px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
+
+    /* ── NAV ── */
+    .navbar {
+      background: rgba(250,247,242,0.97);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 18px 0;
+      position: sticky; top: 0; z-index: 999;
+    }
+    .navbar-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--charcoal) !important;
+      letter-spacing: 0.04em;
+    }
+    .navbar-brand span { color: var(--rose); font-style: italic; }
+    .nav-link {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.82rem; font-weight: 400;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--mid) !important;
+      padding: 6px 14px !important;
+      transition: color 0.25s;
+    }
+    .nav-link:hover, .nav-link.active { color: var(--rose) !important; }
+    .btn-book-nav {
+      background: var(--charcoal);
+      color: var(--cream) !important;
+      border-radius: 0;
+      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 10px 22px !important;
+      transition: background 0.3s;
+    }
+    .btn-book-nav:hover { background: var(--rose); }
+    .navbar-toggler { border: 1px solid var(--gold-light); }
+
+    /* ── HERO ── */
+    .faq-hero {
+      background: var(--charcoal);
+      padding: 110px 0 80px;
+      position: relative;
+      overflow: hidden;
+    }
+    .faq-hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1400&q=80&fit=crop') center/cover no-repeat;
+      opacity: 0.13;
+    }
+    .faq-hero-inner { position: relative; z-index: 2; }
+    .hero-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 18px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .hero-label::before {
+      content: ''; display: block;
+      width: 36px; height: 1px; background: var(--gold);
+    }
+    .faq-hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.6rem, 6vw, 4.5rem);
+      font-weight: 300; color: var(--warm-white);
+      line-height: 1.15;
+    }
+    .faq-hero h1 em { color: var(--blush); font-style: italic; font-weight: 400; }
+    .faq-hero p {
+      font-family: 'Jost', sans-serif;
+      font-size: 1rem; font-weight: 300;
+      color: var(--light-mid); max-width: 500px; margin-top: 20px;
+      line-height: 1.8;
+    }
+    .hero-search {
+      margin-top: 38px;
+      position: relative; max-width: 480px;
+    }
+    .hero-search input {
+      width: 100%; background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(201,169,110,0.35);
+      border-radius: 0; padding: 14px 54px 14px 20px;
+      color: var(--warm-white); font-family: 'Jost', sans-serif;
+      font-size: 0.9rem; font-weight: 300;
+      outline: none; transition: border-color 0.25s;
+    }
+    .hero-search input::placeholder { color: var(--light-mid); }
+    .hero-search input:focus { border-color: var(--gold); }
+    .hero-search-btn {
+      position: absolute; right: 0; top: 0; bottom: 0;
+      padding: 0 20px; background: var(--rose); border: none;
+      color: white; cursor: pointer; font-size: 1rem;
+      transition: background 0.25s;
+    }
+    .hero-search-btn:hover { background: var(--deep-rose); }
+
+    /* ── CATEGORY TABS ── */
+    .faq-cats {
+      background: var(--warm-white);
+      border-bottom: 1px solid var(--gold-light);
+      padding: 0;
+      position: sticky; top: 72px; z-index: 90;
+    }
+    .cat-nav {
+      display: flex; gap: 0;
+      overflow-x: auto; -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .cat-nav::-webkit-scrollbar { display: none; }
+    .cat-btn {
+      flex-shrink: 0;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.13em; text-transform: uppercase;
+      color: var(--light-mid);
+      background: none; border: none;
+      padding: 18px 24px;
+      border-bottom: 2px solid transparent;
+      cursor: pointer; transition: all 0.25s;
+      white-space: nowrap;
+    }
+    .cat-btn:hover { color: var(--rose); }
+    .cat-btn.active { color: var(--charcoal); border-bottom-color: var(--rose); font-weight: 500; }
+
+    /* ── MAIN FAQ AREA ── */
+    .faq-section { padding: var(--section-gap) 0; }
+
+    .section-label {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.22em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 12px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-label::before {
+      content: ''; display: block;
+      width: 36px; height: 1px; background: var(--gold);
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300; color: var(--charcoal);
+      line-height: 1.2; margin-bottom: 14px;
+    }
+    .section-title em { color: var(--rose); font-style: italic; font-weight: 400; }
+    .section-sub {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.95rem; font-weight: 300;
+      color: var(--mid); max-width: 520px;
+      line-height: 1.8; margin-bottom: 50px;
+    }
+
+    /* ── FAQ CATEGORY GROUP ── */
+    .faq-group { display: none; }
+    .faq-group.active { display: block; }
+
+    /* ── FEATURED IMAGE CARD ── */
+    .faq-featured-card {
+      border-radius: 0;
+      overflow: hidden;
+      position: relative;
+      height: 100%;
+      min-height: 380px;
+    }
+    .faq-featured-card img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+    }
+    .faq-featured-card:hover img { transform: scale(1.04); }
+    .faq-featured-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(42,35,32,0.82) 0%, rgba(42,35,32,0.1) 55%, transparent 100%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 32px 28px;
+    }
+    .faq-featured-badge {
+      display: inline-block;
+      background: var(--rose); color: white;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 5px 12px; margin-bottom: 10px;
+      width: fit-content;
+    }
+    .faq-featured-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 400;
+      color: var(--warm-white); line-height: 1.25;
+    }
+    .faq-featured-count {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem; color: var(--light-mid);
+      margin-top: 6px; letter-spacing: 0.05em;
+    }
+
+    /* ── ACCORDION ITEMS ── */
+    .accordion-item {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--gold-light);
+    }
+    .accordion-button {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem; font-weight: 400;
+      color: var(--charcoal);
+      background: transparent;
+      padding: 22px 0;
+      box-shadow: none !important;
+      gap: 16px;
+    }
+    .accordion-button:not(.collapsed) {
+      color: var(--rose);
+      background: transparent;
+    }
+    .accordion-button::after {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%236b5b53'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+      flex-shrink: 0; margin-left: auto;
+    }
+    .accordion-button:not(.collapsed)::after {
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23c4896b'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
+    }
+    .accordion-body {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.93rem; font-weight: 300;
+      color: var(--mid); line-height: 1.85;
+      padding: 0 0 22px 0;
+    }
+    .accordion-body a { color: var(--rose); text-decoration: none; }
+    .accordion-body a:hover { text-decoration: underline; }
+
+    /* tag pill */
+    .faq-tag {
+      display: inline-block;
+      background: var(--gold-light);
+      color: var(--deep-rose);
+      font-family: 'Jost', sans-serif;
+      font-size: 0.68rem; font-weight: 500;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 3px 10px; border-radius: 0;
+      margin-right: 6px; margin-bottom: 4px;
+    }
+
+    /* ── GRID IMAGES SECTION ── */
+    .faq-img-grid { padding: var(--section-gap) 0; background: var(--warm-white); }
+    .img-grid-wrap {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      grid-template-rows: 260px 260px;
+      gap: 12px;
+    }
+    .img-grid-item {
+      overflow: hidden; position: relative;
+      cursor: pointer;
+    }
+    .img-grid-item:first-child { grid-row: 1 / 3; }
+    .img-grid-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .img-grid-item:hover img { transform: scale(1.06); }
+    .img-grid-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(42,35,32,0.75) 0%, transparent 100%);
+      padding: 18px 16px 14px;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem; font-weight: 400;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--warm-white); opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .img-grid-item:hover .img-grid-caption { opacity: 1; }
+
+    /* ── STILL HAVE QUESTIONS BANNER ── */
+    .faq-cta {
+      background: var(--charcoal);
+      padding: 80px 0;
+      position: relative; overflow: hidden;
+    }
+    .faq-cta::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url('https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg') center/cover no-repeat;
+      opacity: 0.08;
+    }
+    .faq-cta-inner { position: relative; z-index: 2; }
+    .faq-cta h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 300; color: var(--warm-white);
+    }
+    .faq-cta h2 em { color: var(--blush); font-style: italic; }
+    .faq-cta p {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.95rem; font-weight: 300;
+      color: var(--light-mid); margin-top: 14px; max-width: 420px;
+      line-height: 1.8;
+    }
+    .btn-primary-cl {
+      display: inline-block;
+      background: var(--rose); color: white;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 16px 36px; text-decoration: none;
+      border: none; cursor: pointer;
+      transition: background 0.3s;
+    }
+    .btn-primary-cl:hover { background: var(--deep-rose); color: white; }
+    .btn-outline-cl {
+      display: inline-block;
+      background: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold) !important;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.8rem; font-weight: 500;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      padding: 15px 32px; text-decoration: none;
+      transition: all 0.3s;
+    }
+    .btn-outline-cl:hover { background: var(--gold); color: var(--charcoal) !important; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      background: #1e1a18;
+      padding: 70px 0 30px;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem; font-weight: 600;
+      color: var(--warm-white); margin-bottom: 14px;
+    }
+    .footer-brand span { color: var(--rose); font-style: italic; }
+    .footer-tagline {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.85rem; font-weight: 300;
+      color: var(--light-mid); line-height: 1.7;
+      max-width: 240px; margin-bottom: 24px;
+    }
+    .footer-social a {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      border: 1px solid rgba(201,169,110,0.3);
+      color: var(--gold); text-decoration: none; font-size: 0.8rem;
+      transition: all 0.25s; margin-right: 8px;
+    }
+    .footer-social a:hover { background: var(--rose); border-color: var(--rose); color: white; }
+    .footer-heading {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.72rem; font-weight: 500;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--gold); margin-bottom: 22px;
+    }
+    .footer-links { list-style: none; padding: 0; }
+    .footer-links li { margin-bottom: 10px; }
+    .footer-links a {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--light-mid); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--rose); }
+    .footer-contact p {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.88rem; font-weight: 300;
+      color: var(--light-mid); line-height: 1.7; margin-bottom: 8px;
+    }
+    .footer-contact a { color: var(--gold); text-decoration: none; }
+    .footer-contact a:hover { color: var(--rose); }
+    .footer-divider {
+      border-color: rgba(201,169,110,0.15);
+      margin: 40px 0 24px;
+    }
+    .footer-copy {
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem; font-weight: 300;
+      color: #5a5050; text-align: center;
+    }
+
+    /* ── NO RESULTS ── */
+    .no-results {
+      text-align: center; padding: 60px 0;
+      display: none;
+    }
+    .no-results p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem; font-style: italic;
+      color: var(--light-mid);
+    }
+
+    /* ── MISC ── */
+    .gold-line {
+      width: 50px; height: 1px;
+      background: var(--gold); margin: 24px 0;
+    }
+
+    @media (max-width: 767px) {
+      .img-grid-wrap {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 180px 180px 180px;
+      }
+      .img-grid-item:first-child { grid-row: auto; }
+      .faq-featured-card { min-height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav class="navbar navbar-expand-lg">
+  <div class="container">
+    <a class="navbar-brand" href="https://c-l-salon-website.onrender.com/">CL Salon<span>名髮廊</span></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-0 me-3">
+        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/aboutus.html">About Us</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/service.html">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/privateroom.html">Private Room</a></li>
+        <li class="nav-item"><a class="nav-link active" href="/faqs.html">FAQs</a></li>
+      </ul>
+      <a class="nav-link btn-book-nav" href="https://c-l-salon-website.onrender.com/bookappointment.html">Book a Visit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section class="faq-hero">
+  <div class="container faq-hero-inner">
+    <div class="hero-label">Got Questions</div>
+    <h1>Frequently Asked <em>Questions</em></h1>
+    <p>Everything you need to know about our services, private room, bookings and more. Can't find an answer? WhatsApp Sharon directly.</p>
+    <div class="hero-search">
+      <input type="text" id="faqSearch" placeholder="Search your question…" autocomplete="off" />
+      <button class="hero-search-btn" aria-label="Search">&#128269;</button>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORY TABS ── -->
+<div class="faq-cats">
+  <div class="container">
+    <div class="cat-nav">
+      <button class="cat-btn active" data-cat="all">All Questions</button>
+      <button class="cat-btn" data-cat="private">Private Room</button>
+      <button class="cat-btn" data-cat="booking">Booking</button>
+      <button class="cat-btn" data-cat="services">Services</button>
+      <button class="cat-btn" data-cat="aftercare">Aftercare</button>
+      <button class="cat-btn" data-cat="location">Location & Hours</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── FAQ CONTENT ── -->
+<section class="faq-section">
+  <div class="container">
+
+    <div class="row">
+      <div class="col-lg-4 mb-5 mb-lg-0">
+        <div class="section-label">Help Centre</div>
+        <h2 class="section-title">Your Questions, <em>Answered</em></h2>
+        <div class="gold-line"></div>
+        <p class="section-sub">Browse by category or search above. Every question matters — we've tried to cover them all.</p>
+
+        <!-- Featured Image Cards -->
+        <div class="faq-featured-card mb-3" style="min-height:220px">
+          <img src="https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B" alt="Private Room" />
+          <div class="faq-featured-overlay">
+            <span class="faq-featured-badge">🕌 Exclusive</span>
+            <div class="faq-featured-title">Private Room for Hijabi Women</div>
+            <div class="faq-featured-count">Full privacy · All services available</div>
+          </div>
+        </div>
+
+        <div class="row g-3 mt-1">
+          <div class="col-6">
+            <div class="faq-featured-card" style="min-height:140px">
+              <img src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Straightening" />
+              <div class="faq-featured-overlay">
+                <div class="faq-featured-title" style="font-size:1rem">Japanese Straightening</div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="faq-featured-card" style="min-height:140px">
+              <img src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Colour & Balayage" />
+              <div class="faq-featured-overlay">
+                <div class="faq-featured-title" style="font-size:1rem">Colour & Balayage</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-8">
+
+        <!-- ALL / PRIVATE -->
+        <div class="faq-group active" id="group-all">
+
+          <!-- Private Room -->
+          <p class="section-label mb-3" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">🕌 Private Room</p>
+          <div class="accordion mb-4" id="acc-private">
+
+            <div class="accordion-item" data-cat="private" data-q="do you have a private room for hijabi women">
+              <h2 class="accordion-header">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#p1">
+                  Do you have a private room for Hijabi women?
+                </button>
+              </h2>
+              <div id="p1" class="accordion-collapse collapse show" data-bs-parent="#acc-private">
+                <div class="accordion-body">
+                  Yes — we have a <strong>fully enclosed private room</strong> exclusively for our Hijabi female guests. All salon services are available in the private room with complete comfort and dignity. Simply request it when booking via WhatsApp or our booking form.
+                  <div class="mt-3">
+                    <span class="faq-tag">Privacy</span><span class="faq-tag">Hijabi-Friendly</span>
+                    <a href="https://c-l-salon-website.onrender.com/privateroom.html" class="d-block mt-3" style="color:var(--rose); font-size:0.83rem; letter-spacing:0.06em;">Learn more about the Private Room →</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="private" data-q="is the private room available for all services">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p2">
+                  Is the private room available for all services?
+                </button>
+              </h2>
+              <div id="p2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Absolutely. Every service we offer — from Japanese hair straightening to colour, cuts, treatments and blowdries — is available in the private room. There is no compromise on quality or range.
+                  <div class="mt-2"><span class="faq-tag">All Services</span><span class="faq-tag">Private Room</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="private" data-q="how do i request the private room">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p3">
+                  How do I request the private room?
+                </button>
+              </h2>
+              <div id="p3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Simply <a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20the%20private%20room.">WhatsApp Sharon</a> or note it in the "Additional Notes" field on the booking form. We will confirm your private room request when we confirm your appointment.
+                  <div class="mt-2"><span class="faq-tag">Booking</span><span class="faq-tag">Privacy</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="private" data-q="is the private room exclusively for muslim women">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p4">
+                  Is the private room exclusively for Muslim women?
+                </button>
+              </h2>
+              <div id="p4" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  The private room was designed first and foremost for our Hijabi female guests who require full privacy. However, any woman who prefers a private setting is welcome to enquire — we'll always do our best to accommodate.
+                  <div class="mt-2"><span class="faq-tag">Inclusivity</span><span class="faq-tag">Private Room</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Booking -->
+          <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">📅 Booking</p>
+          <div class="accordion mb-4" id="acc-booking">
+
+            <div class="accordion-item" data-cat="booking" data-q="how do i book an appointment">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b1">
+                  How do I book an appointment?
+                </button>
+              </h2>
+              <div id="b1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  You can book via our <a href="https://c-l-salon-website.onrender.com/bookappointment.html">online booking form</a>, message Sharon on <a href="https://wa.me/447833463669">WhatsApp at 07833 463 669</a>, or call the salon on <a href="tel:+441216225877">0121 622 5877</a>. Appointments are highly recommended — walk-ins are subject to availability.
+                  <div class="mt-2"><span class="faq-tag">Booking</span><span class="faq-tag">WhatsApp</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="booking" data-q="do i need a consultation before japanese straightening">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b2">
+                  Do I need a consultation before Japanese hair straightening?
+                </button>
+              </h2>
+              <div id="b2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Yes, a consultation is required before booking Japanese hair straightening. This allows Sharon to assess your hair's condition, health, and texture to ensure the treatment is suitable and to recommend the right approach for your specific hair type.
+                  <div class="mt-2"><span class="faq-tag">Consultation</span><span class="faq-tag">Japanese Straightening</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="booking" data-q="do you accept walk-ins">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b3">
+                  Do you accept walk-ins?
+                </button>
+              </h2>
+              <div id="b3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Walk-ins are welcome but subject to availability. To guarantee your preferred time and stylist, we strongly recommend booking in advance — especially for longer treatments like Japanese straightening or colour services.
+                  <div class="mt-2"><span class="faq-tag">Walk-in</span><span class="faq-tag">Availability</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="booking" data-q="can i book online fresha">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b4">
+                  Can I book online via Fresha?
+                </button>
+              </h2>
+              <div id="b4" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Yes! We are listed on Fresha — you can book selected services online 24/7. For complex treatments or private room requests, we recommend contacting Sharon directly via WhatsApp so she can advise on the right service for you.
+                  <div class="mt-2"><span class="faq-tag">Fresha</span><span class="faq-tag">Online Booking</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Services -->
+          <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">✂️ Services</p>
+          <div class="accordion mb-4" id="acc-services">
+
+            <div class="accordion-item" data-cat="services" data-q="what services do you offer">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s1">
+                  What services do you offer?
+                </button>
+              </h2>
+              <div id="s1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  We offer Japanese Hair Straightening, Korean Cool Perms, Digital Hot Perms, Collagen Treatments, Balayage, Highlights, Full Colour, Haircuts & Trims, Blowdries, Hair Extensions and Deep Repair Treatments. All services are available in our private room for Hijabi guests.
+                  <div class="mt-2"><span class="faq-tag">Services</span><span class="faq-tag">Treatments</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="services" data-q="do you offer hair extensions">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s2">
+                  Do you offer hair extensions?
+                </button>
+              </h2>
+              <div id="s2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Yes — we offer professionally fitted hair extensions to add instant length and volume. Please contact us before booking to discuss which extension method best suits your hair type and desired result.
+                  <div class="mt-2"><span class="faq-tag">Extensions</span><span class="faq-tag">Consultation</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="services" data-q="how long does japanese straightening take">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s3">
+                  How long does Japanese hair straightening take?
+                </button>
+              </h2>
+              <div id="s3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Treatment time typically ranges from 3–5 hours depending on hair length, thickness and condition. We recommend setting aside a full afternoon. Sharon will give you a more accurate estimate during your consultation.
+                  <div class="mt-2"><span class="faq-tag">Japanese Straightening</span><span class="faq-tag">Timing</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="services" data-q="how much do services cost pricing">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s4">
+                  How much do services cost?
+                </button>
+              </h2>
+              <div id="s4" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Pricing varies depending on hair length, thickness and complexity. Please <a href="https://wa.me/447833463669">WhatsApp Sharon</a> or visit our <a href="https://c-l-salon-website.onrender.com/service.html">Services page</a> for a consultation and bespoke quote. We believe in transparent, honest pricing.
+                  <div class="mt-2"><span class="faq-tag">Pricing</span><span class="faq-tag">Consultation</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Aftercare -->
+          <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">🌸 Aftercare</p>
+          <div class="accordion mb-4" id="acc-aftercare">
+
+            <div class="accordion-item" data-cat="aftercare" data-q="how do i care for my hair after japanese straightening">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a1">
+                  How do I care for my hair after Japanese straightening?
+                </button>
+              </h2>
+              <div id="a1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  For the first 72 hours, avoid washing, tying or tucking hair behind your ears. Use sulfate-free shampoo and a smoothing conditioner. Avoid excessive heat styling and use a heat protectant when you do. Sharon will guide you through a full aftercare routine after your treatment.
+                  <div class="mt-2"><span class="faq-tag">Aftercare</span><span class="faq-tag">Hair Care</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="aftercare" data-q="what products do you recommend after colour treatment">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">
+                  What products do you recommend after a colour treatment?
+                </button>
+              </h2>
+              <div id="a2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  We recommend colour-safe, sulfate-free shampoos and a weekly nourishing mask to maintain vibrancy. Avoid washing with very hot water as this strips colour faster. Sharon can recommend specific products suited to your hair at your appointment.
+                  <div class="mt-2"><span class="faq-tag">Colour</span><span class="faq-tag">Products</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Location & Hours -->
+          <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">📍 Location & Hours</p>
+          <div class="accordion mb-4" id="acc-location">
+
+            <div class="accordion-item" data-cat="location" data-q="where are you located address">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#l1">
+                  Where are you located?
+                </button>
+              </h2>
+              <div id="l1" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  We are at <strong>Unit 2, China Court Building, 3 Bath Passage, Birmingham B5 4ST</strong> — in the heart of Birmingham's China Town. Easily accessible by public transport, with nearby parking available.
+                  <div class="mt-2"><span class="faq-tag">Location</span><span class="faq-tag">Birmingham</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="location" data-q="what are your opening hours">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#l2">
+                  What are your opening hours?
+                </button>
+              </h2>
+              <div id="l2" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  We are open <strong>7 days a week, Monday to Sunday, from 10:00 AM to 6:00 PM</strong>. The private room is available every day. No need to wait for the weekend — we're here for you all week.
+                  <div class="mt-2"><span class="faq-tag">Hours</span><span class="faq-tag">Open Daily</span></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-cat="location" data-q="is there parking near the salon">
+              <h2 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#l3">
+                  Is there parking near the salon?
+                </button>
+              </h2>
+              <div id="l3" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                  Yes, there are several public car parks nearby in Birmingham city centre. The salon is also well-served by bus and rail — New Street Station is just a short walk away. We recommend checking Google Maps for the easiest route from your location.
+                  <div class="mt-2"><span class="faq-tag">Parking</span><span class="faq-tag">Transport</span></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div><!-- /group-all -->
+
+        <!-- No results message -->
+        <div class="no-results" id="noResults">
+          <p>No questions found for "<span id="searchTerm"></span>"</p>
+          <p style="font-family:'Jost',sans-serif;font-size:0.88rem;color:var(--light-mid);margin-top:10px;">Try a different search or <a href="https://wa.me/447833463669" style="color:var(--rose)">WhatsApp Sharon directly →</a></p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── IMAGE GRID ── -->
+<section class="faq-img-grid">
+  <div class="container">
+    <div class="row mb-4 align-items-end">
+      <div class="col-lg-6">
+        <div class="section-label">Our Space</div>
+        <h2 class="section-title">Inside <em>C L Salon</em></h2>
+      </div>
+      <div class="col-lg-6 text-lg-end">
+        <a href="https://c-l-salon-website.onrender.com/service.html" class="btn-primary-cl">View All Services</a>
+      </div>
+    </div>
+    <div class="img-grid-wrap">
+      <div class="img-grid-item">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80&fit=crop" alt="Salon interior" />
+        <div class="img-grid-caption">Salon Atmosphere</div>
+      </div>
+      <div class="img-grid-item">
+        <img src="https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg" alt="Styling station" />
+        <div class="img-grid-caption">Styling Station</div>
+      </div>
+      <div class="img-grid-item">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Treatment" />
+        <div class="img-grid-caption">Hair Treatments</div>
+      </div>
+      <div class="img-grid-item">
+        <img src="https://i.pinimg.com/736x/9a/a5/e5/9aa5e582f2beaa0e0bb442f3652c1a3a.jpg" alt="Japanese Straightening result" />
+        <div class="img-grid-caption">Japanese Straightening</div>
+      </div>
+      <div class="img-grid-item">
+        <img src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Colour result" />
+        <div class="img-grid-caption">Colour & Balayage</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA BANNER ── -->
+<section class="faq-cta">
+  <div class="container faq-cta-inner">
+    <div class="row align-items-center">
+      <div class="col-lg-7 mb-4 mb-lg-0">
+        <div class="hero-label" style="color:var(--gold)">Still Have Questions?</div>
+        <h2>Talk to <em>Sharon</em> Directly</h2>
+        <p>Sharon personally responds to every enquiry. Whether you're unsure about a treatment or want to plan your visit — just reach out.</p>
+      </div>
+      <div class="col-lg-5 text-lg-end d-flex flex-wrap gap-3 justify-content-lg-end">
+        <a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I%20have%20a%20question." class="btn-primary-cl">💬 WhatsApp Sharon</a>
+        <a href="https://c-l-salon-website.onrender.com/bookappointment.html" class="btn-outline-cl">Book a Visit</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 mb-5">
+        <div class="footer-brand">CL Salon<span>名髮廊</span></div>
+        <p class="footer-tagline">Birmingham's first hijabi-friendly hair sanctuary. Where every woman is welcome, seen, and celebrated.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/sharonlay2011/" title="Instagram">&#128247;</a>
+          <a href="https://wa.me/447833463669" title="WhatsApp">&#128172;</a>
+          <a href="https://www.facebook.com/61558732898427" title="Facebook">&#128100;</a>
+          <a href="https://weixin.qq.com/" title="WeChat">&#128241;</a>
+        </div>
+      </div>
+      <div class="col-lg-2 col-6 mb-4">
+        <div class="footer-heading">Navigation</div>
+        <ul class="footer-links">
+           <li><a href="/home">Home</a></li>
+    <li><a href="/aboutus.html">About Us</a></li>
+    <li><a href="/service.html">Services</a></li>
+    <li><a href="/privateroom.html">Private Room</a></li>
+    <li><a href="/bookappointment.html">Book</a></li>
+    <li><a href="/faqs.html">FAQs</a></li>
+    <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-6 mb-4">
+        <div class="footer-heading">Services</div>
+        <ul class="footer-links">
+          <li><a href="https://c-l-salon-website.onrender.com/service.html">Japanese Straightening</a></li>
+          <li><a href="https://c-l-salon-website.onrender.com/service.html">Colour & Balayage</a></li>
+          <li><a href="https://c-l-salon-website.onrender.com/service.html">Haircut & Trim</a></li>
+          <li><a href="https://c-l-salon-website.onrender.com/service.html">Hair Extensions</a></li>
+          <li><a href="https://c-l-salon-website.onrender.com/privateroom.html">Private Room</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 mb-4 footer-contact">
+        <div class="footer-heading">Contact</div>
+        <p>📍 Unit 2, China Court Building,<br>3 Bath Passage, Birmingham B5 4ST</p>
+        <p>📞 <a href="tel:+441216225877">0121 622 5877</a></p>
+        <p>💬 <a href="https://wa.me/447833463669">WhatsApp Sharon</a></p>
+        <p>🔖 <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book on Fresha →</a></p>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <p class="footer-copy">© 2026 C L Salon 名髮廊 · All rights reserved. Designed by Lovely Web Studio</p>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // ── CATEGORY TABS ──
+  const catBtns = document.querySelectorAll('.cat-btn');
+  const allItems = document.querySelectorAll('.accordion-item');
+
+  catBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      catBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const cat = btn.dataset.cat;
+      filterByCat(cat);
+    });
+  });
+
+  function filterByCat(cat) {
+    // Show all items first
+    allItems.forEach(item => {
+      if (cat === 'all' || item.dataset.cat === cat) {
+        item.style.display = '';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    // Show/hide section labels
+    document.querySelectorAll('.section-label.mb-3').forEach(label => {
+      label.style.display = (cat === 'all') ? '' : 'none';
+    });
+    document.getElementById('noResults').style.display = 'none';
+  }
+
+  // ── SEARCH ──
+  const searchInput = document.getElementById('faqSearch');
+
+  searchInput.addEventListener('input', () => {
+    const q = searchInput.value.toLowerCase().trim();
+    if (!q) {
+      allItems.forEach(i => i.style.display = '');
+      document.querySelectorAll('.section-label.mb-3').forEach(l => l.style.display = '');
+      document.getElementById('noResults').style.display = 'none';
+      catBtns.forEach(b => b.classList.remove('active'));
+      catBtns[0].classList.add('active');
+      return;
+    }
+    let found = 0;
+    allItems.forEach(item => {
+      const text = (item.dataset.q || '') + ' ' + item.innerText.toLowerCase();
+      if (text.includes(q)) {
+        item.style.display = '';
+        found++;
+        // open matching accordion
+        const collapse = item.querySelector('.accordion-collapse');
+        if (collapse && !collapse.classList.contains('show')) {
+          const bsCollapse = new bootstrap.Collapse(collapse, { toggle: false });
+          bsCollapse.show();
+        }
+      } else {
+        item.style.display = 'none';
+      }
+    });
+    document.querySelectorAll('.section-label.mb-3').forEach(l => l.style.display = 'none');
+    const nr = document.getElementById('noResults');
+    if (found === 0) {
+      nr.style.display = 'block';
+      document.getElementById('searchTerm').textContent = searchInput.value;
+    } else {
+      nr.style.display = 'none';
+    }
+    catBtns.forEach(b => b.classList.remove('active'));
+  });
+
+  // Search button click
+  document.querySelector('.hero-search-btn').addEventListener('click', () => {
+    searchInput.dispatchEvent(new Event('input'));
+  });
+</script>
+</body>
+</html>

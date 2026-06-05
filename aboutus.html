@@ -147,8 +147,9 @@
       padding: 50px 44px; border: 1px solid rgba(200,169,110,0.18);
       position: relative; overflow: hidden;
       transition: background 0.35s;
+      border-radius: 10px !important ;
     }
-    .unique-card:hover { background: var(--warm-white); }
+    .unique-card:hover { background: var(--warm-white);  }
     .unique-card::after {
       content:''; position:absolute; bottom:0; left:0; right:0;
       height: 2px; background: var(--gold);
@@ -321,7 +322,7 @@
       .owner-quote-bar { display: none; }
       .owner-tag { bottom: -14px; right: -10px; }
       .stats { grid-template-columns: repeat(2,1fr); padding: 50px 24px; }
-      .unique-grid { grid-template-columns: 1fr; }
+      .unique-grid { grid-template-columns: 1fr; gap:10px ;  border-radius: 10px;}
       .gallery-masonry {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto;
@@ -351,12 +352,13 @@
 <nav id="navbar">
   <a href="https://c-l-salon-website.onrender.com" class="nav-logo">CL Salon<span> 名髮廊</span></a>
   <ul class="nav-links">
-    <li><a href="https://c-l-salon-website.onrender.com/#home">Home</a></li>
-    <li><a href="#" class="active">About Us</a></li>
-    <li><a href="https://c-l-salon-website.onrender.com/#services">Services</a></li>
-    <li><a href="https://c-l-salon-website.onrender.com/#appointment">Book</a></li>
-    <li><a href="https://c-l-salon-website.onrender.com/#faqs">FAQs</a></li>
-    <li><a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="nav-cta">Book a Visit</a></li>
+     <li><a href="/home">Home</a></li>
+    <li><a href="/aboutus.html">About Us</a></li>
+    <li><a href="/service.html">Services</a></li>
+    <li><a href="/privateroom.html">Private Room</a></li>
+    <li><a href="/bookappointment.html">Book</a></li>
+    <li><a href="/faqs.html">FAQs</a></li>
+    <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
   </ul>
 </nav>
 
@@ -648,11 +650,13 @@
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
-        <li><a href="https://c-l-salon-website.onrender.com/#home">Home</a></li>
-        <li><a href="#">About Us</a></li>
-        <li><a href="https://c-l-salon-website.onrender.com/#services">Services</a></li>
-        <li><a href="https://c-l-salon-website.onrender.com/gallery.html">Gallery</a></li>
-        <li><a href="https://c-l-salon-website.onrender.com/#faqs">FAQs</a></li>
+       <li><a href="/home">Home</a></li>
+    <li><a href="/aboutus.html">About Us</a></li>
+    <li><a href="/service.html">Services</a></li>
+    <li><a href="/privateroom.html">Private Room</a></li>
+    <li><a href="/bookappointment.html">Book</a></li>
+    <li><a href="/faqs.html">FAQs</a></li>
+    <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
       </ul>
     </div>
     <div class="footer-col">
