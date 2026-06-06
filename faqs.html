@@ -28,44 +28,57 @@
     body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
 
     /* ── NAV ── */
-    .navbar {
-      background: rgba(250,247,242,0.97);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid var(--gold-light);
-      padding: 18px 0;
-      position: sticky; top: 0; z-index: 999;
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 5%; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250,247,242,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(196,137,107,0.15); transition: box-shadow 0.3s;
     }
-    .navbar-brand {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5rem; font-weight: 600;
-      color: var(--charcoal) !important;
-      letter-spacing: 0.04em;
+    nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--rose); font-style: italic; }
+    .nav-logo .nav-logo-chinese { font-size: 1rem; font-weight: 300; color: var(--mid); letter-spacing: 0.04em; margin-left: 4px; font-style: normal; }
+
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      align-items: center; gap: 5px; width: 40px; height: 40px;
+      background: transparent; border: none; cursor: pointer; padding: 6px; z-index: 1001;
     }
-    .navbar-brand span { color: var(--rose); font-style: italic; }
-    .nav-link {
-      font-family: 'Jost', sans-serif;
-      font-size: 0.82rem; font-weight: 400;
-      letter-spacing: 0.12em; text-transform: uppercase;
-      color: var(--mid) !important;
-      padding: 6px 14px !important;
-      transition: color 0.25s;
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: var(--charcoal);
+      border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center;
     }
-    .nav-link:hover, .nav-link.active { color: var(--rose) !important; }
-    .btn-book-nav {
-      background: var(--charcoal);
-      color: var(--cream) !important;
-      border-radius: 0;
-      font-size: 0.78rem; letter-spacing: 0.14em; text-transform: uppercase;
-      padding: 10px 22px !important;
-      transition: background 0.3s;
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.25s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--rose); }
+    .nav-book { background: var(--charcoal); color: var(--cream) !important; padding: 10px 22px; border-radius: 2px; letter-spacing: 0.1em; transition: background 0.25s !important; }
+    .nav-book:hover { background: var(--rose) !important; color: #fff !important; }
+
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; top: 72px; left: 0; right: 0;
+        flex-direction: column; align-items: flex-start; gap: 0;
+        background: rgba(250,247,242,0.97); backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(196,137,107,0.2);
+        padding: 0; max-height: 0; overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.3s ease; z-index: 999;
+      }
+      .nav-links.open { max-height: 500px; padding: 16px 0 24px; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 14px 5%; font-size: 0.9rem; width: 100%; }
+      .nav-book { margin: 8px 5% 0; display: inline-block; width: auto; border-radius: 2px; padding: 12px 24px; }
     }
-    .btn-book-nav:hover { background: var(--rose); }
-    .navbar-toggler { border: 1px solid var(--gold-light); }
 
     /* ── HERO ── */
     .faq-hero {
       background: var(--charcoal);
-      padding: 110px 0 80px;
+      padding: 182px 0 80px;
       position: relative;
       overflow: hidden;
     }
@@ -423,36 +436,71 @@
       background: var(--gold); margin: 24px 0;
     }
 
-    @media (max-width: 767px) {
+    /* ── MOBILE RESPONSIVE ── */
+    @media (max-width: 991px) {
+      .faq-hero { padding: 140px 0 60px; }
+      .faq-hero h1 { font-size: clamp(2rem, 8vw, 3rem); }
+      .hero-search { max-width: 100%; }
+      .faq-cats { top: 72px; }
+      .cat-btn { padding: 14px 16px; font-size: 0.72rem; }
+      .faq-section { padding: 60px 0; }
+      .col-lg-4 { margin-bottom: 40px !important; }
+      .faq-featured-card { min-height: 200px !important; }
+      .accordion-button { font-size: 1rem; padding: 18px 0; }
       .img-grid-wrap {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: 180px 180px 180px;
+        gap: 8px;
       }
       .img-grid-item:first-child { grid-row: auto; }
-      .faq-featured-card { min-height: 220px; }
+      .faq-cta { padding: 60px 0; }
+      .faq-cta h2 { font-size: clamp(1.8rem, 6vw, 2.4rem); }
+      .site-footer { padding: 50px 0 24px; }
+      :root { --section-gap: 70px; }
+    }
+
+    @media (max-width: 600px) {
+      .faq-hero { padding: 110px 0 50px; }
+      .faq-hero h1 { font-size: 2rem; line-height: 1.2; }
+      .faq-hero p { font-size: 0.9rem; }
+      .hero-search { margin-top: 24px; }
+      .hero-search input { font-size: 0.85rem; padding: 12px 48px 12px 16px; }
+      .cat-btn { padding: 12px 10px; font-size: 0.65rem; letter-spacing: 0.06em; }
+      .section-title { font-size: 1.7rem; }
+      .faq-featured-card { min-height: 160px !important; }
+      .accordion-button { font-size: 0.95rem; padding: 16px 0; }
+      .accordion-body { font-size: 0.88rem; }
+      .faq-tag { margin-bottom: 6px; }
+      .img-grid-wrap {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 140px 140px 140px;
+        gap: 6px;
+      }
+      .faq-cta .d-flex { flex-direction: column; gap: 12px !important; }
+      .btn-primary-cl, .btn-outline-cl {
+        width: 100%; text-align: center; padding: 14px 20px;
+      }
+      .footer-copy { font-size: 0.7rem; padding: 0 12px; }
+      :root { --section-gap: 55px; }
     }
   </style>
 </head>
 <body>
 
 <!-- ── NAV ── -->
-<nav class="navbar navbar-expand-lg">
-  <div class="container">
-    <a class="navbar-brand" href="https://c-l-salon-website.onrender.com/">CL Salon<span>名髮廊</span></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav align-items-lg-center gap-0 me-3">
-        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/aboutus.html">About Us</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/service.html">Services</a></li>
-        <li class="nav-item"><a class="nav-link" href="https://c-l-salon-website.onrender.com/privateroom.html">Private Room</a></li>
-        <li class="nav-item"><a class="nav-link active" href="/faqs.html">FAQs</a></li>
-      </ul>
-      <a class="nav-link btn-book-nav" href="https://c-l-salon-website.onrender.com/bookappointment.html">Book a Visit</a>
-    </div>
-  </div>
+<nav id="navbar">
+  <a href="/index.html" class="nav-logo">C<span>L</span> Salon<span class="nav-logo-chinese">名髮廊</span></a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/aboutus.html">About Us</a></li>
+    <li><a href="/service.html">Services</a></li>
+    <li><a href="/privateroom.html">Private Room</a></li>
+    <li><a href="/faqs.html" class="active">FAQs</a></li>
+    <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
+  </ul>
 </nav>
 
 <!-- ── HERO ── -->
@@ -485,7 +533,6 @@
 <!-- ── FAQ CONTENT ── -->
 <section class="faq-section">
   <div class="container">
-
     <div class="row">
       <div class="col-lg-4 mb-5 mb-lg-0">
         <div class="section-label">Help Centre</div>
@@ -493,7 +540,6 @@
         <div class="gold-line"></div>
         <p class="section-sub">Browse by category or search above. Every question matters — we've tried to cover them all.</p>
 
-        <!-- Featured Image Cards -->
         <div class="faq-featured-card mb-3" style="min-height:220px">
           <img src="https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B" alt="Private Room" />
           <div class="faq-featured-overlay">
@@ -524,14 +570,10 @@
       </div>
 
       <div class="col-lg-8">
-
-        <!-- ALL / PRIVATE -->
         <div class="faq-group active" id="group-all">
 
-          <!-- Private Room -->
           <p class="section-label mb-3" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">🕌 Private Room</p>
           <div class="accordion mb-4" id="acc-private">
-
             <div class="accordion-item" data-cat="private" data-q="do you have a private room for hijabi women">
               <h2 class="accordion-header">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#p1">
@@ -543,12 +585,11 @@
                   Yes — we have a <strong>fully enclosed private room</strong> exclusively for our Hijabi female guests. All salon services are available in the private room with complete comfort and dignity. Simply request it when booking via WhatsApp or our booking form.
                   <div class="mt-3">
                     <span class="faq-tag">Privacy</span><span class="faq-tag">Hijabi-Friendly</span>
-                    <a href="https://c-l-salon-website.onrender.com/privateroom.html" class="d-block mt-3" style="color:var(--rose); font-size:0.83rem; letter-spacing:0.06em;">Learn more about the Private Room →</a>
+                    <a href="/privateroom.html" class="d-block mt-3" style="color:var(--rose); font-size:0.83rem; letter-spacing:0.06em;">Learn more about the Private Room →</a>
                   </div>
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="private" data-q="is the private room available for all services">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p2">
@@ -562,7 +603,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="private" data-q="how do i request the private room">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p3">
@@ -576,7 +616,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="private" data-q="is the private room exclusively for muslim women">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#p4">
@@ -590,13 +629,10 @@
                 </div>
               </div>
             </div>
-
           </div>
 
-          <!-- Booking -->
           <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">📅 Booking</p>
           <div class="accordion mb-4" id="acc-booking">
-
             <div class="accordion-item" data-cat="booking" data-q="how do i book an appointment">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b1">
@@ -605,12 +641,11 @@
               </h2>
               <div id="b1" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  You can book via our <a href="https://c-l-salon-website.onrender.com/bookappointment.html">online booking form</a>, message Sharon on <a href="https://wa.me/447833463669">WhatsApp at 07833 463 669</a>, or call the salon on <a href="tel:+441216225877">0121 622 5877</a>. Appointments are highly recommended — walk-ins are subject to availability.
+                  You can book via our <a href="/bookappointment.html">online booking form</a>, message Sharon on <a href="https://wa.me/447833463669">WhatsApp at 07833 463 669</a>, or call the salon on <a href="tel:+441216225877">0121 622 5877</a>. Appointments are highly recommended — walk-ins are subject to availability.
                   <div class="mt-2"><span class="faq-tag">Booking</span><span class="faq-tag">WhatsApp</span></div>
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="booking" data-q="do i need a consultation before japanese straightening">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b2">
@@ -624,7 +659,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="booking" data-q="do you accept walk-ins">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b3">
@@ -638,7 +672,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="booking" data-q="can i book online fresha">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#b4">
@@ -652,13 +685,10 @@
                 </div>
               </div>
             </div>
-
           </div>
 
-          <!-- Services -->
           <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">✂️ Services</p>
           <div class="accordion mb-4" id="acc-services">
-
             <div class="accordion-item" data-cat="services" data-q="what services do you offer">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s1">
@@ -672,7 +702,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="services" data-q="do you offer hair extensions">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s2">
@@ -686,7 +715,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="services" data-q="how long does japanese straightening take">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s3">
@@ -700,7 +728,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="services" data-q="how much do services cost pricing">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#s4">
@@ -709,18 +736,15 @@
               </h2>
               <div id="s4" class="accordion-collapse collapse">
                 <div class="accordion-body">
-                  Pricing varies depending on hair length, thickness and complexity. Please <a href="https://wa.me/447833463669">WhatsApp Sharon</a> or visit our <a href="https://c-l-salon-website.onrender.com/service.html">Services page</a> for a consultation and bespoke quote. We believe in transparent, honest pricing.
+                  Pricing varies depending on hair length, thickness and complexity. Please <a href="https://wa.me/447833463669">WhatsApp Sharon</a> or visit our <a href="/service.html">Services page</a> for a consultation and bespoke quote. We believe in transparent, honest pricing.
                   <div class="mt-2"><span class="faq-tag">Pricing</span><span class="faq-tag">Consultation</span></div>
                 </div>
               </div>
             </div>
-
           </div>
 
-          <!-- Aftercare -->
           <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">🌸 Aftercare</p>
           <div class="accordion mb-4" id="acc-aftercare">
-
             <div class="accordion-item" data-cat="aftercare" data-q="how do i care for my hair after japanese straightening">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a1">
@@ -734,7 +758,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="aftercare" data-q="what products do you recommend after colour treatment">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#a2">
@@ -748,13 +771,10 @@
                 </div>
               </div>
             </div>
-
           </div>
 
-          <!-- Location & Hours -->
           <p class="section-label mb-3 mt-5" style="color:var(--rose); font-size:0.7rem; letter-spacing:0.18em">📍 Location & Hours</p>
           <div class="accordion mb-4" id="acc-location">
-
             <div class="accordion-item" data-cat="location" data-q="where are you located address">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#l1">
@@ -768,7 +788,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="location" data-q="what are your opening hours">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#l2">
@@ -782,7 +801,6 @@
                 </div>
               </div>
             </div>
-
             <div class="accordion-item" data-cat="location" data-q="is there parking near the salon">
               <h2 class="accordion-header">
                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#l3">
@@ -796,12 +814,10 @@
                 </div>
               </div>
             </div>
-
           </div>
 
         </div><!-- /group-all -->
 
-        <!-- No results message -->
         <div class="no-results" id="noResults">
           <p>No questions found for "<span id="searchTerm"></span>"</p>
           <p style="font-family:'Jost',sans-serif;font-size:0.88rem;color:var(--light-mid);margin-top:10px;">Try a different search or <a href="https://wa.me/447833463669" style="color:var(--rose)">WhatsApp Sharon directly →</a></p>
@@ -816,12 +832,12 @@
 <section class="faq-img-grid">
   <div class="container">
     <div class="row mb-4 align-items-end">
-      <div class="col-lg-6">
+      <div class="col-8 col-lg-6">
         <div class="section-label">Our Space</div>
         <h2 class="section-title">Inside <em>C L Salon</em></h2>
       </div>
-      <div class="col-lg-6 text-lg-end">
-        <a href="https://c-l-salon-website.onrender.com/service.html" class="btn-primary-cl">View All Services</a>
+      <div class="col-4 col-lg-6 text-end text-lg-end">
+        <a href="/service.html" class="btn-primary-cl" style="padding: 12px 20px; font-size: 0.72rem;">View All Services</a>
       </div>
     </div>
     <div class="img-grid-wrap">
@@ -858,9 +874,9 @@
         <h2>Talk to <em>Sharon</em> Directly</h2>
         <p>Sharon personally responds to every enquiry. Whether you're unsure about a treatment or want to plan your visit — just reach out.</p>
       </div>
-      <div class="col-lg-5 text-lg-end d-flex flex-wrap gap-3 justify-content-lg-end">
+      <div class="col-lg-5 d-flex flex-wrap gap-3 justify-content-lg-end align-items-start mt-2 mt-lg-0">
         <a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I%20have%20a%20question." class="btn-primary-cl">💬 WhatsApp Sharon</a>
-        <a href="https://c-l-salon-website.onrender.com/bookappointment.html" class="btn-outline-cl">Book a Visit</a>
+        <a href="/bookappointment.html" class="btn-outline-cl">Book a Visit</a>
       </div>
     </div>
   </div>
@@ -883,23 +899,22 @@
       <div class="col-lg-2 col-6 mb-4">
         <div class="footer-heading">Navigation</div>
         <ul class="footer-links">
-           <li><a href="/home">Home</a></li>
-    <li><a href="/aboutus.html">About Us</a></li>
-    <li><a href="/service.html">Services</a></li>
-    <li><a href="/privateroom.html">Private Room</a></li>
-    <li><a href="/bookappointment.html">Book</a></li>
-    <li><a href="/faqs.html">FAQs</a></li>
-    <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/aboutus.html">About Us</a></li>
+          <li><a href="/service.html">Services</a></li>
+          <li><a href="/privateroom.html">Private Room</a></li>
+          <li><a href="/bookappointment.html">Book</a></li>
+          <li><a href="/faqs.html">FAQs</a></li>
         </ul>
       </div>
       <div class="col-lg-3 col-6 mb-4">
         <div class="footer-heading">Services</div>
         <ul class="footer-links">
-          <li><a href="https://c-l-salon-website.onrender.com/service.html">Japanese Straightening</a></li>
-          <li><a href="https://c-l-salon-website.onrender.com/service.html">Colour & Balayage</a></li>
-          <li><a href="https://c-l-salon-website.onrender.com/service.html">Haircut & Trim</a></li>
-          <li><a href="https://c-l-salon-website.onrender.com/service.html">Hair Extensions</a></li>
-          <li><a href="https://c-l-salon-website.onrender.com/privateroom.html">Private Room</a></li>
+          <li><a href="/service.html">Japanese Straightening</a></li>
+          <li><a href="/service.html">Colour & Balayage</a></li>
+          <li><a href="/service.html">Haircut & Trim</a></li>
+          <li><a href="/service.html">Hair Extensions</a></li>
+          <li><a href="/privateroom.html">Private Room</a></li>
         </ul>
       </div>
       <div class="col-lg-3 mb-4 footer-contact">
@@ -907,7 +922,6 @@
         <p>📍 Unit 2, China Court Building,<br>3 Bath Passage, Birmingham B5 4ST</p>
         <p>📞 <a href="tel:+441216225877">0121 622 5877</a></p>
         <p>💬 <a href="https://wa.me/447833463669">WhatsApp Sharon</a></p>
-        <p>🔖 <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book on Fresha →</a></p>
       </div>
     </div>
     <hr class="footer-divider">
@@ -915,8 +929,43 @@
   </div>
 </footer>
 
+<!-- WhatsApp FAB -->
+<a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20an%20appointment." target="_blank" title="WhatsApp Sharon" style="position:fixed;bottom:1.8rem;right:1.8rem;z-index:9999;width:52px;height:52px;background:#25d366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 14px rgba(0,0,0,0.18);transition:transform .2s;">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
+  // ── NAV ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+  document.getElementById('hamburger').addEventListener('click', function() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    const isOpen = nav.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
+  });
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
   // ── CATEGORY TABS ──
   const catBtns = document.querySelectorAll('.cat-btn');
   const allItems = document.querySelectorAll('.accordion-item');
@@ -925,21 +974,14 @@
     btn.addEventListener('click', () => {
       catBtns.forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
-      const cat = btn.dataset.cat;
-      filterByCat(cat);
+      filterByCat(btn.dataset.cat);
     });
   });
 
   function filterByCat(cat) {
-    // Show all items first
     allItems.forEach(item => {
-      if (cat === 'all' || item.dataset.cat === cat) {
-        item.style.display = '';
-      } else {
-        item.style.display = 'none';
-      }
+      item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
     });
-    // Show/hide section labels
     document.querySelectorAll('.section-label.mb-3').forEach(label => {
       label.style.display = (cat === 'all') ? '' : 'none';
     });
@@ -948,7 +990,6 @@
 
   // ── SEARCH ──
   const searchInput = document.getElementById('faqSearch');
-
   searchInput.addEventListener('input', () => {
     const q = searchInput.value.toLowerCase().trim();
     if (!q) {
@@ -965,11 +1006,9 @@
       if (text.includes(q)) {
         item.style.display = '';
         found++;
-        // open matching accordion
         const collapse = item.querySelector('.accordion-collapse');
         if (collapse && !collapse.classList.contains('show')) {
-          const bsCollapse = new bootstrap.Collapse(collapse, { toggle: false });
-          bsCollapse.show();
+          new bootstrap.Collapse(collapse, { toggle: false }).show();
         }
       } else {
         item.style.display = 'none';
@@ -977,16 +1016,11 @@
     });
     document.querySelectorAll('.section-label.mb-3').forEach(l => l.style.display = 'none');
     const nr = document.getElementById('noResults');
-    if (found === 0) {
-      nr.style.display = 'block';
-      document.getElementById('searchTerm').textContent = searchInput.value;
-    } else {
-      nr.style.display = 'none';
-    }
+    nr.style.display = found === 0 ? 'block' : 'none';
+    if (found === 0) document.getElementById('searchTerm').textContent = searchInput.value;
     catBtns.forEach(b => b.classList.remove('active'));
   });
 
-  // Search button click
   document.querySelector('.hero-search-btn').addEventListener('click', () => {
     searchInput.dispatchEvent(new Event('input'));
   });

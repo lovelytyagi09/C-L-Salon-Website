@@ -25,23 +25,53 @@
     body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
 
     /* ── NAV ── */
-    nav {
-      position: fixed; top: 0; left: 0; width: 100%; z-index: 100;
-      padding: 22px 60px;
-      display: flex; align-items: center; justify-content: space-between;
-      background: rgba(250,247,242,0.93); backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(200,169,110,0.15);
-      transition: padding 0.3s;
-    }
-    nav.scrolled { padding: 14px 60px; }
-    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.5rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.04em; }
-    .nav-logo span { color: var(--rose); font-style: italic; }
-    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-    .nav-links a { font-size: 0.78rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.2s; }
-    .nav-links a:hover, .nav-links a.active { color: var(--charcoal); }
-    .nav-cta { background: var(--charcoal); color: var(--cream) !important; padding: 10px 22px; border-radius: 2px; font-size: 0.72rem !important; letter-spacing: 0.14em !important; transition: background 0.2s !important; }
-    .nav-cta:hover { background: var(--deep-rose) !important; }
+   /* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 0 5%; height: 72px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,247,242,0.92); backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(196,137,107,0.15); transition: box-shadow 0.3s;
+}
+nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
+.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.02em; }
+.nav-logo span { color: var(--rose); font-style: italic; }
+.nav-logo .nav-logo-chinese { font-size: 1rem; font-weight: 300; color: var(--mid); letter-spacing: 0.04em; margin-left: 4px; font-style: normal; }
 
+.hamburger {
+  display: none; flex-direction: column; justify-content: center;
+  align-items: center; gap: 5px; width: 40px; height: 40px;
+  background: transparent; border: none; cursor: pointer; padding: 6px; z-index: 1001;
+}
+.hamburger span {
+  display: block; width: 24px; height: 2px; background: var(--charcoal);
+  border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+.nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.25s; }
+.nav-links a:hover, .nav-links a.active { color: var(--rose); }
+.nav-book { background: var(--charcoal); color: var(--cream) !important; padding: 10px 22px; border-radius: 2px; letter-spacing: 0.1em; transition: background 0.25s !important; }
+.nav-book:hover { background: var(--rose) !important; color: #fff !important; }
+
+@media (max-width: 900px) {
+  .hamburger { display: flex; }
+  .nav-links {
+    position: fixed; top: 72px; left: 0; right: 0;
+    flex-direction: column; align-items: flex-start; gap: 0;
+    background: rgba(250,247,242,0.97); backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(196,137,107,0.2);
+    padding: 0; max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease, padding 0.3s ease; z-index: 999;
+  }
+  .nav-links.open { max-height: 500px; padding: 16px 0 24px; }
+  .nav-links li { width: 100%; }
+  .nav-links a { display: block; padding: 14px 5%; font-size: 0.9rem; width: 60%; }
+  .nav-book { margin: 8px 5% 0; display: inline-block; width: auto; border-radius: 2px; padding: 12px 24px; }
+}
     /* ── HERO ── */
     .about-hero {
       min-height: 72vh; display: flex; align-items: flex-end;
@@ -312,9 +342,7 @@
 
     /* ── MOBILE ── */
     @media (max-width: 960px) {
-      nav { padding: 18px 24px; }
-      nav.scrolled { padding: 12px 24px; }
-      .nav-links { display: none; }
+      
       section, .salon-gallery, .location { padding: 60px 24px; }
       .about-hero { padding: 0 24px 60px; min-height: 60vh; }
       .scroll-hint { right: 24px; }
@@ -348,12 +376,15 @@
 </head>
 <body>
 
-<!-- NAV -->
+<!-- // NAVBAR --------- -->
 <nav id="navbar">
-  <a href="https://c-l-salon-website.onrender.com" class="nav-logo">CL Salon<span> 名髮廊</span></a>
-  <ul class="nav-links">
-     <li><a href="/home">Home</a></li>
-    <li><a href="/aboutus.html">About Us</a></li>
+  <a href="/index.html" class="nav-logo">C<span>L</span> Salon<span class="nav-logo-chinese">名髮廊</span></a>
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/aboutus.html" class="active">About Us</a></li>
     <li><a href="/service.html">Services</a></li>
     <li><a href="/privateroom.html">Private Room</a></li>
     <li><a href="/bookappointment.html">Book</a></li>
@@ -606,7 +637,7 @@
         <p>
           <a href="tel:+441216225877">0121 622 5877</a><br>
           <a href="https://wa.me/447833463669">WhatsApp: +44 7833 463 669</a><br>
-          <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book online via Fresha →</a>
+          <!-- <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book online via Fresha →</a> -->
         </p>
       </div>
       <div class="loc-card">
@@ -635,7 +666,7 @@
     <div class="ct-title">Experience the <em>C L Salon</em> Difference</div>
   </div>
   <div class="cta-actions">
-    <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="btn-light">Book a Visit</a>
+    <!-- <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="btn-light">Book a Visit</a> -->
     <a href="https://wa.me/447833463669" class="btn-outline-light">WhatsApp Us</a>
   </div>
 </div>
@@ -650,7 +681,7 @@
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
-       <li><a href="/home">Home</a></li>
+       <li><a href="/index.html">Home</a></li>
     <li><a href="/aboutus.html">About Us</a></li>
     <li><a href="/service.html">Services</a></li>
     <li><a href="/privateroom.html">Private Room</a></li>
@@ -666,7 +697,7 @@
         <li><a href="#">3 Bath Passage, B5 4ST</a></li>
         <li><a href="tel:+441216225877">0121 622 5877</a></li>
         <li><a href="https://wa.me/447833463669">WhatsApp Us</a></li>
-        <li><a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book on Fresha</a></li>
+        <!-- <li><a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book on Fresha</a></li> -->
       </ul>
     </div>
   </div>
@@ -677,10 +708,36 @@
 </footer>
 
 <script>
+  
   const navbar = document.getElementById('navbar');
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 60);
+  window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
+
+  document.getElementById('hamburger').addEventListener('click', function() {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    const isOpen = nav.classList.toggle('open');
+    btn.classList.toggle('open', isOpen);
+    btn.setAttribute('aria-expanded', isOpen);
   });
+
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+      document.getElementById('hamburger').classList.remove('open');
+      document.getElementById('hamburger').setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    const nav = document.getElementById('navLinks');
+    const btn = document.getElementById('hamburger');
+    if (nav.classList.contains('open') && !nav.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('open');
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    }
+  });
+
   const fadeEls = document.querySelectorAll('.fade-up');
   const obs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
