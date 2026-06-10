@@ -194,8 +194,8 @@
   .why-item-desc { font-size: 0.87rem; line-height: 1.7; color: var(--mid); font-weight: 300; }
   .why-image-mosaic { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
   .mosaic-img { width: 100%; object-fit: cover; border-radius: 3px; display: block; }
-  .mosaic-img:first-child { grid-column: 1 / -1; aspect-ratio: 16/9; }
-  .mosaic-img:not(:first-child) { aspect-ratio: 4/3; }
+  .mosaic-img:first-child { grid-column: 1 / -1; aspect-ratio: 10/9; }
+  .mosaic-img:not(:first-child) { aspect-ratio: 2/3; }
 
   /* SPECIAL */
   #special { background: var(--charcoal); padding: var(--section-gap) 7%; }
@@ -363,8 +363,8 @@
   .reviews-track { display: flex; gap: 20px; transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1); will-change: transform; }
   
   .review-card { flex: 0 0 calc((100% - 40px) / 3); position: relative; border-radius: 16px; overflow: hidden; aspect-ratio: 3/4; cursor: pointer; }
-  .review-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; filter: brightness(0.45); }
-  .review-card:hover img { transform: scale(1.05); filter: brightness(0.3); }
+ .review-card img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; filter: brightness(1); transition: transform 0.6s ease; }
+  .review-card:hover img { transform: scale(1.05); filter: brightness(0.2); }
   .review-body { position: absolute; inset: 0; padding: 28px 26px; display: flex; flex-direction: column; justify-content: flex-end; }
   
   .review-tag { display: block; font-size: 1rem; color: var(--gold); margin-bottom: 10px; letter-spacing: 2px; }
@@ -413,7 +413,7 @@
       <a href="/bookappointment.html" class="btn-primary">Book a Visit</a>
       <a href="/service.html" class="btn-outline">Our Services</a>
     </div>
-    <div class="hero-rating">
+    <!-- <div class="hero-rating">
       <div class="hero-rating-score">5.0</div>
       <div class="hero-rating-right">
         <div class="hero-stars">
@@ -422,17 +422,17 @@
           <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
           <svg viewBox="0 0 24 24" fill="#c9a96e" xmlns="http://www.w3.org/2000/svg"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <div class="hero-rating-platform">
+        </div> -->
+        <!-- <div class="hero-rating-platform">
           <span class="fresha-dot"></span>
           <span>fresha</span>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>
-  <div class="hero-scroll">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
+  <!-- <div class="hero-scroll">
+    <div class="scroll-line"></div> -->
+    <!-- <span>Scroll</span> -->
   </div>
 </section>
 
@@ -552,7 +552,7 @@
       </div>
 
       <div class="service-card">
-        <img src="https://images.unsplash.com/photo-1600948836101-f9ffda59d250?w=600&q=80&fit=crop" alt="Private Room">
+        <img src="private room.jpg" alt="Private Room">
         <div class="service-body">
           <div class="service-top">
             <span class="service-tag">🕌 Exclusive</span>
@@ -611,9 +611,9 @@
       </ul>
     </div>
     <div class="why-image-mosaic reveal reveal-delay-2">
-      <img class="mosaic-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80&fit=crop" alt="Salon">
-      <img class="mosaic-img" src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Hair colour">
-      <img class="mosaic-img" src="https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg" alt="Salon interior">
+      <img class="mosaic-img" src="Sharon Photo/sharon doing haircut.jpg" alt="Salon">
+      <img class="mosaic-img" src="Sharon Photo/sharon with customer.jpg" alt="Hair colour">
+      <img class="mosaic-img" src="Feather Hair Extensions/why choose us.jpg" alt="Salon interior">
     </div>
   </div>
 </section>
@@ -626,7 +626,7 @@
     <p class="section-intro">From our signature Japanese straightening to our Hijabi female-only private room service — experiences crafted for every woman.</p>
     <div class="specials-grid">
       <div class="special-card reveal reveal-delay-1">
-        <img src="https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B" alt="Private Room for Hijabi Women">
+        <img src="private room.jpg" alt="Private Room for Hijabi Women">
         <div class="special-content">
           <p class="special-tag">🕌 Exclusive</p>
           <h3 class="special-title">HijabiFemale Private Room</h3>
@@ -634,7 +634,7 @@
         </div>
       </div>
       <div class="special-card reveal">
-        <img src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Straightening">
+       <img src="japanese.jpg" alt="Japanese Straightening">
         <div class="special-content">
           <p class="special-tag">Signature</p>
           <h3 class="special-title">Japanese Hair Straightening</h3>
@@ -642,7 +642,7 @@
         </div>
       </div>
       <div class="special-card reveal reveal-delay-2">
-        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&fit=crop" alt="Brazilian Blow Dry">
+        <img src="brazalian blow dry.png" alt="Brazilian Blow Dry">
         <div class="special-content">
           <p class="special-tag">★ Popular</p>
           <h3 class="special-title">Brazilian Blow Dry Keratin Treatment</h3>
@@ -651,6 +651,7 @@
       </div>
     </div>
   </div>
+</section>
 </section>
 <section id="reviews">
   <div class="reviews-header reveal">
@@ -667,58 +668,29 @@
     <div class="reviews-track" id="reviews-track">
 
       <div class="review-card">
-        <img src="https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B" alt="Private Room">
-        <div class="review-body">
-          <div class="review-top">
-            <span class="review-tag">★★★★★</span>
-            <h3 class="review-name">Aisha K.</h3>
-            <p class="review-desc">"Sharon is absolutely amazing! I booked the private room for my styling, and I felt so comfortable and respected. The results were flawless."</p>
-          </div>
-        </div>
+        <a href="https://maps.app.goo.gl/HS6NkHeAR6QVAAV2A" target="_blank">
+        <img src="review 1.png" a href="" alt="Review 1"></a>
       </div>
 
       <div class="review-card">
-        <img src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Straightening">
-        <div class="review-body">
-          <div class="review-top">
-            <span class="review-tag">★★★★★</span>
-            <h3 class="review-name">Maria S.</h3>
-            <p class="review-desc">"The best Japanese Straightening in Birmingham! My hair has never felt so silky and healthy. Sharon has over 40 years of experience and it shows."</p>
-          </div>
-        </div>
+        <a href="https://maps.app.goo.gl/GT1bJ1gGSbExuyi68" target="_blank">
+        <img src="review 2.png" a href="" alt="Review 2"></a>
       </div>
 
       <div class="review-card">
-        <img src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Balayage">
-        <div class="review-body">
-          <div class="review-top">
-            <span class="review-tag">★★★★★</span>
-            <h3 class="review-name">Fatima R.</h3>
-            <p class="review-desc">"Such a calm, welcoming environment. She took the time to understand exactly what I wanted. I wouldn't trust anyone else with my hair now."</p>
-          </div>
-        </div>
+        <a href="https://maps.app.goo.gl/Ay6KZNEywwYtuWA88" target="_blank">
+        <img src="review 3.png" a href="" alt="Review 3">
+      </div></a>
+
+      <div class="review-card">
+        <a href="https://maps.app.goo.gl/byr7BphwGZ1xsMxe8" target="_blank">
+        <img src="review 4.png"  a href=""alt="Review 4"></a>
       </div>
 
       <div class="review-card">
-        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Treatment">
-        <div class="review-body">
-          <div class="review-top">
-            <span class="review-tag">★★★★★</span>
-            <h3 class="review-name">Zainab A.</h3>
-            <p class="review-desc">"Finding a salon that caters properly to hijabis is so hard, but C L Salon exceeded all my expectations. The privacy is absolute."</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="review-card">
-        <img src="https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg" alt="Salon Interior">
-        <div class="review-body">
-          <div class="review-top">
-            <span class="review-tag">★★★★★</span>
-            <h3 class="review-name">Sarah M.</h3>
-            <p class="review-desc">"Incredible service from start to finish. The boutique is beautiful, clean, and Sharon's attention to detail is truly unmatched."</p>
-          </div>
-        </div>
+        <a href="https://maps.app.goo.gl/UyjPEKMpcc3CkUiV8" target="_blank">
+  <img src="review 5.png" alt="Review 5">
+</a>
       </div>
 
     </div>
@@ -739,19 +711,19 @@
   <div class="transforms-scroll-wrap" id="transforms-wrap"> 
     <div class="transforms-track" id="transforms-track">
       <div class="transform-card">
-        <img src="https://i.pinimg.com/736x/9a/a5/e5/9aa5e582f2beaa0e0bb442f3652c1a3a.jpg" alt="Transformation 1">
+        <img src="Feather Hair Extensions/balayage.jpg" alt="Transformation 1">
         <div class="transform-overlay"><span class="transform-label">Japanese Straightening</span></div>
       </div>
       <div class="transform-card">
-        <img src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Transformation 2">
+        <img src="Hair Straightening/transformation 2.jpg" alt="Transformation 2">
         <div class="transform-overlay"><span class="transform-label">Balayage</span></div>
       </div>
       <div class="transform-card">
-        <img src="https://i1-c.pinimg.com/1200x/95/41/c3/9541c3b4df0e122466bf9c862c5c43d2.jpg" alt="Transformation 3">
+        <img src="Hair Straightening/hair strengthen.jpg" alt="Transformation 3">
         <div class="transform-overlay"><span class="transform-label">Colour & Highlights</span></div>
       </div>
       <div class="transform-card">
-        <img src="https://i.pinimg.com/736x/f9/8c/a7/f98ca7d4ef3047fe09af7e4403a875d0.jpg" alt="Transformation 4">
+        <img src="Feather Hair Extensions/why choose us.jpg" alt="Transformation 4">
         <div class="transform-overlay"><span class="transform-label">Haircut & Style</span></div>
       </div>
       <div class="transform-card">
