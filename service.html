@@ -59,17 +59,17 @@
   .nav-toggle { display: none; background: none; border: none; cursor: pointer; }
   .nav-toggle span { display: block; width: 22px; height: 1px; background: var(--mid); margin: 5px 0; transition: all 0.3s; }
   .nav-book {
-  background: var(--charcoal);
-  color: var(--cream) !important;
-  padding: 10px 22px;
-  border-radius: 2px;
-  letter-spacing: 0.1em;
-  transition: background 0.25s !important;
-}
-.nav-book:hover {
-  background: var(--rose) !important;
-  color: #fff !important;
-}
+    background: var(--charcoal);
+    color: var(--cream) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    letter-spacing: 0.1em;
+    transition: background 0.25s !important;
+  }
+  .nav-book:hover {
+    background: var(--rose) !important;
+    color: #fff !important;
+  }
 
   /* ── HERO ── */
   .page-hero {
@@ -254,6 +254,7 @@
     border-bottom: 1px solid var(--blush); font-weight: 500;
     font-family: 'Jost', sans-serif;
   }
+  .pricing-table th.hijabi-col { color: var(--gold); }
   .pricing-table td {
     padding: 0.9rem 1.1rem; border-bottom: 1px solid var(--blush);
     color: var(--mid); vertical-align: top; font-weight: 300;
@@ -264,8 +265,40 @@
     font-size: 1.05rem; color: var(--charcoal); font-weight: 400;
   }
   .pricing-table td.price { color: var(--deep-rose); font-weight: 500; font-size: 0.9rem; }
+  .pricing-table td.price-hijabi { color: var(--gold); font-weight: 500; font-size: 0.9rem; }
+  .pricing-table td.consult { color: var(--light-mid); font-style: italic; font-size: 0.85rem; }
   .pricing-table tbody tr:hover td { background: var(--cream); }
   .price-note { font-size: 0.78rem; color: var(--light-mid); margin-top: 1.1rem; font-style: italic; font-weight: 300; }
+  .pricing-note-hijabi {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    font-size: 0.72rem; color: var(--gold); background: rgba(201,169,110,0.1);
+    border: 1px solid rgba(201,169,110,0.3); padding: 0.35rem 0.85rem;
+    margin-bottom: 1.5rem; letter-spacing: 0.06em;
+  }
+
+  /* ── BOOKING FLOW BANNER ── */
+  .booking-flow {
+    background: var(--charcoal);
+    padding: 2.5rem 3rem;
+    display: flex; align-items: center; gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .booking-flow-step {
+    display: flex; align-items: center; gap: 1rem; flex: 1; min-width: 200px;
+  }
+  .step-num {
+    width: 36px; height: 36px; border: 1px solid var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;
+    color: var(--gold-light); flex-shrink: 0;
+  }
+  .step-text strong {
+    display: block; font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; color: var(--warm-white); margin-bottom: 0.2rem;
+    font-weight: 500;
+  }
+  .step-text span { font-size: 0.78rem; color: var(--light-mid); font-weight: 300; }
+  .step-arrow { color: var(--gold); font-size: 1.2rem; flex-shrink: 0; }
 
   /* ── FAQ ── */
   .faq-item { border-bottom: 1px solid var(--blush); }
@@ -385,6 +418,8 @@
     .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
     footer { padding: 2.5rem 1.5rem; }
     .cta-section { padding: 60px 1.5rem; }
+    .booking-flow { padding: 2rem 1.5rem; gap: 1.5rem; }
+    .step-arrow { display: none; }
   }
   @media (max-width: 600px) {
     .services-grid { grid-template-columns: 1fr; }
@@ -401,7 +436,7 @@
 <nav>
   <a href="https://c-l-salon-website.onrender.com" class="nav-logo">CL Salon <em>名髮廊</em></a>
   <ul class="nav-links" id="navLinks">
-   <li><a href="/index.html">Home</a></li>
+    <li><a href="/index.html">Home</a></li>
     <li><a href="/aboutus.html">About Us</a></li>
     <li><a href="/service.html">Services</a></li>
     <li><a href="/privateroom.html">Private Room</a></li>
@@ -423,12 +458,39 @@
   </div>
 </section>
 
+<!-- BOOKING FLOW -->
+<div class="booking-flow">
+  <div class="booking-flow-step">
+    <div class="step-num">1</div>
+    <div class="step-text">
+      <strong>Book your appointment</strong>
+      <span>WhatsApp or use the booking form</span>
+    </div>
+  </div>
+  <div class="step-arrow">→</div>
+  <div class="booking-flow-step">
+    <div class="step-num">2</div>
+    <div class="step-text">
+      <strong>Consultation at the salon</strong>
+      <span>Sharon assesses your hair in person</span>
+    </div>
+  </div>
+  <div class="step-arrow">→</div>
+  <div class="booking-flow-step">
+    <div class="step-num">3</div>
+    <div class="step-text">
+      <strong>Your treatment begins</strong>
+      <span>Tailored to your hair type &amp; goals</span>
+    </div>
+  </div>
+</div>
+
 <!-- SERVICES -->
 <section id="services">
   <div class="reveal">
     <p class="section-label">What We Offer</p>
     <h2>Our <em>Treatments</em></h2>
-    <p class="section-intro">Every service is tailored to your hair type, texture and lifestyle. Consultation included for all specialist treatments.</p>
+    <p class="section-intro">Every service is tailored to your hair type, texture and lifestyle. A consultation is included at your appointment for all specialist treatments.</p>
   </div>
 
   <div class="filter-tabs reveal" id="filterTabs">
@@ -436,11 +498,13 @@
     <button class="filter-tab" data-filter="hair">Hair Treatments</button>
     <button class="filter-tab" data-filter="colour">Colour</button>
     <button class="filter-tab" data-filter="cut">Cut & Style</button>
+    <button class="filter-tab" data-filter="men">Men's</button>
     <button class="filter-tab" data-filter="private">Private Room</button>
   </div>
 
   <div class="services-grid reveal" id="servicesGrid">
 
+    <!-- JAPANESE STRAIGHTENING -->
     <div class="service-card" data-cat="hair">
       <div class="img-wrap">
         <img class="service-card-img" src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese Hair Straightening" loading="lazy" />
@@ -448,10 +512,10 @@
       </div>
       <div class="service-body">
         <h3 class="service-title">Japanese Hair Straightening</h3>
-        <p class="service-desc">Permanent silky smoothness using authentic Japanese techniques. Eliminates frizz while preserving natural shine. Consultation required.</p>
+        <p class="service-desc">Permanent silky smoothness using authentic Japanese techniques. Eliminates frizz while preserving natural shine. Consultation at appointment.</p>
         <div class="service-meta">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3–5 hours</span>
-          <span>Consultation included</span>
+          <span>Consultation at appointment</span>
         </div>
         <div class="service-actions">
           <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20*Japanese%20Hair%20Straightening*%20at%20C%20L%20Salon." target="_blank">Book Now</a>
@@ -460,6 +524,45 @@
       </div>
     </div>
 
+    <!-- COLLAGEN HAIR STREAMER -->
+    <div class="service-card" data-cat="hair">
+      <div class="img-wrap">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop" alt="Collagen Hair Streamer" loading="lazy" />
+        <span class="service-badge badge-new">New</span>
+      </div>
+      <div class="service-body">
+        <h3 class="service-title">Collagen Hair Streamer</h3>
+        <p class="service-desc">A deep smoothing and shining treatment using collagen-infused steam therapy. Softens, smooths and adds brilliant shine — without altering your natural texture.</p>
+        <div class="service-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Within the hour</span>
+        </div>
+        <div class="service-actions">
+          <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20*Collagen%20Hair%20Streamer*%20at%20C%20L%20Salon." target="_blank">Book Now</a>
+          <button class="btn-outline" onclick="openDetail('collagenstreamer')">Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- HAIR COLLAGEN -->
+    <div class="service-card" data-cat="hair">
+      <div class="img-wrap">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Collagen Treatment" loading="lazy" />
+        <span class="service-badge badge-new">New</span>
+      </div>
+      <div class="service-body">
+        <h3 class="service-title">Hair Collagen Treatment</h3>
+        <p class="service-desc">Replenishes hair's natural collagen to restore elasticity, strength and deep hydration. Ideal for dry, brittle or chemically treated hair.</p>
+        <div class="service-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Within the hour</span>
+        </div>
+        <div class="service-actions">
+          <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20*Hair%20Collagen%20Treatment*%20at%20C%20L%20Salon." target="_blank">Book Now</a>
+          <button class="btn-outline" onclick="openDetail('collagentreat')">Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- KOREAN COOL PERM -->
     <div class="service-card" data-cat="hair">
       <div class="img-wrap">
         <img class="service-card-img" src="https://i1-c.pinimg.com/1200x/95/41/c3/9541c3b4df0e122466bf9c862c5c43d2.jpg" alt="Korean Cool Perm" loading="lazy" />
@@ -478,6 +581,7 @@
       </div>
     </div>
 
+    <!-- DIGITAL PERM -->
     <div class="service-card" data-cat="hair">
       <div class="img-wrap">
         <img class="service-card-img" src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Digital Perm" loading="lazy" />
@@ -495,6 +599,7 @@
       </div>
     </div>
 
+    <!-- COLOUR & BALAYAGE -->
     <div class="service-card" data-cat="colour">
       <div class="img-wrap">
         <img class="service-card-img" src="https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg" alt="Colour and Balayage" loading="lazy" />
@@ -502,10 +607,10 @@
       </div>
       <div class="service-body">
         <h3 class="service-title">Colour & Balayage</h3>
-        <p class="service-desc">Full colour, highlights, balayage and ombré. Hand-painted sun-kissed gradients bespoke to your complexion and desired look. Consultation required.</p>
+        <p class="service-desc">Full colour, highlights, balayage and ombré. Hand-painted sun-kissed gradients bespoke to your complexion and desired look. Consultation at appointment.</p>
         <div class="service-meta">
           <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2–4 hours</span>
-          <span>Consultation required</span>
+          <span>Consultation at appointment</span>
         </div>
         <div class="service-actions">
           <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20*Colour%20%26%20Balayage*%20at%20C%20L%20Salon." target="_blank">Book Now</a>
@@ -514,6 +619,7 @@
       </div>
     </div>
 
+    <!-- BRAZILIAN BLOW DRY -->
     <div class="service-card" data-cat="hair">
       <div class="img-wrap">
         <img class="service-card-img" src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&fit=crop" alt="Brazilian Blow Dry" loading="lazy" />
@@ -532,6 +638,7 @@
       </div>
     </div>
 
+    <!-- HAIRCUT & TRIM -->
     <div class="service-card" data-cat="cut">
       <div class="img-wrap">
         <img class="service-card-img" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop" alt="Haircut and Trim" loading="lazy" />
@@ -549,6 +656,44 @@
       </div>
     </div>
 
+    <!-- MEN'S HAIRCUT -->
+    <div class="service-card" data-cat="men">
+      <div class="img-wrap">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80&fit=crop" alt="Men's Haircut" loading="lazy" />
+      </div>
+      <div class="service-body">
+        <h3 class="service-title">Men's Haircut</h3>
+        <p class="service-desc">Clean, precise cuts for men. Sharon shapes to your preferred style — classic, textured, or modern. Wash and finish included.</p>
+        <div class="service-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Within the hour</span>
+        </div>
+        <div class="service-actions">
+          <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Men%27s%20Haircut*%20at%20C%20L%20Salon." target="_blank">Book Now</a>
+          <button class="btn-outline" onclick="openDetail('menscut')">Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- CHURAN HAIRCUT -->
+    <div class="service-card" data-cat="cut">
+      <div class="img-wrap">
+        <img class="service-card-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80&fit=crop" alt="Churan Haircut" loading="lazy" />
+        <span class="service-badge badge-new">New</span>
+      </div>
+      <div class="service-body">
+        <h3 class="service-title">Churan Haircut</h3>
+        <p class="service-desc">A specialist cut with a distinctively styled finish. Ask Sharon about the look that suits your face shape and hair texture best.</p>
+        <div class="service-meta">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Within the hour</span>
+        </div>
+        <div class="service-actions">
+          <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Churan%20Haircut*%20at%20C%20L%20Salon." target="_blank">Book Now</a>
+          <button class="btn-outline" onclick="openDetail('churan')">Details</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WASH, BLOW DRY & STYLE -->
     <div class="service-card" data-cat="cut">
       <div class="img-wrap">
         <img class="service-card-img" src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80&fit=crop" alt="Blow Dry and Style" loading="lazy" />
@@ -566,6 +711,7 @@
       </div>
     </div>
 
+    <!-- HAIR TREATMENT & REPAIR -->
     <div class="service-card" data-cat="hair">
       <div class="img-wrap">
         <img class="service-card-img" src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Treatment" loading="lazy" />
@@ -574,7 +720,7 @@
         <h3 class="service-title">Hair Treatment & Repair</h3>
         <p class="service-desc">Nourish, repair and strengthen damaged or dry hair with professional-grade treatment protocols. Collagen, keratin and bond-rebuilding options available.</p>
         <div class="service-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>60–90 mins</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Within the hour</span>
         </div>
         <div class="service-actions">
           <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Hair%20Treatment*%20at%20C%20L%20Salon." target="_blank">Book Now</a>
@@ -583,6 +729,7 @@
       </div>
     </div>
 
+    <!-- HAIR EXTENSIONS -->
     <div class="service-card" data-cat="cut">
       <div class="img-wrap">
         <img class="service-card-img" src="https://i.pinimg.com/736x/b0/24/ee/b024ee4f65c661c31a12be370d382232.jpg" alt="Hair Extensions" loading="lazy" />
@@ -601,6 +748,7 @@
       </div>
     </div>
 
+    <!-- PRIVATE ROOM -->
     <div class="service-card" data-cat="private">
       <div class="img-wrap">
         <img class="service-card-img" src="https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B" alt="Private Room" loading="lazy" />
@@ -608,29 +756,13 @@
       </div>
       <div class="service-body">
         <h3 class="service-title">Private Room — Any Service</h3>
-        <p class="service-desc">All salon services available in our fully enclosed private room, exclusively for Hijabi female guests. Complete privacy, no compromise. Available daily.</p>
+        <p class="service-desc">All salon services available in our fully enclosed private room, exclusively for Hijabi female guests. Upstairs — complete privacy, no compromise. Available daily (closed Wednesdays).</p>
         <div class="service-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Daily availability</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Daily · Closed Wed</span>
         </div>
         <div class="service-actions">
           <a class="btn-book" href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20the%20private%20room." target="_blank">Request Room</a>
           <button class="btn-outline" onclick="openDetail('private')">Details</button>
-        </div>
-      </div>
-    </div>
-
-    <div class="service-card" data-cat="hair">
-      <div class="img-wrap">
-        <img class="service-card-img" src="https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg" alt="Free Consultation" loading="lazy" />
-      </div>
-      <div class="service-body">
-        <h3 class="service-title">Free Consultation</h3>
-        <p class="service-desc">Not sure what's right for you? Book a complimentary consultation with Sharon to discuss your hair goals and receive a personalised treatment plan.</p>
-        <div class="service-meta">
-          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>30 mins · Free</span>
-        </div>
-        <div class="service-actions">
-          <a class="btn-book" href="https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20*Free%20Consultation*%20at%20C%20L%20Salon." target="_blank">Book Free</a>
         </div>
       </div>
     </div>
@@ -645,13 +777,14 @@
     <div class="private-banner-content">
       <span class="eyebrow">🕌 Exclusive Offering</span>
       <h3>Birmingham's only <em>Hijabi-Friendly</em> private salon room</h3>
-      <p>A fully enclosed, secure private room exclusively for our Muslim female guests — where you can receive any of our services in complete dignity and comfort.</p>
+      <p>A fully enclosed, secure private room upstairs — exclusively for our Muslim female guests. Book your appointment, and Sharon will take care of everything in complete dignity and comfort. A consultation happens at your appointment — no separate visit needed.</p>
       <ul>
-        <li>Fully enclosed — no visibility from salon floor</li>
+        <li>Upstairs — fully enclosed, no visibility from salon floor</li>
         <li>All services available including colour and perms</li>
+        <li>Consultation included at your appointment</li>
         <li>Same world-class quality from Sharon</li>
         <li>No additional charge for private room</li>
-        <li>Available 7 days a week</li>
+        <li>Open daily — closed Wednesdays</li>
       </ul>
       <a class="btn-primary" href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20the%20private%20room." target="_blank">Request Private Room →</a>
     </div>
@@ -663,7 +796,10 @@
   <div class="reveal">
     <p class="section-label">Pricing Guide</p>
     <h2>Service <em>Prices</em></h2>
-    <p class="section-intro">Prices are a guide and may vary depending on hair length and condition. A consultation will confirm your exact quote.</p>
+    <p class="section-intro">Prices may vary depending on hair length and condition. Your exact quote is confirmed at your appointment consultation.</p>
+  </div>
+  <div class="reveal">
+    <div class="pricing-note-hijabi">🕌 Hijabi private room upstairs — no surcharge for room · Closed Wednesdays</div>
   </div>
   <div class="reveal" style="overflow-x:auto;">
     <table class="pricing-table">
@@ -671,27 +807,43 @@
         <tr>
           <th>Service</th>
           <th>Duration</th>
-          <th>From</th>
+          <th>General Price</th>
+          <th class="hijabi-col">🕌 Hijabi Price</th>
           <th>Notes</th>
         </tr>
       </thead>
       <tbody>
-        <tr><td>Japanese Hair Straightening</td><td>3–5 hrs</td><td class="price">POA</td><td>Consultation required</td></tr>
-        <tr><td>Korean Cool Perm</td><td>2–4 hrs</td><td class="price">POA</td><td>Consultation required</td></tr>
-        <tr><td>Digital / Hot Perm</td><td>3–5 hrs</td><td class="price">POA</td><td>Consultation required</td></tr>
-        <tr><td>Brazilian Blow Dry</td><td>2–3 hrs</td><td class="price">POA</td><td>Results last 3–6 months</td></tr>
-        <tr><td>Full Colour</td><td>2–3 hrs</td><td class="price">POA</td><td>Consultation required</td></tr>
-        <tr><td>Balayage / Ombré</td><td>2–4 hrs</td><td class="price">POA</td><td>Consultation required</td></tr>
-        <tr><td>Highlights</td><td>1.5–3 hrs</td><td class="price">POA</td><td>Partial or full available</td></tr>
-        <tr><td>Haircut & Trim</td><td>45–90 mins</td><td class="price">POA</td><td>All lengths</td></tr>
-        <tr><td>Wash, Blow Dry & Style</td><td>45–75 mins</td><td class="price">POA</td><td>—</td></tr>
-        <tr><td>Hair Treatment / Repair</td><td>60–90 mins</td><td class="price">POA</td><td>Collagen, keratin, bond repair</td></tr>
-        <tr><td>Hair Extensions</td><td>2–4 hrs</td><td class="price">POA</td><td>Contact us for quote</td></tr>
-        <tr><td>Free Consultation</td><td>30 mins</td><td class="price">Free</td><td>No obligation</td></tr>
-        <tr><td>Private Room</td><td>—</td><td class="price">No surcharge</td><td>Add-on to any service</td></tr>
+        <!-- CUT & STYLE -->
+        <tr><td>Dry Cut</td><td>45–90 mins</td><td class="price">£26 – £36++</td><td class="price-hijabi">£43 – £48++</td><td>All lengths</td></tr>
+        <tr><td>Wash, Cut &amp; Blow Dry</td><td>45–90 mins</td><td class="price">£32 – £43++</td><td class="price-hijabi">£55 – £65++</td><td>Wash, cut &amp; finish</td></tr>
+        <tr><td>Wash &amp; Style</td><td>45–75 mins</td><td class="price">£25 – £35++</td><td class="price-hijabi">POA</td><td>—</td></tr>
+        <tr><td>Fringe Cut</td><td>—</td><td class="price">£10</td><td class="price-hijabi">POA</td><td>—</td></tr>
+        <tr><td>Churan Haircut</td><td>Within the hour</td><td class="price">POA</td><td class="price-hijabi">POA</td><td>—</td></tr>
+        <!-- COLOUR -->
+        <tr><td>Full Hair Colour</td><td>2–3 hrs</td><td class="price">£100 – £150++</td><td class="price-hijabi consult">Upon consultation</td><td>Consultation at appointment</td></tr>
+        <tr><td>Highlights</td><td>1.5–3 hrs</td><td class="price">£98 – £138++</td><td class="price-hijabi consult">Upon consultation</td><td>Partial or full available</td></tr>
+        <tr><td>Balayage / Ombré</td><td>2–4 hrs</td><td class="price">£98 – £138++</td><td class="price-hijabi consult">Upon consultation</td><td>Consultation at appointment</td></tr>
+        <!-- PERMS & STRAIGHTENING -->
+        <tr><td>Korean Cool Perm</td><td>2–4 hrs</td><td class="price">£98 – £138++</td><td class="price-hijabi consult">Upon consultation</td><td>Consultation at appointment</td></tr>
+        <tr><td>Digital / Hot Perm</td><td>3–5 hrs</td><td class="price">£198 – £250++</td><td class="price-hijabi consult">Upon consultation</td><td>Consultation at appointment</td></tr>
+        <tr><td>Japanese Hair Straightening</td><td>3–5 hrs</td><td class="price">£240 – £280++</td><td class="price-hijabi consult">Upon consultation</td><td>Consultation at appointment</td></tr>
+        <tr><td>Collagen Hair Straightening</td><td>2–3 hrs</td><td class="price">£220 – £260++</td><td class="price-hijabi consult">Upon consultation</td><td>—</td></tr>
+        <!-- TREATMENTS -->
+        <tr><td>Hair Collagen Treatment</td><td>Within the hour</td><td class="price">£89++</td><td class="price-hijabi">POA</td><td>Repair &amp; hydration</td></tr>
+        <tr><td>Collagen Hair Streamer</td><td>Within the hour</td><td class="price">POA</td><td class="price-hijabi">POA</td><td>Smoothing &amp; shining</td></tr>
+        <tr><td>Brazilian Blow Dry</td><td>2–3 hrs</td><td class="price">POA</td><td class="price-hijabi">POA</td><td>Results last 3–6 months</td></tr>
+        <tr><td>Hair Treatment / Repair</td><td>Within the hour</td><td class="price">POA</td><td class="price-hijabi">POA</td><td>Collagen, keratin, bond repair</td></tr>
+        <!-- MEN'S -->
+        <tr><td>Men's Dry Cut</td><td>Within the hour</td><td class="price">£25++</td><td class="price-hijabi">N/A</td><td>—</td></tr>
+        <tr><td>Men's Wash &amp; Style</td><td>Within the hour</td><td class="price">£18++</td><td class="price-hijabi">N/A</td><td>—</td></tr>
+        <tr><td>Men's Wash &amp; Cut</td><td>Within the hour</td><td class="price">£29++</td><td class="price-hijabi">N/A</td><td>Wash &amp; finish included</td></tr>
+        <tr><td>Men's Perm</td><td>2–4 hrs</td><td class="price">£98++</td><td class="price-hijabi">N/A</td><td>—</td></tr>
+        <tr><td>Men's Full Hair Colour</td><td>2–3 hrs</td><td class="price">£98++</td><td class="price-hijabi">N/A</td><td>—</td></tr>
+        <!-- EXTENSIONS -->
+        <tr><td>Hair Extensions</td><td>2–4 hrs</td><td class="price">POA</td><td class="price-hijabi">POA</td><td>Contact us for quote</td></tr>
       </tbody>
     </table>
-    <p class="price-note">POA = Price on Application. WhatsApp or call Sharon to discuss your requirements and receive a personalised quote.</p>
+    <p class="price-note">++ prices may vary depending on hair length, condition and thickness. POA = Price on Application — WhatsApp or call Sharon to discuss and receive a personalised quote. · <strong>Closed Wednesdays.</strong> · Hair Extensions, Bleaching and Balayage upon consultation — not included in standard service pricing.</p>
   </div>
 </section>
 
@@ -703,8 +855,8 @@
   </div>
   <div style="max-width:700px;margin-top:2.5rem;" class="reveal">
     <div class="faq-item">
-      <div class="faq-q">Do I need a consultation before booking?<span class="faq-icon"></span></div>
-      <div class="faq-a">A consultation is required before Japanese straightening, perms, colour and extensions. For simpler services like haircuts and blow drys you can book directly. When in doubt, book a free consultation first — it's always included for complex treatments.</div>
+      <div class="faq-q">Do I need to book a separate consultation?<span class="faq-icon"></span></div>
+      <div class="faq-a">No — just book your appointment directly. Sharon will carry out your consultation at the start of your visit before any treatment begins. There is no need for a separate consultation booking.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">How long do Japanese straightening results last?<span class="faq-icon"></span></div>
@@ -712,11 +864,19 @@
     </div>
     <div class="faq-item">
       <div class="faq-q">Can I get any service in the private room?<span class="faq-icon"></span></div>
-      <div class="faq-a">Yes — all of our services are available in the private room with no exception. Colour, perms, straightening, haircuts — all fully accessible. Simply request the private room when booking via WhatsApp or Fresha. There is no surcharge for using it.</div>
+      <div class="faq-a">Yes — all of our services are available in the private room upstairs with no exception. Colour, perms, straightening, haircuts — all fully accessible. Simply request the private room when booking via WhatsApp. There is no surcharge. Please note the private room is closed on Wednesdays.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">What is the Collagen Hair Streamer?<span class="faq-icon"></span></div>
+      <div class="faq-a">The Collagen Hair Streamer is a smoothing and shining treatment using collagen-infused steam. It softens and smooths the hair without permanently changing your texture — and adds a brilliant shine. It takes within the hour and is great as a standalone treatment or add-on.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q">Are you open every day?<span class="faq-icon"></span></div>
+      <div class="faq-a">We are open Monday, Tuesday, Thursday, Friday, Saturday and Sunday — 10am to 6pm. We are closed every Wednesday.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">How do I know which treatment is right for my hair?<span class="faq-icon"></span></div>
-      <div class="faq-a">Book a free consultation with Sharon. She'll assess your hair's condition, texture, history and goals — then recommend the ideal treatment. No pressure, no obligation.</div>
+      <div class="faq-a">Book your appointment and Sharon will assess your hair in person — condition, texture, history and goals — then recommend the ideal treatment before proceeding. No obligation to commit until you're happy with the plan.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">What aftercare is needed after a perm or straightening?<span class="faq-icon"></span></div>
@@ -729,9 +889,8 @@
 <section class="cta-section">
   <span class="eyebrow">Ready?</span>
   <h2>Book your <em>appointment</em></h2>
-  <p>Seven days a week, 10am – 6pm. WhatsApp Sharon directly or book instantly on Fresha.</p>
+  <p>Mon, Tue, Thu–Sun · 10am–6pm · <strong style="color:var(--rose);">Closed Wednesdays.</strong> Book via WhatsApp or the website — consultation happens at your visit.</p>
   <div class="cta-actions">
-    <!-- <a class="btn-primary" href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" target="_blank">Book on Fresha →</a> -->
     <a class="btn-secondary" href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20an%20appointment." target="_blank">WhatsApp Sharon</a>
     <a class="btn-secondary" href="https://c-l-salon-website.onrender.com/#appointment">Book via Website</a>
   </div>
@@ -743,6 +902,7 @@
     <div>
       <a href="https://c-l-salon-website.onrender.com" class="footer-logo">CL Salon <em>名髮廊</em></a>
       <p class="footer-desc">Birmingham's first hijabi-friendly hair sanctuary. Where every woman is welcome, seen, and celebrated.</p>
+      <p style="font-size:0.78rem;color:var(--rose);margin-bottom:1rem;font-weight:400;">Mon–Tue, Thu–Sun · 10am–6pm · Closed Wednesdays</p>
       <div class="footer-socials">
         <a href="https://www.instagram.com/sharonlay2011/" target="_blank">IG</a>
         <a href="https://wa.me/447833463669" target="_blank">WA</a>
@@ -754,20 +914,21 @@
       <h4>Navigation</h4>
       <ul>
         <li><a href="/index.html">Home</a></li>
-    <li><a href="/aboutus.html">About Us</a></li>
-    <li><a href="/service.html">Services</a></li>
-    <li><a href="/privateroom.html">Private Room</a></li>
-    <li><a href="/bookappointment.html">Book</a></li>
-    <li><a href="/faqs.html">FAQs</a></li>
-    <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
+        <li><a href="/aboutus.html">About Us</a></li>
+        <li><a href="/service.html">Services</a></li>
+        <li><a href="/privateroom.html">Private Room</a></li>
+        <li><a href="/bookappointment.html">Book</a></li>
+        <li><a href="/faqs.html">FAQs</a></li>
       </ul>
     </div>
     <div class="footer-col">
       <h4>Services</h4>
       <ul>
         <li><a href="/service.html">Japanese Straightening</a></li>
-        <li><a href="/service.html">Colour & Balayage</a></li>
-        <li><a href="/service.html">Haircut & Trim</a></li>
+        <li><a href="/service.html">Collagen Hair Streamer</a></li>
+        <li><a href="/service.html">Colour &amp; Balayage</a></li>
+        <li><a href="/service.html">Haircut &amp; Trim</a></li>
+        <li><a href="/service.html">Men's Haircut</a></li>
         <li><a href="/service.html">Hair Extensions</a></li>
         <li><a href="/service.html">Private Room</a></li>
       </ul>
@@ -777,7 +938,7 @@
       <p>📍 Unit 2, China Court Building<br>3 Bath Passage, Birmingham B5 4ST</p>
       <p>📞 <a href="tel:+441216225877">0121 622 5877</a></p>
       <p>💬 <a href="https://wa.me/447833463669" target="_blank">WhatsApp Sharon</a></p>
-      <!-- <p>🔖 <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" target="_blank">Book on Fresha →</a></p> -->
+      <p style="color:var(--rose);font-size:0.78rem;margin-top:0.6rem;">⚠️ Closed Wednesdays</p>
     </div>
   </div>
   <div class="footer-bottom">
@@ -838,10 +999,16 @@
   fab.addEventListener('mouseenter', () => fab.style.transform = 'scale(1.1)');
   fab.addEventListener('mouseleave', () => fab.style.transform = 'scale(1)');
 
-  // Detail modal
+  // Detail modal data
   const details = {
     japanese: { title:'Japanese Hair Straightening', badge:'★ Signature', badgeClass:'badge-signature', img:'https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20Japanese%20Hair%20Straightening.',
-      body:`<p>Japanese hair straightening (also known as thermal reconditioning) permanently restructures the hair's bonds to deliver silky, straight results that grow out naturally.</p><br><p>Unlike relaxers, the treated hair stays straight while your natural texture returns gradually at the roots. Sharon uses only premium Japanese products.</p><br><ul><li>Permanent on treated hair</li><li>Suitable for most hair types</li><li>3–5 hours treatment time</li><li>Consultation required before booking</li><li>Grows out beautifully — no harsh line</li></ul>`
+      body:`<p>Japanese hair straightening (also known as thermal reconditioning) permanently restructures the hair's bonds to deliver silky, straight results that grow out naturally.</p><br><p>Unlike relaxers, the treated hair stays straight while your natural texture returns gradually at the roots. Sharon uses only premium Japanese products.</p><br><ul><li>Permanent on treated hair</li><li>Suitable for most hair types</li><li>3–5 hours treatment time</li><li>Consultation at appointment</li><li>Grows out beautifully — no harsh line</li></ul>`
+    },
+    collagenstreamer: { title:'Collagen Hair Streamer', badge:'New', badgeClass:'badge-new', img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Collagen%20Hair%20Streamer.',
+      body:`<p>The Collagen Hair Streamer is a professional smoothing and shining treatment. Collagen-infused steam is applied to deeply penetrate the hair shaft — softening, smoothing and restoring brilliant shine.</p><br><p>Unlike permanent straightening, this treatment works with your natural texture, not against it. Great as a standalone treatment or combined with a cut or blow dry.</p><br><ul><li>Smooths and softens without chemicals</li><li>Adds deep shine and hydration</li><li>Completed within the hour</li><li>Suitable for all hair types</li></ul>`
+    },
+    collagentreat: { title:'Hair Collagen Treatment', badge:'New', badgeClass:'badge-new', img:'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Hair%20Collagen%20Treatment.',
+      body:`<p>A targeted collagen replenishment treatment that restores elasticity, strength and deep moisture to dry, brittle or chemically treated hair. Hair feels visibly healthier after one session.</p><br><ul><li>Rebuilds hair's natural collagen</li><li>Restores elasticity and strength</li><li>Deep hydration for dry or damaged hair</li><li>Completed within the hour</li></ul>`
     },
     kperm: { title:'Korean Cool Perm', badge:'★ Popular', badgeClass:'badge-popular', img:'https://i1-c.pinimg.com/1200x/95/41/c3/9541c3b4df0e122466bf9c862c5c43d2.jpg', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Korean%20Cool%20Perm.',
       body:`<p>The Korean cool perm uses cold-setting rods and solution to create soft, natural-looking waves or curls without heat — results that move and air-dry effortlessly.</p><br><p>Ideal for those wanting defined curl patterns with minimal daily effort. Works on most hair types and lengths.</p>`
@@ -850,7 +1017,7 @@
       body:`<p>The digital perm uses heated ceramic rods connected to a precision digital machine for consistent temperature control. It creates glamorous, defined curls that look stunning when dried with a diffuser.</p><br><p>Best for those who want stronger, more defined curls compared to the cool perm — perfect for a classic Hollywood wave.</p>`
     },
     colour: { title:'Colour & Balayage', badge:'★ Popular', badgeClass:'badge-popular', img:'https://i1-c.pinimg.com/1200x/ca/92/7e/ca927e4f3ccf1d12d7093b640107e010.jpg', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20Colour%20%26%20Balayage.',
-      body:`<p>Sharon offers a full range of colour services — full head colour, root touch-ups, hand-painted balayage and ombré gradients bespoke to your complexion.</p><br><p>A consultation is required to determine the best approach for your hair's condition and desired result. All colour work uses professional-grade, conditioning products.</p>`
+      body:`<p>Sharon offers a full range of colour services — full head colour, root touch-ups, hand-painted balayage and ombré gradients bespoke to your complexion.</p><br><p>Your exact quote is confirmed at your appointment. All colour work uses professional-grade, conditioning products.</p>`
     },
     bbd: { title:'Brazilian Blow Dry', badge:'★ Popular', badgeClass:'badge-popular', img:'https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&q=80&fit=crop', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Brazilian%20Blow%20Dry.',
       body:`<p>A keratin-infused smoothing treatment that coats the hair shaft to eliminate frizz, add deep shine and dramatically reduce drying time. Results typically last 3–6 months.</p><br><p>Unlike permanent straightening, the Brazilian blow dry smooths and softens your natural texture without permanently altering it — making daily styling effortless.</p>`
@@ -858,17 +1025,23 @@
     cut: { title:'Haircut & Trim', badge:'', badgeClass:'', img:'https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Haircut.',
       body:`<p>Precision cutting shaped to your face structure, hair type and lifestyle. Sharon takes time to understand how you wear your hair day-to-day and creates a cut that works for your life — not just in the salon chair.</p><br><p>Available for all lengths. Can be combined with a wash and blow dry finish.</p>`
     },
+    menscut: { title:"Men's Haircut", badge:'', badgeClass:'', img:'https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=600&q=80&fit=crop', link:"https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Men%27s%20Haircut.",
+      body:`<p>A clean, precise cut for men delivered by Sharon with 40+ years of expertise. Classic, textured or modern styles — all completed within the hour. Wash and finish included.</p><br><ul><li>All styles welcome</li><li>Wash and finish included</li><li>Completed within the hour</li></ul>`
+    },
+    churan: { title:'Churan Haircut', badge:'New', badgeClass:'badge-new', img:'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80&fit=crop', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Churan%20Haircut.',
+      body:`<p>A specialist cut with a distinctively styled finish. Sharon will advise on the best approach for your face shape and hair texture during your visit.</p><br><ul><li>Completed within the hour</li><li>Available to all guests</li><li>Ask Sharon for details when booking</li></ul>`
+    },
     blowdry: { title:'Wash, Blow Dry & Style', badge:'', badgeClass:'', img:'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=800&q=80&fit=crop', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Wash%20%26%20Blow%20Dry.',
       body:`<p>A thorough cleanse with professional shampoo and conditioner tailored to your hair, followed by an expert blow dry and finish in your preferred style.</p><br><p>Ideal as a regular treat or before a special occasion. Choose from straight, voluminous, bouncy or sleek finishes.</p>`
     },
     treatment: { title:'Hair Treatment & Repair', badge:'Deep Repair', badgeClass:'badge-new', img:'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20book%20a%20Hair%20Treatment.',
-      body:`<p>Professional repair and nourishing treatments for damaged, dry or chemically treated hair. Options include collagen infusion, keratin repair and bond-rebuilding protocols.</p><br><p>Sharon will assess your hair and recommend the most effective treatment for your specific concern — whether breakage, dryness, chemical or heat damage.</p>`
+      body:`<p>Professional repair and nourishing treatments for damaged, dry or chemically treated hair. Options include collagen infusion, keratin repair and bond-rebuilding protocols.</p><br><p>Sharon will assess your hair at your appointment and recommend the most effective treatment. Most treatments completed within the hour.</p>`
     },
     ext: { title:'Hair Extensions', badge:'New', badgeClass:'badge-new', img:'https://i.pinimg.com/736x/b0/24/ee/b024ee4f65c661c31a12be370d382232.jpg', link:'https://wa.me/6598891266?text=Hi%20Sharon%2C%20I%27d%20like%20to%20enquire%20about%20Hair%20Extensions.',
       body:`<p>Professionally fitted hair extensions to add instant length, volume or both. Sharon will discuss method options and help you select the perfect shade match for seamless results.</p><br><p>Please contact us before booking to discuss your hair and receive a personalised quote. An in-person consultation is recommended.</p>`
     },
     private: { title:'Private Room — Any Service', badge:'🕌 Exclusive', badgeClass:'badge-exclusive', img:'https://i.cbc.ca/ais/1.7030467,1700169656000/full/max/0/default.jpg?im=Crop%2Crect%3D%280%2C409%2C4032%2C2615%29%3B', link:'https://wa.me/447833463669?text=Hi%20Sharon%2C%20I%27d%20like%20to%20request%20the%20private%20room.',
-      body:`<p>C L Salon's fully enclosed private room is exclusively for our Hijabi female guests — Birmingham's first. All salon services are available in complete privacy and dignity.</p><br><ul><li>Fully enclosed room — no external visibility</li><li>Available every day 10am – 6pm</li><li>All services available, including colour and perms</li><li>No additional charge for private room</li><li>Simply request at time of booking</li></ul>`
+      body:`<p>C L Salon's fully enclosed private room upstairs is exclusively for our Hijabi female guests — Birmingham's first. All salon services are available in complete privacy and dignity. Book your appointment and Sharon will handle your consultation on arrival.</p><br><ul><li>Upstairs — fully enclosed, no external visibility</li><li>All services available, including colour and perms</li><li>Consultation included at your appointment</li><li>No additional charge for private room</li><li>Open daily — closed Wednesdays</li></ul>`
     }
   };
 
