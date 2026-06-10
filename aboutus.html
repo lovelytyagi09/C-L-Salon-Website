@@ -25,53 +25,53 @@
     body { font-family: 'Jost', sans-serif; background: var(--cream); color: var(--charcoal); overflow-x: hidden; }
 
     /* ── NAV ── */
-   /* ── NAV ── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-  padding: 0 5%; height: 72px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(250,247,242,0.92); backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(196,137,107,0.15); transition: box-shadow 0.3s;
-}
-nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
-.nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.02em; }
-.nav-logo span { color: var(--rose); font-style: italic; }
-.nav-logo .nav-logo-chinese { font-size: 1rem; font-weight: 300; color: var(--mid); letter-spacing: 0.04em; margin-left: 4px; font-style: normal; }
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 0 5%; height: 72px;
+      display: flex; align-items: center; justify-content: space-between;
+      background: rgba(250,247,242,0.92); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(196,137,107,0.15); transition: box-shadow 0.3s;
+    }
+    nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
+    .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; font-weight: 600; color: var(--charcoal); text-decoration: none; letter-spacing: 0.02em; }
+    .nav-logo span { color: var(--rose); font-style: italic; }
+    .nav-logo .nav-logo-chinese { font-size: 1rem; font-weight: 300; color: var(--mid); letter-spacing: 0.04em; margin-left: 4px; font-style: normal; }
 
-.hamburger {
-  display: none; flex-direction: column; justify-content: center;
-  align-items: center; gap: 5px; width: 40px; height: 40px;
-  background: transparent; border: none; cursor: pointer; padding: 6px; z-index: 1001;
-}
-.hamburger span {
-  display: block; width: 24px; height: 2px; background: var(--charcoal);
-  border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center;
-}
-.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .hamburger {
+      display: none; flex-direction: column; justify-content: center;
+      align-items: center; gap: 5px; width: 40px; height: 40px;
+      background: transparent; border: none; cursor: pointer; padding: 6px; z-index: 1001;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px; background: var(--charcoal);
+      border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease; transform-origin: center;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-.nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
-.nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.25s; }
-.nav-links a:hover, .nav-links a.active { color: var(--rose); }
-.nav-book { background: var(--charcoal); color: var(--cream) !important; padding: 10px 22px; border-radius: 2px; letter-spacing: 0.1em; transition: background 0.25s !important; }
-.nav-book:hover { background: var(--rose) !important; color: #fff !important; }
+    .nav-links { display: flex; align-items: center; gap: 36px; list-style: none; }
+    .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); text-decoration: none; transition: color 0.25s; }
+    .nav-links a:hover, .nav-links a.active { color: var(--rose); }
+    .nav-book { background: var(--charcoal); color: var(--cream) !important; padding: 10px 22px; border-radius: 2px; letter-spacing: 0.1em; transition: background 0.25s !important; }
+    .nav-book:hover { background: var(--rose) !important; color: #fff !important; }
 
-@media (max-width: 900px) {
-  .hamburger { display: flex; }
-  .nav-links {
-    position: fixed; top: 72px; left: 0; right: 0;
-    flex-direction: column; align-items: flex-start; gap: 0;
-    background: rgba(250,247,242,0.97); backdrop-filter: blur(14px);
-    border-bottom: 1px solid rgba(196,137,107,0.2);
-    padding: 0; max-height: 0; overflow: hidden;
-    transition: max-height 0.4s ease, padding 0.3s ease; z-index: 999;
-  }
-  .nav-links.open { max-height: 500px; padding: 16px 0 24px; }
-  .nav-links li { width: 100%; }
-  .nav-links a { display: block; padding: 14px 5%; font-size: 0.9rem; width: 60%; }
-  .nav-book { margin: 8px 5% 0; display: inline-block; width: auto; border-radius: 2px; padding: 12px 24px; }
-}
+    @media (max-width: 900px) {
+      .hamburger { display: flex; }
+      .nav-links {
+        position: fixed; top: 72px; left: 0; right: 0;
+        flex-direction: column; align-items: flex-start; gap: 0;
+        background: rgba(250,247,242,0.97); backdrop-filter: blur(14px);
+        border-bottom: 1px solid rgba(196,137,107,0.2);
+        padding: 0; max-height: 0; overflow: hidden;
+        transition: max-height 0.4s ease, padding 0.3s ease; z-index: 999;
+      }
+      .nav-links.open { max-height: 500px; padding: 16px 0 24px; }
+      .nav-links li { width: 100%; }
+      .nav-links a { display: block; padding: 14px 5%; font-size: 0.9rem; width: 60%; }
+      .nav-book { margin: 8px 5% 0; display: inline-block; width: auto; border-radius: 2px; padding: 12px 24px; }
+    }
+
     /* ── HERO ── */
     .about-hero {
       min-height: 72vh; display: flex; align-items: flex-end;
@@ -80,7 +80,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
     }
     .hero-bg {
       position: absolute; inset: 0;
-      background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&q=85&fit=crop');
+      background-image: url('/Main Door.jpg');
       background-size: cover; background-position: center 40%; opacity: 0.38;
     }
     .hero-overlay {
@@ -177,9 +177,9 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
       padding: 50px 44px; border: 1px solid rgba(200,169,110,0.18);
       position: relative; overflow: hidden;
       transition: background 0.35s;
-      border-radius: 10px !important ;
+      border-radius: 10px !important;
     }
-    .unique-card:hover { background: var(--warm-white);  }
+    .unique-card:hover { background: var(--warm-white); }
     .unique-card::after {
       content:''; position:absolute; bottom:0; left:0; right:0;
       height: 2px; background: var(--gold);
@@ -219,7 +219,6 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
     }
     .gm-img:hover .gm-lbl { opacity: 1; }
 
-    /* grid placement */
     .gm-1 { grid-column: 1/5;   grid-row: 1/2; }
     .gm-2 { grid-column: 5/9;   grid-row: 1/2; }
     .gm-3 { grid-column: 9/13;  grid-row: 1/2; }
@@ -291,14 +290,11 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
       padding: 26px 28px; background: var(--cream);
       border: 1px solid rgba(200,169,110,0.2); border-radius: 2px;
     }
-    .loc-card-head {
-      display: flex; align-items: center; gap: 14px; margin-bottom: 14px;
-    }
+    .loc-card-head { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
     .loc-icon { font-size: 1.3rem; }
     .loc-card-title { font-size: 0.7rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--gold); }
     .loc-card p, .loc-card a {
-      font-size: 0.92rem; font-weight: 300; line-height: 1.75; color: var(--mid);
-      text-decoration: none;
+      font-size: 0.92rem; font-weight: 300; line-height: 1.75; color: var(--mid); text-decoration: none;
     }
     .loc-card a:hover { color: var(--rose); }
     .loc-card strong { color: var(--charcoal); font-weight: 500; }
@@ -342,7 +338,6 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
 
     /* ── MOBILE ── */
     @media (max-width: 960px) {
-      
       section, .salon-gallery, .location { padding: 60px 24px; }
       .about-hero { padding: 0 24px 60px; min-height: 60vh; }
       .scroll-hint { right: 24px; }
@@ -350,14 +345,9 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
       .owner-quote-bar { display: none; }
       .owner-tag { bottom: -14px; right: -10px; }
       .stats { grid-template-columns: repeat(2,1fr); padding: 50px 24px; }
-      .unique-grid { grid-template-columns: 1fr; gap:10px ;  border-radius: 10px;}
-      .gallery-masonry {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
-      .gm-1,.gm-2,.gm-3,.gm-4,.gm-5,.gm-6,.gm-7,.gm-8,.gm-9 {
-        grid-column: auto; grid-row: auto;
-      }
+      .unique-grid { grid-template-columns: 1fr; gap:10px; border-radius: 10px; }
+      .gallery-masonry { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gm-1,.gm-2,.gm-3,.gm-4,.gm-5,.gm-6,.gm-7,.gm-8,.gm-9 { grid-column: auto; grid-row: auto; }
       .hijabi-banner { grid-template-columns: 1fr; }
       .hb-image { min-height: 280px; }
       .hb-image::after { background: linear-gradient(to top, var(--charcoal) 0%, transparent 60%); }
@@ -376,7 +366,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
 </head>
 <body>
 
-<!-- // NAVBAR --------- -->
+<!-- NAVBAR -->
 <nav id="navbar">
   <a href="/index.html" class="nav-logo">C<span>L</span> Salon<span class="nav-logo-chinese">名髮廊</span></a>
   <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
@@ -411,30 +401,33 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
 <!-- OWNER / STORY -->
 <section class="owner-section">
   <div class="section-label fade-up">Meet the Founder</div>
-  <h2 class="section-title fade-up fade-up-d1">The Story of <em>Sharon</em></h2>
+  <h2 class="section-title fade-up fade-up-d1">The Story of <em id="about-page-heading">Sharon</em></h2>
   <div class="divider fade-up fade-up-d2"></div>
   <div class="owner-grid">
     <div class="owner-photo-wrap fade-up">
       <img
-        src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=800&q=85&fit=crop&crop=top"
-        alt="Sharon — Founder & Master Stylist at C L Salon"
+        id="about-main-img"
+        src="hero-img.png"
+        alt="Founder & Master Stylist at C L Salon"
       />
       <div class="owner-quote-bar">
         <p>"Hair is identity. I want every woman to leave feeling like herself — only more."</p>
-        <span>— Sharon, Founder</span>
+        <span>— Founder</span>
       </div>
       <div class="owner-tag">
-        <span class="ot-num">40+</span>
-        <span class="ot-txt">Years of Mastery</span>
+        <span class="ot-num" id="about-stat1-num">40+</span>
+        <span class="ot-txt" id="about-stat1-label">Years of Mastery</span>
       </div>
     </div>
     <div class="owner-story fade-up fade-up-d1">
-      <div class="owner-name">Sharon</div>
+      <div class="owner-name" id="about-owner-name">Sharon</div>
       <div class="owner-role">Founder &amp; Master Stylist</div>
-      <p>Sharon is the heartbeat of C L Salon 名髮廊. Born from a life dedicated to the craft, she brought over <strong>40 years of Hong Kong and Malaysian hair artistry</strong> to the heart of Birmingham's Chinatown — and changed what a salon could mean for women in this city.</p>
-      <p>Her mission was never just about beautiful hair. It was about <strong>belonging</strong>. Sharon noticed a gap — Hijabi women, Asian women, women of every background — who wanted world-class hair care but found no salon that truly welcomed them. So she built one.</p>
-      <p>Trained across Asia in the most demanding disciplines — Japanese straightening, Korean perms, precision colour, advanced treatments — Sharon brings a level of skill that most stylists never reach. <strong>Every appointment is personal. Every result is considered.</strong></p>
-      <p>Today, C L Salon carries Sharon's philosophy in every corner: no compromise on privacy, no rush, no judgement. Just exceptional hair, in a space built for you.</p>
+      <div id="about-story-content">
+        <p>Sharon is the heartbeat of C L Salon 名髮廊. Born from a life dedicated to the craft, she brought over <strong>40 years of Hong Kong and Malaysian hair artistry</strong> to the heart of Birmingham's Chinatown — and changed what a salon could mean for women in this city.</p>
+        <p>Her mission was never just about beautiful hair. It was about <strong>belonging</strong>. Sharon noticed a gap — Hijabi women, Asian women, women of every background — who wanted world-class hair care but found no salon that truly welcomed them. So she built one.</p>
+        <p>Trained across Asia in the most demanding disciplines — Japanese straightening, Korean perms, precision colour, advanced treatments — Sharon brings a level of skill that most stylists never reach. <strong>Every appointment is personal. Every result is considered.</strong></p>
+        <p>Today, C L Salon carries Sharon's philosophy in every corner: no compromise on privacy, no rush, no judgement. Just exceptional hair, in a space built for you.</p>
+      </div>
       <div class="owner-skills">
         <span class="skill-tag">Japanese Straightening</span>
         <span class="skill-tag">Korean Perms</span>
@@ -450,16 +443,16 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
 <!-- STATS -->
 <div class="stats">
   <div class="stat-item fade-up">
-    <span class="stat-num">40+</span>
-    <span class="stat-label">Years Experience</span>
+    <span class="stat-num" id="about-stat1-num-big">40+</span>
+    <span class="stat-label" id="about-stat1-label-big">Years Experience</span>
   </div>
   <div class="stat-item fade-up fade-up-d1">
-    <span class="stat-num">500+</span>
-    <span class="stat-label">Happy Clients</span>
+    <span class="stat-num" id="about-stat2-num">500+</span>
+    <span class="stat-label" id="about-stat2-label">Happy Clients</span>
   </div>
   <div class="stat-item fade-up fade-up-d2">
-    <span class="stat-num">7</span>
-    <span class="stat-label">Days a Week</span>
+    <span class="stat-num" id="about-stat3-num">7</span>
+    <span class="stat-label" id="about-stat3-label">Days a Week</span>
   </div>
   <div class="stat-item fade-up fade-up-d3">
     <span class="stat-num">5.0 ★</span>
@@ -514,19 +507,19 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
   <div class="divider fade-up fade-up-d2"></div>
   <div class="gallery-masonry fade-up">
     <div class="gm-img gm-1">
-      <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=600&q=80&fit=crop" alt="Salon interior" />
+      <img src="Feather Hair Extensions/balayage.jpg" alt="Salon interior" />
       <div class="gm-lbl">Salon Interior</div>
     </div>
     <div class="gm-img gm-2">
-      <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=600&q=80&fit=crop" alt="Styling chair" />
+      <img src="Feather Hair Extensions/image.jpg" alt="Styling chair" />
       <div class="gm-lbl">Styling Chair</div>
     </div>
     <div class="gm-img gm-3">
-      <img src="https://i1-c.pinimg.com/1200x/b8/e9/8e/b8e98e989bcc61b9ce1f8422b8fbae67.jpg" alt="Japanese straightening" />
+      <img src="Sharon Photo/sharon doing haircut.jpg" alt="Japanese straightening" />
       <div class="gm-lbl">Japanese Straightening</div>
     </div>
     <div class="gm-img gm-4">
-      <img src="https://i1-c.pinimg.com/1200x/86/b3/ae/86b3ae571d3bf48dfb7eca9c9883650a.jpg" alt="Salon space" />
+      <img src="Sharon Photo/sharon with customer.jpg" alt="Salon space" />
       <div class="gm-lbl">Salon Space</div>
     </div>
     <div class="gm-img gm-5">
@@ -559,15 +552,14 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
   </div>
   <div class="hb-content fade-up">
     <div class="hb-label">🕌 Exclusively For You</div>
-    <h2 class="hb-title">Birmingham's Only<br><em>Fully Private</em><br>Room for Hijabi Women</h2>
+    <h2 class="hb-title" id="pr-heading">Birmingham's Only<br><em>Fully Private</em><br>Room for Hijabi Women</h2>
     <div class="hb-divider"></div>
-    <p class="hb-text">We didn't add a curtain. We built a room — fully enclosed, fully private, exclusively for our Hijabi female guests. Every service we offer is available inside. Your comfort is never negotiated.</p>
+    <p class="hb-text" id="pr-desc">We didn't add a curtain. We built a room — fully enclosed, fully private, exclusively for our Hijabi female guests. Every service we offer is available inside. Your comfort is never negotiated.</p>
     <ul class="hb-list">
-      <li>Fully enclosed room — not a curtained area</li>
-      <li>All services available inside (cuts, colour, straightening, treatments)</li>
-      <li>Female staff only throughout your appointment</li>
-      <li>Pre-book via WhatsApp — reserved just for you</li>
-      <li>Complete comfort from door to door</li>
+      <li id="pr-feat1">Fully enclosed room — not a curtained area</li>
+      <li id="pr-feat2">All services available inside (cuts, colour, straightening, treatments)</li>
+      <li id="pr-feat3">Female staff only throughout your appointment</li>
+      <li id="pr-feat4">Pre-book via WhatsApp — reserved just for you</li>
     </ul>
     <a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20the%20private%20room." class="hb-cta">Request Private Room via WhatsApp →</a>
   </div>
@@ -616,9 +608,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
       <iframe
         title="C L Salon location map"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2430.0!2d-1.8941!3d52.4758!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4870bc9b0cfa9d3b%3A0x0!2s3+Bath+Passage%2C+Birmingham+B5+4ST!5e0!3m2!1sen!2suk!4v1"
-        allowfullscreen
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
+        allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
     <div class="loc-info fade-up fade-up-d1">
@@ -627,7 +617,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
           <span class="loc-icon">📍</span>
           <span class="loc-card-title">Address</span>
         </div>
-        <p><strong>Unit 2, China Court Building</strong><br>3 Bath Passage<br>Birmingham B5 4ST<br><em>In the heart of Chinatown</em></p>
+        <p id="book-address"><strong>Unit 2, China Court Building</strong><br>3 Bath Passage<br>Birmingham B5 4ST<br><em>In the heart of Chinatown</em></p>
       </div>
       <div class="loc-card">
         <div class="loc-card-head">
@@ -635,9 +625,8 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
           <span class="loc-card-title">Contact</span>
         </div>
         <p>
-          <a href="tel:+441216225877">0121 622 5877</a><br>
-          <a href="https://wa.me/447833463669">WhatsApp: +44 7833 463 669</a><br>
-          <!-- <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book online via Fresha →</a> -->
+          <a id="book-phone-link" href="tel:+441216225877">0121 622 5877</a><br>
+          <a id="book-whatsapp-link" href="https://wa.me/447833463669">WhatsApp: +44 7833 463 669</a>
         </p>
       </div>
       <div class="loc-card">
@@ -646,13 +635,13 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
           <span class="loc-card-title">Opening Hours</span>
         </div>
         <div class="hours-grid">
-          <div class="hours-row"><span>Monday</span><span>10am – 6pm</span></div>
-          <div class="hours-row"><span>Tuesday</span><span>10am – 6pm</span></div>
-          <div class="hours-row"><span>Wednesday</span><span>10am – 6pm</span></div>
-          <div class="hours-row"><span>Thursday</span><span>10am – 7pm</span></div>
-          <div class="hours-row"><span>Friday</span><span>10am – 7pm</span></div>
-          <div class="hours-row"><span>Saturday</span><span>9am – 6pm</span></div>
-          <div class="hours-row"><span>Sunday</span><span>10am – 5pm</span></div>
+          <div class="hours-row"><span>Monday</span><span id="hrs-mon">10am – 6pm</span></div>
+          <div class="hours-row"><span>Tuesday</span><span id="hrs-tue">10am – 6pm</span></div>
+          <div class="hours-row"><span>Wednesday</span><span id="hrs-wed">10am – 6pm</span></div>
+          <div class="hours-row"><span>Thursday</span><span id="hrs-thu">10am – 7pm</span></div>
+          <div class="hours-row"><span>Friday</span><span id="hrs-fri">10am – 7pm</span></div>
+          <div class="hours-row"><span>Saturday</span><span id="hrs-sat">9am – 6pm</span></div>
+          <div class="hours-row"><span>Sunday</span><span id="hrs-sun">10am – 5pm</span></div>
         </div>
       </div>
     </div>
@@ -666,7 +655,6 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
     <div class="ct-title">Experience the <em>C L Salon</em> Difference</div>
   </div>
   <div class="cta-actions">
-    <!-- <a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw" class="btn-light">Book a Visit</a> -->
     <a href="https://wa.me/447833463669" class="btn-outline-light">WhatsApp Us</a>
   </div>
 </div>
@@ -681,13 +669,13 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
     <div class="footer-col">
       <h4>Navigate</h4>
       <ul>
-       <li><a href="/index.html">Home</a></li>
-    <li><a href="/aboutus.html">About Us</a></li>
-    <li><a href="/service.html">Services</a></li>
-    <li><a href="/privateroom.html">Private Room</a></li>
-    <li><a href="/bookappointment.html">Book</a></li>
-    <li><a href="/faqs.html">FAQs</a></li>
-    <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/aboutus.html">About Us</a></li>
+        <li><a href="/service.html">Services</a></li>
+        <li><a href="/privateroom.html">Private Room</a></li>
+        <li><a href="/bookappointment.html">Book</a></li>
+        <li><a href="/faqs.html">FAQs</a></li>
+        <li><a href="/bookappointment.html" class="nav-book">Book a Visit</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -697,7 +685,6 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
         <li><a href="#">3 Bath Passage, B5 4ST</a></li>
         <li><a href="tel:+441216225877">0121 622 5877</a></li>
         <li><a href="https://wa.me/447833463669">WhatsApp Us</a></li>
-        <!-- <li><a href="https://www.fresha.com/lvp/c-l-salonming-fa-lang-bath-passage-q83Pyw">Book on Fresha</a></li> -->
       </ul>
     </div>
   </div>
@@ -707,8 +694,137 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
   </div>
 </footer>
 
+<!-- FIREBASE + FIRESTORE DYNAMIC FETCH -->
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAPDmGdwXLywA1r7Lnq7QM1TDFEO06XNx0",
+  authDomain: "c-l-salon.firebaseapp.com",
+  projectId: "c-l-salon",
+  storageBucket: "c-l-salon.appspot.com",
+  messagingSenderId: "645481788661",
+  appId: "1:645481788661:web:afbc30802242a323b981bc"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+function setText(id, val) {
+  if (!val) return;
+  const el = document.getElementById(id);
+  if (el) el.textContent = val;
+}
+function setHTML(id, val) {
+  if (!val) return;
+  const el = document.getElementById(id);
+  if (el) el.innerHTML = val;
+}
+function setImg(id, url) {
+  if (!url) return;
+  const el = document.getElementById(id);
+  if (el) el.src = url;
+}
+function setHref(id, val, prefix) {
+  if (!val) return;
+  const el = document.getElementById(id);
+  if (el) {
+    el.href = (prefix || '') + val;
+    el.textContent = val;
+  }
+}
+
+async function loadAboutData() {
+  try {
+    // about_main
+    const aboutSnap = await getDoc(doc(db, 'siteContent', 'about_main'));
+    if (aboutSnap.exists()) {
+      const d = aboutSnap.data();
+      // heading — used as the name in italic
+      if (d.about_heading) {
+        setText('about-page-heading', d.about_heading);
+        setText('about-owner-name', d.about_heading);
+      }
+      // story — render with line breaks preserved
+      if (d.about_story) {
+        const paras = d.about_story.split('\n').filter(p => p.trim());
+        if (paras.length > 0) {
+          document.getElementById('about-story-content').innerHTML =
+            paras.map(p => `<p>${p}</p>`).join('');
+        }
+      }
+      // main photo
+      setImg('about-main-img', d.about_main_img);
+    }
+  } catch(e) {}
+
+  try {
+    // about_stats
+    const statsSnap = await getDoc(doc(db, 'siteContent', 'about_stats'));
+    if (statsSnap.exists()) {
+      const d = statsSnap.data();
+      setText('about-stat1-num', d.about_stat1_num);
+      setText('about-stat1-label', d.about_stat1_label);
+      setText('about-stat1-num-big', d.about_stat1_num);
+      setText('about-stat1-label-big', d.about_stat1_label);
+      setText('about-stat2-num', d.about_stat2_num);
+      setText('about-stat2-label', d.about_stat2_label);
+      setText('about-stat3-num', d.about_stat3_num);
+      setText('about-stat3-label', d.about_stat3_label);
+    }
+  } catch(e) {}
+
+  try {
+    // privateroom features
+    const prSnap = await getDoc(doc(db, 'siteContent', 'privateroom'));
+    if (prSnap.exists()) {
+      const d = prSnap.data();
+      setText('pr-heading', d.pr_heading);
+      setText('pr-desc', d.pr_desc);
+      setText('pr-feat1', d.pr_feat1);
+      setText('pr-feat2', d.pr_feat2);
+      setText('pr-feat3', d.pr_feat3);
+      setText('pr-feat4', d.pr_feat4);
+    }
+  } catch(e) {}
+
+  try {
+    // book_contact
+    const contactSnap = await getDoc(doc(db, 'siteContent', 'book_contact'));
+    if (contactSnap.exists()) {
+      const d = contactSnap.data();
+      if (d.book_address) setText('book-address', d.book_address);
+      if (d.book_phone) {
+        const phoneEl = document.getElementById('book-phone-link');
+        if (phoneEl) { phoneEl.textContent = d.book_phone; phoneEl.href = 'tel:' + d.book_phone.replace(/\s/g,''); }
+      }
+      if (d.book_whatsapp) {
+        const waEl = document.getElementById('book-whatsapp-link');
+        if (waEl) { waEl.textContent = 'WhatsApp: ' + d.book_whatsapp; waEl.href = 'https://wa.me/' + d.book_whatsapp.replace(/\D/g,''); }
+      }
+    }
+  } catch(e) {}
+
+  try {
+    // book_hours
+    const hoursSnap = await getDoc(doc(db, 'siteContent', 'book_hours'));
+    if (hoursSnap.exists()) {
+      const d = hoursSnap.data();
+      // Mon–Fri from book_hrs_mf
+      if (d.book_hrs_mf) {
+        ['hrs-mon','hrs-tue','hrs-wed','hrs-thu','hrs-fri'].forEach(id => setText(id, d.book_hrs_mf));
+      }
+      setText('hrs-sat', d.book_hrs_sat);
+      setText('hrs-sun', d.book_hrs_sun);
+    }
+  } catch(e) {}
+}
+
+loadAboutData();
+</script>
+
 <script>
-  
   const navbar = document.getElementById('navbar');
   window.addEventListener('scroll', () => navbar.classList.toggle('scrolled', window.scrollY > 40));
 
