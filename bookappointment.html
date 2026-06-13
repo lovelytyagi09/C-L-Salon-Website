@@ -3,7 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Book an Appointment — C L Salon 名髮廊</title>
+  <title>Book Appointment | Hijabi Friendly Salon Birmingham City Centre | C L Salon 名髮廊</title>
+  <meta name="description" content="Book your appointment at Birmingham's hijabi friendly salon. Ladies only hair salon with a private room hairdresser in Chinatown Birmingham, Asian hair specialist & Muslim friendly haircut & colouring.">
+  <meta name="keywords" content="Hijabi Friendly Salon Birmingham City Centre, Private Room Hairdresser Chinatown Birmingham, Ladies Only Hair Salon Birmingham, Muslim Friendly Haircut & Colouring, Asian Hair Specialist Birmingham">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://www.clsalonbirmingham.co.uk/bookappointment.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Book Appointment | Hijabi Friendly Salon Birmingham City Centre | C L Salon 名髮廊">
+  <meta property="og:description" content="Book your appointment at Birmingham's hijabi friendly salon. Ladies only hair salon with a private room hairdresser in Chinatown Birmingham, Asian hair specialist & Muslim friendly haircut & colouring.">
+  <meta property="og:locale" content="en_GB">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.clsalonbirmingham.co.uk/index.html" },
+      { "@type": "ListItem", "position": 2, "name": "Book an Appointment", "item": "https://www.clsalonbirmingham.co.uk/bookappointment.html" }
+    ]
+  }
+  </script>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -69,7 +87,11 @@
     .nav-hamburger span {
       display: block; width: 24px; height: 1.5px;
       background: var(--charcoal); margin: 5px 0; transition: .3s;
+      transform-origin: center;
     }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
     /* ─── HERO ─── */
     .book-hero {
@@ -143,6 +165,8 @@
       transition: transform .35s ease, box-shadow .35s ease;
       cursor: pointer;
       height: 100%;
+      display: flex;
+      flex-direction: column;
     }
     .service-card:hover {
       transform: translateY(-6px);
@@ -153,9 +177,10 @@
       object-fit: cover; display: block;
       transition: transform .5s ease;
       filter: brightness(.96) saturate(.95);
+      flex-shrink: 0;
     }
     .service-card:hover .service-card-img { transform: scale(1.05); }
-    .service-card-body { padding: 24px 22px 22px; }
+    .service-card-body { padding: 24px 22px 22px; display: flex; flex-direction: column; flex: 1; }
     .service-badge {
       display: inline-block;
       font-size: .64rem; letter-spacing: .14em; text-transform: uppercase;
@@ -171,6 +196,7 @@
     .service-card-desc {
       font-size: .82rem; color: var(--mid); line-height: 1.65; font-weight: 300;
       margin-bottom: 18px;
+      flex: 1;
     }
     .service-select-btn {
       font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
@@ -404,6 +430,17 @@
       nav { padding: 18px 28px; }
       .nav-links, .nav-book { display: none; }
       .nav-hamburger { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column;
+        position: absolute; top: 100%; left: 0; right: 0;
+        background: var(--cream); padding: 8px 28px 24px; gap: 16px;
+        border-bottom: 1px solid rgba(200,169,110,.2);
+        box-shadow: 0 12px 30px rgba(42,35,32,.08);
+      }
+      .nav-links.open a { font-size: .85rem; padding: 4px 0; }
+      .nav-links.open .nav-book {
+        display: inline-block; text-align: center; margin-top: 6px;
+      }
       .book-hero-content { padding: 0 28px; }
       .booking-grid { grid-template-columns: 1fr; }
       .info-panel { padding: 40px 28px; }
@@ -443,20 +480,16 @@
     </button>
   </nav>
 
-  <!-- ─── PRIVATE BANNER ─── -->
-  <div class="private-banner">
-    🕌 <strong>Private Room Available</strong> — Exclusively for our Muslim female guests.
-    <a href="https://wa.me/447833463669?text=Hi%20Sharon%2C%20I'd%20like%20to%20book%20the%20private%20room." target="_blank"> Request Private Room →</a>
-  </div>
-
+  
+ 
   <!-- ─── HERO ─── -->
   <section class="book-hero">
     <div class="book-hero-bg"></div>
     <div class="book-hero-overlay"></div>
     <div class="book-hero-content">
-      <p class="book-hero-eyebrow">C L Salon 名髮廊 · Birmingham</p>
+      <p class="book-hero-eyebrow">Hijabi Friendly Salon · Birmingham City Centre · Chinatown</p>
       <h1>Book an <em>Appointment</em></h1>
-      <p>Reserve your visit with Sharon — and step into a sanctuary designed for every woman.</p>
+      <p>Reserve your visit with Sharon, our Asian hair specialist — including Muslim friendly haircut & colouring and our private room hairdresser for Hijabi guests.</p>
     </div>
   </section>
 
@@ -473,7 +506,7 @@
 
         <div class="col-6 col-md-4 col-lg-2">
           <div class="service-card" data-service="Japanese Hair Straightening">
-            <img class="service-card-img" src="Hair Straightening/hair straight.jpg" alt="Japanese Straightening" loading="lazy">
+            <img class="service-card-img" src="Hair Straightening/hair straight.jpg" alt="Japanese hair straightening, hijabi friendly salon Birmingham city centre" loading="lazy">
             <div class="service-card-body">
               <span class="service-badge">★ Signature</span>
               <div class="service-card-title">Japanese Straightening</div>
@@ -485,7 +518,7 @@
 
         <div class="col-6 col-md-4 col-lg-2">
           <div class="service-card" data-service="Colour & Balayage">
-            <img class="service-card-img" src="Feather Hair Extensions/balayage.jpg" alt="Colour & Balayage" loading="lazy">
+            <img class="service-card-img" src="Feather Hair Extensions/balayage.jpg" alt="Asian hair colour and balayage, Birmingham city centre salon" loading="lazy">
             <div class="service-card-body">
               <span class="service-badge">★ Popular</span>
               <div class="service-card-title">Colour & Balayage</div>
@@ -497,7 +530,7 @@
 
         <div class="col-6 col-md-4 col-lg-2">
           <div class="service-card" data-service="Haircut & Trim">
-            <img class="service-card-img" src="hair straight.png" alt="Haircut" loading="lazy">
+            <img class="service-card-img" src="hair straight.png" alt="Haircut and trim, ladies only hair salon Birmingham" loading="lazy">
             <div class="service-card-body">
               <span class="service-badge">All Lengths</span>
               <div class="service-card-title">Haircut & Trim</div>
@@ -509,7 +542,7 @@
 
         <div class="col-6 col-md-4 col-lg-2">
           <div class="service-card" data-service="Hair Treatment">
-            <img class="service-card-img" src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&q=80&fit=crop" alt="Hair Treatment" loading="lazy">
+            <img class="service-card-img" src="Hair Straightening/hair straight.jpg" alt="Hair treatment and repair, Asian hair specialist Birmingham" loading="lazy">
             <div class="service-card-body">
               <span class="service-badge">Deep Repair</span>
               <div class="service-card-title">Hair Treatment</div>
@@ -521,7 +554,7 @@
 
         <div class="col-6 col-md-4 col-lg-2">
           <div class="service-card" data-service="Korean Perm">
-            <img class="service-card-img" src="korean perm.jpeg" alt="Korean Perm" loading="lazy">
+            <img class="service-card-img" src="korean perm.jpeg" alt="Korean perm, Asian hair specialist Birmingham salon" loading="lazy">
             <div class="service-card-body">
               <span class="service-badge">Specialty</span>
               <div class="service-card-title">Korean Perm</div>
@@ -533,11 +566,11 @@
 
         <div class="col-6 col-md-4 col-lg-2">
           <div class="service-card" data-service="Private Room — Any Service (Hijabi guests)">
-            <img class="service-card-img" src="private room.jpg" alt="Private Room" loading="lazy">
+            <img class="service-card-img" src="private room.jpg" alt="Private room hairdresser for Hijabi guests, Chinatown Birmingham" loading="lazy">
             <div class="service-card-body">
               <span class="service-badge">🕌 Exclusive</span>
-              <div class="service-card-title">Private Room</div>
-              <p class="service-card-desc">All services in total privacy — Hijabi guests only.</p>
+              <div class="service-card-title">Private Room — Chinatown Birmingham</div>
+              <p class="service-card-desc">All services in total privacy — a ladies only space for Hijabi guests.</p>
               <button class="service-select-btn">Select</button>
             </div>
           </div>
@@ -759,7 +792,7 @@
     <div class="footer-grid">
       <div>
         <a href="index.html" class="footer-logo">CL Salon<span>名髮廊</span></a>
-        <p class="footer-desc">Birmingham's first hijabi-friendly hair sanctuary. Where every woman is welcome, seen, and celebrated.</p>
+        <p class="footer-desc">Birmingham's first hijabi friendly salon — ladies only hair salon with a private room hairdresser in Chinatown Birmingham, specialist in Asian hair styling and Muslim friendly haircut & colouring.</p>
       </div>
       <div>
         <div class="footer-col-title">Navigation</div>
@@ -808,6 +841,20 @@
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
       nav.classList.toggle('scrolled', window.scrollY > 40);
+    });
+
+    // ─── NAV HAMBURGER TOGGLE ───
+    const hamburger = document.getElementById('hamburger');
+    const navLinksEl = document.querySelector('.nav-links');
+    hamburger.addEventListener('click', () => {
+      navLinksEl.classList.toggle('open');
+      hamburger.classList.toggle('open');
+    });
+    navLinksEl.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        navLinksEl.classList.remove('open');
+        hamburger.classList.remove('open');
+      });
     });
 
     // ─── SET MIN DATE to today ───
