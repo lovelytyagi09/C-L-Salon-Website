@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -119,7 +118,7 @@
   .img-upload-area p { font-size: 12px; color: var(--muted); }
   .img-preview { width: 100%; max-height: 160px; object-fit: cover; border-radius: 6px; margin-top: 10px; display: none; }
 
-  /* FAQ / BLOG ITEMS */
+  /* FAQ / BLOG / PRICING ITEMS */
   .list-item {
     background: #191919; border: 1px solid var(--border);
     border-radius: 8px; padding: 16px; margin-bottom: 12px;
@@ -137,10 +136,34 @@
   #toast.error { background: var(--danger); }
 
   .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
   .save-row { display: flex; justify-content: flex-end; margin-top: 8px; }
   .uploading { font-size: 12px; color: var(--accent); margin-top: 6px; display: none; }
   .page-section { display: none; }
   .page-section.active { display: block; }
+
+  /* PRICING TABLE PREVIEW */
+  .pricing-preview-table {
+    width: 100%; border-collapse: collapse; font-size: 12px; margin-bottom: 16px;
+  }
+  .pricing-preview-table th {
+    background: #111; color: var(--accent); padding: 8px 10px;
+    text-align: left; font-size: 11px; letter-spacing: 0.5px;
+    text-transform: uppercase; border-bottom: 1px solid var(--border);
+  }
+  .pricing-preview-table td {
+    padding: 8px 10px; border-bottom: 1px solid var(--border);
+    color: var(--text); vertical-align: middle;
+  }
+  .pricing-preview-table tr:last-child td { border-bottom: none; }
+  .pricing-preview-table .cat-row td {
+    background: #111; color: var(--accent); font-size: 10px;
+    letter-spacing: 1px; text-transform: uppercase; padding: 6px 10px;
+  }
+  .tag-badge {
+    display: inline-block; font-size: 10px; padding: 2px 8px;
+    border-radius: 4px; background: #2a2a2a; color: var(--muted);
+  }
 </style>
 </head>
 <body>
@@ -168,6 +191,7 @@
     <a onclick="showPage('home')" id="nav-home" class="active"><span class="icon">🏠</span> Home</a>
     <a onclick="showPage('about')" id="nav-about"><span class="icon">👤</span> About Us</a>
     <a onclick="showPage('services')" id="nav-services"><span class="icon">✂️</span> Services</a>
+    <a onclick="showPage('pricing')" id="nav-pricing"><span class="icon">💰</span> Pricing</a>
     <a onclick="showPage('privateroom')" id="nav-privateroom"><span class="icon">🕌</span> Private Room</a>
     <a onclick="showPage('book')" id="nav-book"><span class="icon">📅</span> Book</a>
     <a onclick="showPage('faqs')" id="nav-faqs"><span class="icon">❓</span> FAQs</a>
@@ -268,6 +292,58 @@
       </div>
     </div>
 
+    <!-- PRICING -->
+    <div class="page-section" id="page-pricing">
+      <div class="section-card">
+        <h3>Pricing Table</h3>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:20px;">Add, edit or delete pricing rows. Changes appear live on the Services page grouped by category.</p>
+
+        <!-- Live preview table -->
+        <div id="pricing-preview-wrap" style="margin-bottom:20px;overflow-x:auto;display:none;">
+          <table class="pricing-preview-table" id="pricing-preview-table">
+            <thead>
+              <tr>
+                <th>Service</th>
+                <th>Duration</th>
+                <th>General Price</th>
+                <th>🕌 Hijabi Price</th>
+                <th>Notes</th>
+                <th>Category</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="pricing-preview-body"></tbody>
+          </table>
+        </div>
+
+        <div id="pricing-list"></div>
+      </div>
+
+      <!-- ADD NEW ROW -->
+      <div class="section-card" style="border-style:dashed">
+        <h3>Add New Pricing Row</h3>
+        <div class="grid-2">
+          <div class="field"><label>Service Name *</label><input type="text" id="new_pr_name" placeholder="e.g. Japanese Hair Straightening"/></div>
+          <div class="field"><label>Duration</label><input type="text" id="new_pr_duration" placeholder="e.g. 3–5 hours"/></div>
+          <div class="field"><label>General Price</label><input type="text" id="new_pr_price" placeholder="e.g. £240 – £320++"/></div>
+          <div class="field"><label>Hijabi Price</label><input type="text" id="new_pr_hijabi" placeholder="e.g. Upon consultation or POA"/></div>
+          <div class="field"><label>Notes</label><input type="text" id="new_pr_notes" placeholder="e.g. Consultation at appointment"/></div>
+          <div class="field">
+            <label>Category</label>
+            <select id="new_pr_cat">
+              <option value="Cut &amp; Style">Cut &amp; Style</option>
+              <option value="Colour">Colour</option>
+              <option value="Perms &amp; Straightening">Perms &amp; Straightening</option>
+              <option value="Treatments">Treatments</option>
+              <option value="Men's">Men's</option>
+              <option value="Extensions">Extensions</option>
+            </select>
+          </div>
+        </div>
+        <div class="save-row"><button class="btn btn-primary" onclick="addPricingRow()">Add Row</button></div>
+      </div>
+    </div>
+
     <!-- PRIVATE ROOM -->
     <div class="page-section" id="page-privateroom">
       <div class="section-card">
@@ -362,7 +438,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// expose to window
 window._auth = auth;
 window._db = db;
 window._signIn = signInWithEmailAndPassword;
@@ -420,7 +495,11 @@ function showPage(name) {
   document.querySelectorAll('#sidebar nav a').forEach(a => a.classList.remove('active'));
   document.getElementById('page-' + name).classList.add('active');
   document.getElementById('nav-' + name).classList.add('active');
-  const titles = { home:'Home Page', about:'About Us', services:'Services', privateroom:'Private Room', book:'Book / Contact', faqs:'FAQs', blogs:'Blogs' };
+  const titles = {
+    home: 'Home Page', about: 'About Us', services: 'Services',
+    pricing: 'Pricing Table', privateroom: 'Private Room',
+    book: 'Book / Contact', faqs: 'FAQs', blogs: 'Blogs'
+  };
   document.getElementById('topbar-title').textContent = titles[name] || name;
 }
 
@@ -496,9 +575,12 @@ async function loadAllData() {
   loadServices();
   loadFaqs();
   loadBlogs();
+  loadPricing();
 }
 
+// ─────────────────────────────────────────────
 // SERVICES
+// ─────────────────────────────────────────────
 let servicesData = [];
 async function loadServices() {
   servicesData = [];
@@ -571,7 +653,133 @@ async function deleteService(id) {
   } catch(e) { showToast('Failed', true); }
 }
 
+// ─────────────────────────────────────────────
+// PRICING
+// ─────────────────────────────────────────────
+let pricingData = [];
+
+async function loadPricing() {
+  pricingData = [];
+  try {
+    const snap = await window._getDocs(window._collection(window._db, 'pricing'));
+    snap.forEach(d => pricingData.push({ id: d.id, ...d.data() }));
+    pricingData.sort((a, b) => (a.order || 0) - (b.order || 0));
+  } catch(e) {}
+  renderPricing();
+}
+
+function renderPricing() {
+  const listEl = document.getElementById('pricing-list');
+  const previewWrap = document.getElementById('pricing-preview-wrap');
+  const previewBody = document.getElementById('pricing-preview-body');
+
+  if (!pricingData.length) {
+    listEl.innerHTML = '<p style="color:var(--muted);font-size:12px;margin-bottom:16px;">No rows yet. Add one below.</p>';
+    previewWrap.style.display = 'none';
+    return;
+  }
+
+  // ── compact preview table grouped by category ──
+  previewWrap.style.display = 'block';
+  const cats = {};
+  pricingData.forEach(r => {
+    const c = r.category || 'Other';
+    if (!cats[c]) cats[c] = [];
+    cats[c].push(r);
+  });
+  let previewHtml = '';
+  Object.entries(cats).forEach(([cat, items]) => {
+    previewHtml += `<tr class="cat-row"><td colspan="7">${cat}</td></tr>`;
+    items.forEach(r => {
+      previewHtml += `<tr>
+        <td>${r.name||''}</td>
+        <td>${r.duration||'—'}</td>
+        <td style="color:#c9a96e">${r.price||'POA'}</td>
+        <td style="color:#e8c99a">${r.hijabi||'POA'}</td>
+        <td style="color:var(--muted)">${r.notes||'—'}</td>
+        <td><span class="tag-badge">${r.category||''}</span></td>
+        <td><button class="btn btn-danger btn-sm" onclick="deletePricingRow('${r.id}')">×</button></td>
+      </tr>`;
+    });
+  });
+  previewBody.innerHTML = previewHtml;
+
+  // ── edit cards below ──
+  listEl.innerHTML = pricingData.map(p => `
+    <div class="section-card list-item">
+      <div class="list-item-header">
+        <strong>${p.name||'Untitled'} <span style="color:var(--muted);font-size:11px">[${p.category||''}]</span></strong>
+        <button class="btn btn-danger btn-sm" onclick="deletePricingRow('${p.id}')">Delete</button>
+      </div>
+      <div class="grid-3" style="margin-top:12px">
+        <div class="field"><label>Service Name</label><input type="text" id="pr_name_${p.id}" value="${p.name||''}"/></div>
+        <div class="field"><label>Duration</label><input type="text" id="pr_dur_${p.id}" value="${p.duration||''}"/></div>
+        <div class="field">
+          <label>Category</label>
+          <select id="pr_cat_${p.id}">
+            ${["Cut & Style","Colour","Perms & Straightening","Treatments","Men's","Extensions"].map(c=>`<option ${p.category===c?'selected':''}>${c}</option>`).join('')}
+          </select>
+        </div>
+        <div class="field"><label>General Price</label><input type="text" id="pr_price_${p.id}" value="${p.price||''}"/></div>
+        <div class="field"><label>Hijabi Price</label><input type="text" id="pr_hijabi_${p.id}" value="${p.hijabi||''}"/></div>
+        <div class="field"><label>Notes</label><input type="text" id="pr_notes_${p.id}" value="${p.notes||''}"/></div>
+      </div>
+      <div class="save-row"><button class="btn btn-primary btn-sm" onclick="updatePricingRow('${p.id}')">Update Row</button></div>
+    </div>
+  `).join('');
+}
+
+async function addPricingRow() {
+  const name = document.getElementById('new_pr_name').value.trim();
+  if (!name) { showToast('Enter service name', true); return; }
+  try {
+    await window._addDoc(window._collection(window._db, 'pricing'), {
+      name,
+      duration: document.getElementById('new_pr_duration').value,
+      price:    document.getElementById('new_pr_price').value,
+      hijabi:   document.getElementById('new_pr_hijabi').value,
+      notes:    document.getElementById('new_pr_notes').value,
+      category: document.getElementById('new_pr_cat').value,
+      order:    pricingData.length,
+      createdAt: new Date().toISOString()
+    });
+    ['name','duration','price','hijabi','notes'].forEach(f => {
+      const el = document.getElementById('new_pr_' + f);
+      if (el) el.value = '';
+    });
+    showToast('Row added');
+    loadPricing();
+  } catch(e) { showToast('Failed: ' + e.message, true); }
+}
+
+async function updatePricingRow(id) {
+  try {
+    await window._updateDoc(window._doc(window._db, 'pricing', id), {
+      name:      document.getElementById('pr_name_'  + id).value,
+      duration:  document.getElementById('pr_dur_'   + id).value,
+      price:     document.getElementById('pr_price_' + id).value,
+      hijabi:    document.getElementById('pr_hijabi_'+ id).value,
+      notes:     document.getElementById('pr_notes_' + id).value,
+      category:  document.getElementById('pr_cat_'  + id).value,
+      updatedAt: new Date().toISOString()
+    });
+    showToast('Row updated');
+    loadPricing();
+  } catch(e) { showToast('Failed: ' + e.message, true); }
+}
+
+async function deletePricingRow(id) {
+  if (!confirm('Delete this pricing row?')) return;
+  try {
+    await window._deleteDoc(window._doc(window._db, 'pricing', id));
+    showToast('Deleted');
+    loadPricing();
+  } catch(e) { showToast('Failed', true); }
+}
+
+// ─────────────────────────────────────────────
 // FAQS
+// ─────────────────────────────────────────────
 let faqsData = [];
 async function loadFaqs() {
   faqsData = [];
@@ -632,7 +840,9 @@ async function deleteFaq(id) {
   } catch(e) { showToast('Failed', true); }
 }
 
+// ─────────────────────────────────────────────
 // BLOGS
+// ─────────────────────────────────────────────
 let blogsData = [];
 async function loadBlogs() {
   blogsData = [];
