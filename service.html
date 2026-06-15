@@ -179,8 +179,31 @@
     .services-grid { grid-template-columns: 1fr; }
     .footer-inner { grid-template-columns: 1fr; }
     .cta-actions { flex-direction: column; align-items: center; }
-    .filter-tabs { width: 100%; }
-    .filter-tab { flex: 1; text-align: center; }
+    @media (max-width: 600px) {
+  .filter-tabs {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border: 1px solid var(--blush);
+  }
+  .filter-tab {
+    flex: unset;
+    text-align: center;
+    border-right: 1px solid var(--blush);
+    border-bottom: 1px solid var(--blush);
+    padding: 0.6rem 0.4rem;
+    font-size: 0.65rem;
+  }
+  .filter-tab:nth-child(3),
+  .filter-tab:nth-child(6) {
+    border-right: none;
+  }
+  .filter-tab:nth-child(4),
+  .filter-tab:nth-child(5),
+  .filter-tab:nth-child(6) {
+    border-bottom: none;
+  }
+}
   }
 </style>
 </head>
