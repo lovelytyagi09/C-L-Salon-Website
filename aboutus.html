@@ -152,7 +152,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(42,35,32,0.08); }
 
 /* ── HERO ── */
 .about-hero {
-  min-height: 72vh; display: flex; align-items: flex-end;
+  min-height: 100svh; display: flex; align-items: center;
   padding: 72px 60px 80px; position: relative; overflow: hidden;
   background: var(--charcoal);
 }
@@ -439,9 +439,11 @@ footer { background: var(--charcoal); padding: 60px 60px 28px; border-top: 1px s
 
 @media (max-width: 960px) {
   section, .salon-gallery, .location { padding: 60px 24px; }
- .about-hero {
-    padding-top: 100px;
-  }
+.about-hero {
+  padding-top: 72px;
+  min-height: 100svh;
+  align-items: center;
+}
   .scroll-hint { right: 24px; }
   .owner-grid, .asian-grid { grid-template-columns: 1fr; gap: 48px; }
   .owner-quote-bar { display: none; }
