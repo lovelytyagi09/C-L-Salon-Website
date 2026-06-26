@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -280,9 +281,13 @@
     padding: 11px 14px; font-size: 0.9rem; color: var(--charcoal);
     font-family: 'Jost', sans-serif; font-weight: 300; transition: border-color 0.2s; outline: none; width: 100%;
   }
+  .appt-field input[type="file"] {
+    padding: 8px 14px; cursor: pointer;
+  }
   .appt-field input:focus, .appt-field select:focus, .appt-field textarea:focus { border-color: var(--rose); }
   .appt-field select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23a89890' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; cursor: pointer; }
   .appt-field textarea { resize: vertical; min-height: 90px; line-height: 1.6; }
+  .appt-field .field-hint { font-size: 0.75rem; color: var(--light-mid); line-height: 1.5; }
   .appt-private { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; cursor: pointer; }
   .appt-private input[type="checkbox"] { width: 17px; height: 17px; accent-color: var(--rose); cursor: pointer; flex-shrink: 0; }
   .appt-private-label { font-size: 0.84rem; color: var(--mid); font-weight: 300; line-height: 1.4; }
@@ -791,6 +796,14 @@
             </select>
           </div>
           <div class="appt-field"><label for="appt-notes">Additional Notes</label><textarea id="appt-notes" placeholder="Hair type, length, anything Sharon should know..."></textarea></div>
+
+          <!-- HAIR PHOTO UPLOAD -->
+          <div class="appt-field">
+            <label for="appt-photo">Hair Photo (Optional)</label>
+            <input type="file" id="appt-photo" accept="image/*" capture="environment">
+            <span class="field-hint">📸 After submitting, send your photo in the WhatsApp chat that opens.</span>
+          </div>
+
           <label class="appt-private">
             <input type="checkbox" id="appt-private">
             <span class="appt-private-label">I'd like to request the <strong>private room</strong> (exclusively for Muslim female guests)</span>
@@ -799,7 +812,8 @@
           <p class="appt-note">This sends a WhatsApp message directly to Sharon.</p>
         </form>
         <div class="appt-success" id="apptSuccess">
-          <p>✅ <strong>Request sent via WhatsApp!</strong><br>Sharon will confirm your appointment shortly.<br>
+          <p>✅ <strong>Request sent via WhatsApp!</strong><br>Sharon will confirm your appointment shortly.<br><br>
+          📸 <strong>If you have a hair photo</strong>, please send it in the WhatsApp chat that just opened.<br><br>
           You can also call <a href="tel:+441216225877">0121 622 5877</a> for immediate availability.</p>
         </div>
       </div>
@@ -982,6 +996,8 @@
     var service = document.getElementById('appt-service').value;
     var notes   = document.getElementById('appt-notes').value.trim();
     var priv    = document.getElementById('appt-private').checked;
+    var hasPhoto = document.getElementById('appt-photo').files.length > 0;
+
     var msg = 'Hi Sharon, I%27d like to book an appointment at C L Salon.%0A%0A';
     msg += '*Name:* ' + encodeURIComponent(name) + '%0A';
     msg += '*Phone:* ' + encodeURIComponent(phone) + '%0A';
@@ -991,6 +1007,8 @@
     msg += '*Service:* ' + encodeURIComponent(service) + '%0A';
     if (priv) msg += '*Private Room:* Yes, please%0A';
     if (notes) msg += '*Notes:* ' + encodeURIComponent(notes) + '%0A';
+    if (hasPhoto) msg += '%0A%F0%9F%93%B8 *I have a hair photo to share* — please check my next message.%0A';
+
     window.open('https://wa.me/447833463669?text=' + msg, '_blank');
     document.getElementById('apptForm').style.display = 'none';
     document.getElementById('apptSuccess').style.display = 'block';
@@ -1043,7 +1061,6 @@ function set(id, val) { const el = document.getElementById(id); if (el && val) e
 function setImg(id, val) { const el = document.getElementById(id); if (el && val) el.src = val; }
 
 async function load() {
-  // HERO
   try {
     const d = (await getDoc(doc(db, 'siteContent', 'home_hero'))).data();
     if (d) {
@@ -1053,7 +1070,6 @@ async function load() {
     }
   } catch(e) {}
 
-  // ABOUT
   try {
     const d = (await getDoc(doc(db, 'siteContent', 'home_about'))).data();
     if (d) {
@@ -1070,7 +1086,6 @@ async function load() {
     }
   } catch(e) {}
 
-  // WHY CHOOSE US
   try {
     const d = (await getDoc(doc(db, 'siteContent', 'home_why'))).data();
     if (d) {
@@ -1084,7 +1099,6 @@ async function load() {
     }
   } catch(e) {}
 
-  // CONTACT
   try {
     const d = (await getDoc(doc(db, 'siteContent', 'book_contact'))).data();
     if (d) {
@@ -1100,7 +1114,6 @@ async function load() {
     }
   } catch(e) {}
 
-  // HOURS
   try {
     const d = (await getDoc(doc(db, 'siteContent', 'book_hours'))).data();
     if (d) {
